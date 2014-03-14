@@ -9,7 +9,6 @@
 * [Python](#python)
 * [Java](#java)
 
-====
 ----
 
 ###C
