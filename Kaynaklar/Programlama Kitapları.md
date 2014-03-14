@@ -11,16 +11,21 @@
 
 ----
 
+----
+
 ###C
 * [C Programlama Diline Giris](http://www1.gantep.edu.tr/~bingul/c/index.php)
+
 
 
 ###D
 * [D Programlama Dili](http://ddili.org/ders/d/D_Programlama_Dili.pdf)
  
 
+
 ###Fortran
 * [Fortran Programlama Dili](http://www1.gantep.edu.tr/~bingul/f95/index.php)
+
 
 
 ###Git
