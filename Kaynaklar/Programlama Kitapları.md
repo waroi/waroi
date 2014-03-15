@@ -30,6 +30,7 @@
 ###Git
 * [git - basit rehber](http://rogerdudler.github.io/git-guide/index.tr.html)
 
+====
 
 ###JavaScript
 * [JavaScript Garden](http://bonsaiden.github.io/JavaScript-Garden/tr)
