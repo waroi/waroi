@@ -1,153 +1,154 @@
 # Git'te Dallanma #
+====
 
-Neredeyse her SKS'nin bir dallanma (_branching_) iþlevi vardýr. Dallanma, ana geliþtirme çizgisinden sapmak ve iþinizi o ana geliþtirme çizgisine bulaþmadan devam ettirmek anlamýna gelir. Çoðu SKS aracýnda bu pahalý bir süreçtir; kaynak kod klasörünüzün yeni bir kopyasýný yapmanýzý gerektirir ve büyük projelerde çok zaman alýr.
+Neredeyse her SKS'nin bir dallanma (_branching_) iï¿½levi vardï¿½r. Dallanma, ana geliï¿½tirme ï¿½izgisinden sapmak ve iï¿½inizi o ana geliï¿½tirme ï¿½izgisine bulaï¿½madan devam ettirmek anlamï¿½na gelir. ï¿½oï¿½u SKS aracï¿½nda bu pahalï¿½ bir sï¿½reï¿½tir; kaynak kod klasï¿½rï¿½nï¿½zï¿½n yeni bir kopyasï¿½nï¿½ yapmanï¿½zï¿½ gerektirir ve bï¿½yï¿½k projelerde ï¿½ok zaman alï¿½r.
 
-Bazýlarý Git'in dallanma modelinin onun "en vurucu özelliði" olduðunu söylerler; bu özelliðin SKS topluluðu içinde Git'i ayrý bir yere koyduðu doðrudur. Onu bu kadar özel yapan nedir? Git'te dallanmalar çok kolay ve neredeyse anlýktýr, üstelik farklý dallar arasýnda gidip gelmek de bir o kadar hýzlýdýr. Çoðu SKS'den farklý olarak Git dallanma ve birleþtirmenin (_merge_) sýk (belki de günde birkaç kez) gerçekleþeceði bir iþ akýþýný teþvik eder. Bu özelliði anlayýp bu konuda ustalaþmak size son derece becerikli ve eþsiz bir araç saðlayabileceði gibi çalýþma biçiminizi de bütünüyle deðiþtirebilir.
+Bazï¿½larï¿½ Git'in dallanma modelinin onun "en vurucu ï¿½zelliï¿½i" olduï¿½unu sï¿½ylerler; bu ï¿½zelliï¿½in SKS topluluï¿½u iï¿½inde Git'i ayrï¿½ bir yere koyduï¿½u doï¿½rudur. Onu bu kadar ï¿½zel yapan nedir? Git'te dallanmalar ï¿½ok kolay ve neredeyse anlï¿½ktï¿½r, ï¿½stelik farklï¿½ dallar arasï¿½nda gidip gelmek de bir o kadar hï¿½zlï¿½dï¿½r. ï¿½oï¿½u SKS'den farklï¿½ olarak Git dallanma ve birleï¿½tirmenin (_merge_) sï¿½k (belki de gï¿½nde birkaï¿½ kez) gerï¿½ekleï¿½eceï¿½i bir iï¿½ akï¿½ï¿½ï¿½nï¿½ teï¿½vik eder. Bu ï¿½zelliï¿½i anlayï¿½p bu konuda ustalaï¿½mak size son derece becerikli ve eï¿½siz bir araï¿½ saï¿½layabileceï¿½i gibi ï¿½alï¿½ï¿½ma biï¿½iminizi de bï¿½tï¿½nï¿½yle deï¿½iï¿½tirebilir.
 
 ## Dal Nedir? ##
 
-Git'in dallanma iþlemini nasýl yaptýðýný gerçekten anlayabilmek için geriye doðru bir adým atýp Git'in verilerini nasýl depoladýðýna bakmamýz gerekiyor. 1. Bölüm'den hatýrlayabileceðiniz üzere, Git verilerini bir dizi deðiþiklik olarak deðil bir dizi bellek kopyasý olarak depolar.
+Git'in dallanma iï¿½lemini nasï¿½l yaptï¿½ï¿½ï¿½nï¿½ gerï¿½ekten anlayabilmek iï¿½in geriye doï¿½ru bir adï¿½m atï¿½p Git'in verilerini nasï¿½l depoladï¿½ï¿½ï¿½na bakmamï¿½z gerekiyor. 1. Bï¿½lï¿½m'den hatï¿½rlayabileceï¿½iniz ï¿½zere, Git verilerini bir dizi deï¿½iï¿½iklik olarak deï¿½il bir dizi bellek kopyasï¿½ olarak depolar.
 
-Git'te bir kayýt yaptýðýnýzda, Git, kayda hazýrladýðýnýz içeriðin bellek kopyasýna iþaret eden imleci, yazar ve mesaj üstverisini ve söz konusu kaydýn atalarýný gösteren sýfýr ya da daha fazla imleci (ilk kayýt için sýfýr ata, normal bir kayýt için bir ata, iki ya da daha fazla dalýn birleþtirilmesinden oluþan bir kayýt için birden çok ata) içeren bir kayýt nesnesini depolar.
+Git'te bir kayï¿½t yaptï¿½ï¿½ï¿½nï¿½zda, Git, kayda hazï¿½rladï¿½ï¿½ï¿½nï¿½z iï¿½eriï¿½in bellek kopyasï¿½na iï¿½aret eden imleci, yazar ve mesaj ï¿½stverisini ve sï¿½z konusu kaydï¿½n atalarï¿½nï¿½ gï¿½steren sï¿½fï¿½r ya da daha fazla imleci (ilk kayï¿½t iï¿½in sï¿½fï¿½r ata, normal bir kayï¿½t iï¿½in bir ata, iki ya da daha fazla dalï¿½n birleï¿½tirilmesinden oluï¿½an bir kayï¿½t iï¿½in birden ï¿½ok ata) iï¿½eren bir kayï¿½t nesnesini depolar.
 
-Bunu görselleþtirmek için, üç dosyadan oluþan bir klasörünüzün olduðunu ve bu üç dosyayý da kayýt için hazýrladýðýnýzý varsayalým. Dosyalarý kayda hazýrlamak her bir dosyanýn sýnama toplamýný alýr (1. Bölüm'de söz ettiðimiz SHA-1 özeti), dosyanýn o sürümünü Git yazýlým havuzunda depolar (Git'te bunlara _blob_ denir (Ç.N. _blob_ Türkçe'ye damla ya da topak diye çevrilebilir, fakat kelimeyi olduðu gibi kullanmanýn daha anlaþýlýr olacaðýný düþündük.)) ve sýnama toplamýný hazýrlýk alanýna ekler:
+Bunu gï¿½rselleï¿½tirmek iï¿½in, ï¿½ï¿½ dosyadan oluï¿½an bir klasï¿½rï¿½nï¿½zï¿½n olduï¿½unu ve bu ï¿½ï¿½ dosyayï¿½ da kayï¿½t iï¿½in hazï¿½rladï¿½ï¿½ï¿½nï¿½zï¿½ varsayalï¿½m. Dosyalarï¿½ kayda hazï¿½rlamak her bir dosyanï¿½n sï¿½nama toplamï¿½nï¿½ alï¿½r (1. Bï¿½lï¿½m'de sï¿½z ettiï¿½imiz SHA-1 ï¿½zeti), dosyanï¿½n o sï¿½rï¿½mï¿½nï¿½ Git yazï¿½lï¿½m havuzunda depolar (Git'te bunlara _blob_ denir (ï¿½.N. _blob_ Tï¿½rkï¿½e'ye damla ya da topak diye ï¿½evrilebilir, fakat kelimeyi olduï¿½u gibi kullanmanï¿½n daha anlaï¿½ï¿½lï¿½r olacaï¿½ï¿½nï¿½ dï¿½ï¿½ï¿½ndï¿½k.)) ve sï¿½nama toplamï¿½nï¿½ hazï¿½rlï¿½k alanï¿½na ekler:
 
 	$ git add README test.rb LICENSE
 	$ git commit -m 'initial commit of my project'
 
-`git commit` komutunu çalýþtýrarak bir kayýt oluþturduðunuzda, Git her bir alt klasörün (bu örnekte yalnýzca kök klasörün) sýnama toplamýný alýr ve bu aðaç yapýsýndaki bu nesneleri yazýlým havuzunda depolar. Git, daha sonra, üst veriyi ve ihtiyaç duyulduðunda bellek kopyasýnýn yeniden yaratabilmek için aðaç yapýsýndaki nesneyi gösteren bir imleci içeren bir kayýt nesneyi yaratýr.
+`git commit` komutunu ï¿½alï¿½ï¿½tï¿½rarak bir kayï¿½t oluï¿½turduï¿½unuzda, Git her bir alt klasï¿½rï¿½n (bu ï¿½rnekte yalnï¿½zca kï¿½k klasï¿½rï¿½n) sï¿½nama toplamï¿½nï¿½ alï¿½r ve bu aï¿½aï¿½ yapï¿½sï¿½ndaki bu nesneleri yazï¿½lï¿½m havuzunda depolar. Git, daha sonra, ï¿½st veriyi ve ihtiyaï¿½ duyulduï¿½unda bellek kopyasï¿½nï¿½n yeniden yaratabilmek iï¿½in aï¿½aï¿½ yapï¿½sï¿½ndaki nesneyi gï¿½steren bir imleci iï¿½eren bir kayï¿½t nesneyi yaratï¿½r.
 
-Þimdi, Git yazýlým havuzunuzda beþ nesne bulunuyor: üç dosyanýzýn her biri için bir içerik _blob_'u, klasörün içeriðini listeleyen ve hangi dosyanýn hangi _blob_'da depolandýðý bilgisini içeren bir aðaç nesnesi ve o aðaç nesnesini gösteren bir imleci ve bütün kayýt üstverisini içeren bir kayýt nesnesi. Kavramsal olarak, Git yazýlým havuzunuzdaki veri Figür 3-1'deki gibi görünür.
+ï¿½imdi, Git yazï¿½lï¿½m havuzunuzda beï¿½ nesne bulunuyor: ï¿½ï¿½ dosyanï¿½zï¿½n her biri iï¿½in bir iï¿½erik _blob_'u, klasï¿½rï¿½n iï¿½eriï¿½ini listeleyen ve hangi dosyanï¿½n hangi _blob_'da depolandï¿½ï¿½ï¿½ bilgisini iï¿½eren bir aï¿½aï¿½ nesnesi ve o aï¿½aï¿½ nesnesini gï¿½steren bir imleci ve bï¿½tï¿½n kayï¿½t ï¿½stverisini iï¿½eren bir kayï¿½t nesnesi. Kavramsal olarak, Git yazï¿½lï¿½m havuzunuzdaki veri Figï¿½r 3-1'deki gibi gï¿½rï¿½nï¿½r.
 
 Insert 18333fig0301.png 
-Figür 3-1. Tek kayýtlý yazýlým havuzundaki veri.
+Figï¿½r 3-1. Tek kayï¿½tlï¿½ yazï¿½lï¿½m havuzundaki veri.
 
-Yeniden deðiþiklik yapýp kaydederseniz, yeni kayýt kendisinden hemen önce gelen kaydý gösteren bir imleci de depolar. Ýki ya da daha fazla kaydýn sonunda tarihçeniz Figür 3-2'deki gibi görünür.
+Yeniden deï¿½iï¿½iklik yapï¿½p kaydederseniz, yeni kayï¿½t kendisinden hemen ï¿½nce gelen kaydï¿½ gï¿½steren bir imleci de depolar. ï¿½ki ya da daha fazla kaydï¿½n sonunda tarihï¿½eniz Figï¿½r 3-2'deki gibi gï¿½rï¿½nï¿½r.
 
 Insert 18333fig0302.png 
-Figür 3-2. Birden çok kayýt sonunda Git nesne verisi.
+Figï¿½r 3-2. Birden ï¿½ok kayï¿½t sonunda Git nesne verisi.
 
-Git'te bir dal, bu kayýtlardan birine iþaret eden, yer deðiþtirebilen kývrak bir imleçten ibarettir. Git'teki varsayýlan dal adý `master`'dýr. Ýlk kaydý yaptýðýnýzda, son yaptýðýnýz kaydý gösteren bir `master` dalýna sahip olursunuz. Her kayýt yaptýðýnýzda dal otomatik olarak son kaydý göstermek üzere hareket eder.
+Git'te bir dal, bu kayï¿½tlardan birine iï¿½aret eden, yer deï¿½iï¿½tirebilen kï¿½vrak bir imleï¿½ten ibarettir. Git'teki varsayï¿½lan dal adï¿½ `master`'dï¿½r. ï¿½lk kaydï¿½ yaptï¿½ï¿½ï¿½nï¿½zda, son yaptï¿½ï¿½ï¿½nï¿½z kaydï¿½ gï¿½steren bir `master` dalï¿½na sahip olursunuz. Her kayï¿½t yaptï¿½ï¿½ï¿½nï¿½zda dal otomatik olarak son kaydï¿½ gï¿½stermek ï¿½zere hareket eder.
 
 Insert 18333fig0303.png 
-Figür 3-3. Dal kayýt verisinin tarihçesini gösteriyor.
+Figï¿½r 3-3. Dal kayï¿½t verisinin tarihï¿½esini gï¿½steriyor.
 
-Yeni bir dal oluþturduðunuzda ne olur? Yeni kayýtlarla ilerlemenizi saðlayan yeni bir imleç yaratýlýr. Söz gelimi, `testing` adýnda yeni bir dal oluþturalým. Bunu, `git branch` komutuyla yapabilirsiniz:
+Yeni bir dal oluï¿½turduï¿½unuzda ne olur? Yeni kayï¿½tlarla ilerlemenizi saï¿½layan yeni bir imleï¿½ yaratï¿½lï¿½r. Sï¿½z gelimi, `testing` adï¿½nda yeni bir dal oluï¿½turalï¿½m. Bunu, `git branch` komutuyla yapabilirsiniz:
 
 	$ git branch testing
 
-Bu, þu an bulunduðunuz kayýttan hareketle yeni bir imleç yaratýr (bkz. Figür 3-4).
+Bu, ï¿½u an bulunduï¿½unuz kayï¿½ttan hareketle yeni bir imleï¿½ yaratï¿½r (bkz. Figï¿½r 3-4).
 
 
 Insert 18333fig0304.png 
-Figür 3-4. Birden çok dal kayýt verisinin tarihçesini gösteriyor.
+Figï¿½r 3-4. Birden ï¿½ok dal kayï¿½t verisinin tarihï¿½esini gï¿½steriyor.
 
-Git þu an hangi dalýn üzerinde olduðunuzu nereden biliyor? `HEAD` adýnda özel bir imleç tutuyor. Unutmayýn, buradaki `HEAD` Subversion ya da CVS gibi baþka SKS'lerden alýþýk olduðunuz `HEAD`'den çok farklýdýr. Git'te bu, üzerinde bulunduðunuz yerel dalý gösterir. Bu örnekte hâlâ `master` dalýndasýnýz. `git branch` komutu yalnýzca yeni bir dal yarattý —o dala atlamadý (bkz. Figür 3-5).
+Git ï¿½u an hangi dalï¿½n ï¿½zerinde olduï¿½unuzu nereden biliyor? `HEAD` adï¿½nda ï¿½zel bir imleï¿½ tutuyor. Unutmayï¿½n, buradaki `HEAD` Subversion ya da CVS gibi baï¿½ka SKS'lerden alï¿½ï¿½ï¿½k olduï¿½unuz `HEAD`'den ï¿½ok farklï¿½dï¿½r. Git'te bu, ï¿½zerinde bulunduï¿½unuz yerel dalï¿½ gï¿½sterir. Bu ï¿½rnekte hï¿½lï¿½ `master` dalï¿½ndasï¿½nï¿½z. `git branch` komutu yalnï¿½zca yeni bir dal yarattï¿½ ï¿½o dala atlamadï¿½ (bkz. Figï¿½r 3-5).
 
 Insert 18333fig0305.png 
-Figür 3-5. HEAD dosyasý üzerinde bulunduðunuz dalý gösteriyor.
+Figï¿½r 3-5. HEAD dosyasï¿½ ï¿½zerinde bulunduï¿½unuz dalï¿½ gï¿½steriyor.
 
-Varolan bir dala atlamak için `git checkout` komutunu çalýþtýrmalýsýnýz. Gelin, `testing` dalýna atlayalým:
+Varolan bir dala atlamak iï¿½in `git checkout` komutunu ï¿½alï¿½ï¿½tï¿½rmalï¿½sï¿½nï¿½z. Gelin, `testing` dalï¿½na atlayalï¿½m:
 
 	$ git checkout testing
 
-Bu, `HEAD`'in `testing` dalýný göstermesiyle sonuçlanýr (bkz. Figür 3-6).
+Bu, `HEAD`'in `testing` dalï¿½nï¿½ gï¿½stermesiyle sonuï¿½lanï¿½r (bkz. Figï¿½r 3-6).
 
 Insert 18333fig0306.png
-Figür 3-6. Dal deðiþtirdiðinizde HEAD üzerinde olduðunuz dalý gösterir.
+Figï¿½r 3-6. Dal deï¿½iï¿½tirdiï¿½inizde HEAD ï¿½zerinde olduï¿½unuz dalï¿½ gï¿½sterir.
 
-Bunun ne önemi var? Gelin bir kayýt daha yapalým:
+Bunun ne ï¿½nemi var? Gelin bir kayï¿½t daha yapalï¿½m:
 
 	$ vim test.rb
 	$ git commit -a -m 'made a change'
 
-Figür 3-7 sonucu resmediyor.
+Figï¿½r 3-7 sonucu resmediyor.
 
 Insert 18333fig0307.png 
-Figür 3-7. HEAD'in gösterdiði dal her kayýtla ileri doðru hareket eder.
+Figï¿½r 3-7. HEAD'in gï¿½sterdiï¿½i dal her kayï¿½tla ileri doï¿½ru hareket eder.
 
-Burada ilginç olan `testing` dalý ilerlediði halde `master` dalý hâlâ dal deðiþtirmek için `git checkout` komutunu çalýþtýrdýðýnýz zamanki yerinde duruyor. Gelin yeniden `master` dalýna dönelim.
+Burada ilginï¿½ olan `testing` dalï¿½ ilerlediï¿½i halde `master` dalï¿½ hï¿½lï¿½ dal deï¿½iï¿½tirmek iï¿½in `git checkout` komutunu ï¿½alï¿½ï¿½tï¿½rdï¿½ï¿½ï¿½nï¿½z zamanki yerinde duruyor. Gelin yeniden `master` dalï¿½na dï¿½nelim.
 
 	$ git checkout master
 
-Figür 3-8 sonucu gösteriyor.
+Figï¿½r 3-8 sonucu gï¿½steriyor.
 
 Insert 18333fig0308.png 
-Figür 3-8. Seçme (checkout) iþlemi yapýldýðýnda HEAD baþka bir dalý gösterir.
+Figï¿½r 3-8. Seï¿½me (checkout) iï¿½lemi yapï¿½ldï¿½ï¿½ï¿½nda HEAD baï¿½ka bir dalï¿½ gï¿½sterir.
 
-Örnekteki komut iki þey yaptý. `HEAD` imlecini yeniden `master` dalýný gösterecek þekilde hareket ettirdi ve çalýþma klasörünüzdeki dosyalarý `master`'ýn gösterdiði bellek kopyasýndaki hallerine getirdi. Bu demek oluyor ki, bu noktada yapacaðýnýz deðiþiklikler projenin daha eski bir sürümünü baz alacak. Özünde, baþka bir yöne gidebilmek için `testing` dalýnda yaptýðýnýz deðiþiklikleri geçici olarak geri almýþ oldunuz.
+ï¿½rnekteki komut iki ï¿½ey yaptï¿½. `HEAD` imlecini yeniden `master` dalï¿½nï¿½ gï¿½sterecek ï¿½ekilde hareket ettirdi ve ï¿½alï¿½ï¿½ma klasï¿½rï¿½nï¿½zdeki dosyalarï¿½ `master`'ï¿½n gï¿½sterdiï¿½i bellek kopyasï¿½ndaki hallerine getirdi. Bu demek oluyor ki, bu noktada yapacaï¿½ï¿½nï¿½z deï¿½iï¿½iklikler projenin daha eski bir sï¿½rï¿½mï¿½nï¿½ baz alacak. ï¿½zï¿½nde, baï¿½ka bir yï¿½ne gidebilmek iï¿½in `testing` dalï¿½nda yaptï¿½ï¿½ï¿½nï¿½z deï¿½iï¿½iklikleri geï¿½ici olarak geri almï¿½ï¿½ oldunuz.
 
-Gelin bir deðiþiklik daha yapýp kaydedelim:
+Gelin bir deï¿½iï¿½iklik daha yapï¿½p kaydedelim:
 
 	$ vim test.rb
 	$ git commit -a -m 'made other changes'
 
-Þimdi proje tarihçeniz iki ayrý dala ýraksadý (bkz. Figür 3-9). Yeni bir dal yaratýp ona geçtiniz, bazý deðiþiklikler yaptýnýz; sonra ana dalýnýza geri döndünüz ve baþka bazý deðiþiklikler yaptýnýz. Bu iki deðiþiklik iki ayrý dalda birbirinden yalýtýk durumdalar: iki dal arasýnda gidip gelebilir, hazýr olduðunuzda bu iki dalý birleþtirebilirsiniz. Bütün bunlarý yalnýzca `branch` ve `checkout` komutlarýný kullanarak yaptýnýz.
+ï¿½imdi proje tarihï¿½eniz iki ayrï¿½ dala ï¿½raksadï¿½ (bkz. Figï¿½r 3-9). Yeni bir dal yaratï¿½p ona geï¿½tiniz, bazï¿½ deï¿½iï¿½iklikler yaptï¿½nï¿½z; sonra ana dalï¿½nï¿½za geri dï¿½ndï¿½nï¿½z ve baï¿½ka bazï¿½ deï¿½iï¿½iklikler yaptï¿½nï¿½z. Bu iki deï¿½iï¿½iklik iki ayrï¿½ dalda birbirinden yalï¿½tï¿½k durumdalar: iki dal arasï¿½nda gidip gelebilir, hazï¿½r olduï¿½unuzda bu iki dalï¿½ birleï¿½tirebilirsiniz. Bï¿½tï¿½n bunlarï¿½ yalnï¿½zca `branch` ve `checkout` komutlarï¿½nï¿½ kullanarak yaptï¿½nï¿½z.
 
 Insert 18333fig0309.png 
-Figür 3-9. Dal tarihçeleri birbirinden ýraksadý.
+Figï¿½r 3-9. Dal tarihï¿½eleri birbirinden ï¿½raksadï¿½.
 
-Git'te bir dal iþaret ettiði kaydýn 40 karakterlik SHA-1 sýnama toplamýný içeren basit bir dosyadan ibaret olduðu için dallarý yaratmak ve yok etmek oldukça masrafsýzdýr. Yeni bir dal yaratmak bir dosyaya 41 karakter (40 karakter ve bir satýr sonu) yazmak kadar hýzlýdýr.
+Git'te bir dal iï¿½aret ettiï¿½i kaydï¿½n 40 karakterlik SHA-1 sï¿½nama toplamï¿½nï¿½ iï¿½eren basit bir dosyadan ibaret olduï¿½u iï¿½in dallarï¿½ yaratmak ve yok etmek oldukï¿½a masrafsï¿½zdï¿½r. Yeni bir dal yaratmak bir dosyaya 41 karakter (40 karakter ve bir satï¿½r sonu) yazmak kadar hï¿½zlï¿½dï¿½r.
 
-Bu, çoðu SKS'nin bütün proje dosyalarýný yeni bir klasöre kopyalamayý gerektiren dallanma yaklaþýmýyla keskin bir karþýtlýk içindedir. Söz konusu yaklaþýmda projenin boyutlarýna baðlý olarak dallanma saniyeler, hatta dakikalar sürebilir; Git'te ise bu süreç her zaman anlýktýr. Ayrýca, kayýt yaparken ata kayýtlarý da kaydettiðimiz için birleþtirme sýrasýnda uygun bir ortak payda bulma iþi de otomatik olarak ve genellikle oldukça kolayca halledilir. Bu özellikler yazýlýmcýlarý sýk sýk dal yaratýp kullanmaya teþvik eder.
+Bu, ï¿½oï¿½u SKS'nin bï¿½tï¿½n proje dosyalarï¿½nï¿½ yeni bir klasï¿½re kopyalamayï¿½ gerektiren dallanma yaklaï¿½ï¿½mï¿½yla keskin bir karï¿½ï¿½tlï¿½k iï¿½indedir. Sï¿½z konusu yaklaï¿½ï¿½mda projenin boyutlarï¿½na baï¿½lï¿½ olarak dallanma saniyeler, hatta dakikalar sï¿½rebilir; Git'te ise bu sï¿½reï¿½ her zaman anlï¿½ktï¿½r. Ayrï¿½ca, kayï¿½t yaparken ata kayï¿½tlarï¿½ da kaydettiï¿½imiz iï¿½in birleï¿½tirme sï¿½rasï¿½nda uygun bir ortak payda bulma iï¿½i de otomatik olarak ve genellikle oldukï¿½a kolayca halledilir. Bu ï¿½zellikler yazï¿½lï¿½mcï¿½larï¿½ sï¿½k sï¿½k dal yaratï¿½p kullanmaya teï¿½vik eder.
 
-Neden böyle olmasý gerektiðine yakýndan bakalým.
+Neden bï¿½yle olmasï¿½ gerektiï¿½ine yakï¿½ndan bakalï¿½m.
 
-## Dallanma ve Birleþtirmenin Temelleri ##
+## Dallanma ve Birleï¿½tirmenin Temelleri ##
 
-Gelin, basit bir örnekle, gerçek hayatta kullanacaðýnýz bir dallanma ve birleþtirme iþleyiþinin üstünden geçelim. Þu adýmlarý izleyeceksiniz:
+Gelin, basit bir ï¿½rnekle, gerï¿½ek hayatta kullanacaï¿½ï¿½nï¿½z bir dallanma ve birleï¿½tirme iï¿½leyiï¿½inin ï¿½stï¿½nden geï¿½elim. ï¿½u adï¿½mlarï¿½ izleyeceksiniz:
 
-1. Bir web sitesi üzerine çalýþýyor olun.
-2. Üzerinde çalýþtýðýnýz yeni bir iþ parçasý için bir dal yaratýn.
-3. Çalýþmalarýnýzý bu dalda gerçekleþtirin.
+1. Bir web sitesi ï¿½zerine ï¿½alï¿½ï¿½ï¿½yor olun.
+2. ï¿½zerinde ï¿½alï¿½ï¿½tï¿½ï¿½ï¿½nï¿½z yeni bir iï¿½ parï¿½asï¿½ iï¿½in bir dal yaratï¿½n.
+3. ï¿½alï¿½ï¿½malarï¿½nï¿½zï¿½ bu dalda gerï¿½ekleï¿½tirin.
 
-Bu noktada, sizden kritik önemde baþka sorun üzerinde çalýþýp hýzlýca bir yama hazýrlamanýz istensin. Bu durumda þunlarý yapacaksýnýz:
+Bu noktada, sizden kritik ï¿½nemde baï¿½ka sorun ï¿½zerinde ï¿½alï¿½ï¿½ï¿½p hï¿½zlï¿½ca bir yama hazï¿½rlamanï¿½z istensin. Bu durumda ï¿½unlarï¿½ yapacaksï¿½nï¿½z:
 
-1. Ana dalýnýza geri dönün.
-2. Yamayý eklemek için yeni bir dal oluþturun.
-3. Testleri tamamlandýktan sonra yama dalýný ana dalla birleþtirip yayýna verin.
-4. Çalýþmakta olduðunuz iþ parçasý dalýna geri dönüp çalýþmaya devam edin.
+1. Ana dalï¿½nï¿½za geri dï¿½nï¿½n.
+2. Yamayï¿½ eklemek iï¿½in yeni bir dal oluï¿½turun.
+3. Testleri tamamlandï¿½ktan sonra yama dalï¿½nï¿½ ana dalla birleï¿½tirip yayï¿½na verin.
+4. ï¿½alï¿½ï¿½makta olduï¿½unuz iï¿½ parï¿½asï¿½ dalï¿½na geri dï¿½nï¿½p ï¿½alï¿½ï¿½maya devam edin.
 
-### Dallanmanýn Temelleri ###
+### Dallanmanï¿½n Temelleri ###
 
-Önce, diyelim ki bir projede çalýþýyorsunuz ve halihazýrda birkaç tane kaydýnýz var (bkz. Figür 3-10).
+ï¿½nce, diyelim ki bir projede ï¿½alï¿½ï¿½ï¿½yorsunuz ve halihazï¿½rda birkaï¿½ tane kaydï¿½nï¿½z var (bkz. Figï¿½r 3-10).
 
 Insert 18333fig0310.png 
-Figür 3-10. Kýsa ve basit bir kayýt tarihçesi.
+Figï¿½r 3-10. Kï¿½sa ve basit bir kayï¿½t tarihï¿½esi.
 
-Þirketinizin kullandýðý sorun izleme programýndaki #53 numaralý sorun üzerinde çalýþmaya karar verdiniz. Açýklýða kavuþturmak için söyleyelim: Git herhangi bir sorun izleme programýna baðlý deðildir; ama #53 numaralý sorun üzerinde çalýþmak istediðiniz baþý sonu belli bir konu olduðu için, çalýþmanýzý bir dal üzerinde yapacaksýnýz. Bir dalý yaratýr yaratmaz hemen ona geçiþ yapmak için `git checout` komutunu `-b` seçeneðiyle birlikte kullanabilirsiniz:
+ï¿½irketinizin kullandï¿½ï¿½ï¿½ sorun izleme programï¿½ndaki #53 numaralï¿½ sorun ï¿½zerinde ï¿½alï¿½ï¿½maya karar verdiniz. Aï¿½ï¿½klï¿½ï¿½a kavuï¿½turmak iï¿½in sï¿½yleyelim: Git herhangi bir sorun izleme programï¿½na baï¿½lï¿½ deï¿½ildir; ama #53 numaralï¿½ sorun ï¿½zerinde ï¿½alï¿½ï¿½mak istediï¿½iniz baï¿½ï¿½ sonu belli bir konu olduï¿½u iï¿½in, ï¿½alï¿½ï¿½manï¿½zï¿½ bir dal ï¿½zerinde yapacaksï¿½nï¿½z. Bir dalï¿½ yaratï¿½r yaratmaz hemen ona geï¿½iï¿½ yapmak iï¿½in `git checout` komutunu `-b` seï¿½eneï¿½iyle birlikte kullanabilirsiniz:
 
 	$ git checkout -b iss53
 	Switched to a new branch "iss53"
 
-Bu, aþaðýdaki iki komutun yerine kullanabileceðiniz bir kýsayoldur:
+Bu, aï¿½aï¿½ï¿½daki iki komutun yerine kullanabileceï¿½iniz bir kï¿½sayoldur:
 
 	$ git branch iss53
 	$ git checkout iss53
 
-Figür 3-11 sonucu resmediyor.
+Figï¿½r 3-11 sonucu resmediyor.
 
 Insert 18333fig0311.png 
-Figür 3-11. Yeni bir dal imleci yaratmak.
+Figï¿½r 3-11. Yeni bir dal imleci yaratmak.
 
-Web sitesi üzerinde çalýþýp bazý kayýtlar yapýyorsunuz. Bunu yaptýðýnýzda `iss53` dalý ilerliyor, çünkü seçtiðiniz dal o (yani `HEAD` onu gösteriyor; bkz. Figür 3-12).
+Web sitesi ï¿½zerinde ï¿½alï¿½ï¿½ï¿½p bazï¿½ kayï¿½tlar yapï¿½yorsunuz. Bunu yaptï¿½ï¿½ï¿½nï¿½zda `iss53` dalï¿½ ilerliyor, ï¿½ï¿½nkï¿½ seï¿½tiï¿½iniz dal o (yani `HEAD` onu gï¿½steriyor; bkz. Figï¿½r 3-12).
 
 	$ vim index.html
 	$ git commit -a -m 'added a new footer [issue 53]'
 
 Insert 18333fig0312.png 
-Figür 3-12. Çalýþamýz sonucunda iss53 dalý ilerledi.
+Figï¿½r 3-12. ï¿½alï¿½ï¿½amï¿½z sonucunda iss53 dalï¿½ ilerledi.
 
-Þimdi, sizden web sitesindeki bir sorun için acilen bir yama hazýrlamanýz istensin. Git kullanýyorsanýz, yamayý daha önce `iss53` dalýnda yaptýðýnýz yaptýðýnýz deðiþikliklerle birlikte yayýna sokmanýz gerekmez; yama üzerinde çalýþmaya baþlamadan önce söz konusu deðiþiklikleri geri alýp yayýndaki web sitesini kaynak koduna ulaþabilmek için fazla çabalamanýza da gerek yok. Tek yapmanýz gereken `master` dalýna geri dönmek.
+ï¿½imdi, sizden web sitesindeki bir sorun iï¿½in acilen bir yama hazï¿½rlamanï¿½z istensin. Git kullanï¿½yorsanï¿½z, yamayï¿½ daha ï¿½nce `iss53` dalï¿½nda yaptï¿½ï¿½ï¿½nï¿½z yaptï¿½ï¿½ï¿½nï¿½z deï¿½iï¿½ikliklerle birlikte yayï¿½na sokmanï¿½z gerekmez; yama ï¿½zerinde ï¿½alï¿½ï¿½maya baï¿½lamadan ï¿½nce sï¿½z konusu deï¿½iï¿½iklikleri geri alï¿½p yayï¿½ndaki web sitesini kaynak koduna ulaï¿½abilmek iï¿½in fazla ï¿½abalamanï¿½za da gerek yok. Tek yapmanï¿½z gereken `master` dalï¿½na geri dï¿½nmek.
 
-Ama, bunu yapmadan önce þunu belirtmekte yarar var: eðer çalýþma klasörünüzde ya da kayda hazýrlýk alanýnda seçmek (_checkout_) istediðiniz dalla uyuþmazlýk gösteren kaydedilmemiþ deðiþiklikler varsa, Git dal deðiþtirmenize izin vermeyecektir. Dal deðiþtirirken çalýþma alanýnýzý temiz olmasý en iyisidir. Bunun üstesinden gelmek için baþvurulabilecek yollarý (zulalama ve kayýt deðiþtirme gibi) daha sonra inceleyeceðiz. Þimdilik, bütün deðiþikliklerinizi kaydettiniz, dolayýsýyla `master` dalýna geçiþ yapabilirsiniz.
+Ama, bunu yapmadan ï¿½nce ï¿½unu belirtmekte yarar var: eï¿½er ï¿½alï¿½ï¿½ma klasï¿½rï¿½nï¿½zde ya da kayda hazï¿½rlï¿½k alanï¿½nda seï¿½mek (_checkout_) istediï¿½iniz dalla uyuï¿½mazlï¿½k gï¿½steren kaydedilmemiï¿½ deï¿½iï¿½iklikler varsa, Git dal deï¿½iï¿½tirmenize izin vermeyecektir. Dal deï¿½iï¿½tirirken ï¿½alï¿½ï¿½ma alanï¿½nï¿½zï¿½ temiz olmasï¿½ en iyisidir. Bunun ï¿½stesinden gelmek iï¿½in baï¿½vurulabilecek yollarï¿½ (zulalama ve kayï¿½t deï¿½iï¿½tirme gibi) daha sonra inceleyeceï¿½iz. ï¿½imdilik, bï¿½tï¿½n deï¿½iï¿½ikliklerinizi kaydettiniz, dolayï¿½sï¿½yla `master` dalï¿½na geï¿½iï¿½ yapabilirsiniz.
 
 	$ git checkout master
 	Switched to branch "master"
 
-Bu noktada, çalýþma klasörünüz #53 numaralý sorun üzerinde çalýþmaya baþlamadan hemen önceki halindedir ve yamayý hazýrlamaya odaklanabilirsiniz. Burasý önemli: Git, çalýþma klasörünüzü seçtiðiniz dalýn gösterdiði kaydýn bellek kopyasýyla ayný olacak þekilde ayarlar. Dal, son kaydýnýzda nasýl görünüyorsa çalýþma klasörünü o hale getirebilmek için otomatik olarak dosyalarý ekler, siler ve deðiþtirir.
+Bu noktada, ï¿½alï¿½ï¿½ma klasï¿½rï¿½nï¿½z #53 numaralï¿½ sorun ï¿½zerinde ï¿½alï¿½ï¿½maya baï¿½lamadan hemen ï¿½nceki halindedir ve yamayï¿½ hazï¿½rlamaya odaklanabilirsiniz. Burasï¿½ ï¿½nemli: Git, ï¿½alï¿½ï¿½ma klasï¿½rï¿½nï¿½zï¿½ seï¿½tiï¿½iniz dalï¿½n gï¿½sterdiï¿½i kaydï¿½n bellek kopyasï¿½yla aynï¿½ olacak ï¿½ekilde ayarlar. Dal, son kaydï¿½nï¿½zda nasï¿½l gï¿½rï¿½nï¿½yorsa ï¿½alï¿½ï¿½ma klasï¿½rï¿½nï¿½ o hale getirebilmek iï¿½in otomatik olarak dosyalarï¿½ ekler, siler ve deï¿½iï¿½tirir.
 
-Sýrada, hazýrlanacak yama var. Þimdi yama üzerinde çalýþmak için bir `hotfix` dalý oluþturalým (bkz. Figür 3-13):
+Sï¿½rada, hazï¿½rlanacak yama var. ï¿½imdi yama ï¿½zerinde ï¿½alï¿½ï¿½mak iï¿½in bir `hotfix` dalï¿½ oluï¿½turalï¿½m (bkz. Figï¿½r 3-13):
 
 	$ git checkout -b 'hotfix'
 	Switched to a new branch "hotfix"
@@ -157,9 +158,9 @@ Sýrada, hazýrlanacak yama var. Þimdi yama üzerinde çalýþmak için bir `hotfix` da
 	 1 files changed, 0 insertions(+), 1 deletions(-)
 
 Insert 18333fig0313.png 
-Figür 3-13. hotfix dalý master dalýný baz alýyor.
+Figï¿½r 3-13. hotfix dalï¿½ master dalï¿½nï¿½ baz alï¿½yor.
 
-Testlerinizi uygulayabilir, yamanýzýn istediðiniz gibi olduðundan emin olduktan sonra yayýna sokabilmek için `master` dalýyla birleþtirebilirsiniz. Bunun için `git merge` komutu kullanýlýr:
+Testlerinizi uygulayabilir, yamanï¿½zï¿½n istediï¿½iniz gibi olduï¿½undan emin olduktan sonra yayï¿½na sokabilmek iï¿½in `master` dalï¿½yla birleï¿½tirebilirsiniz. Bunun iï¿½in `git merge` komutu kullanï¿½lï¿½r:
 
 	$ git checkout master
 	$ git merge hotfix
@@ -168,19 +169,19 @@ Testlerinizi uygulayabilir, yamanýzýn istediðiniz gibi olduðundan emin olduktan 
 	 README |    1 -
 	 1 files changed, 0 insertions(+), 1 deletions(-)
 
-Birleþtirme çýktýsýndaki "Fast forward" ifadesine dikkat. Birleþtirdiðiniz dalýn gösterdiði kayýt, üstünde bulunduðunuz dalýn doðrudan devamý olduðundan, Git yalnýzca imleci ileri alýr. Baþka bir deyiþle, bir kaydý, kendi tarihçesinde geri giderek ulaþýlabilecek bir baþka kayýtla birleþtiriyorsanýz, Git ýraksayan ve birleþtirilmesi gereken herhangi bir þey olmadýðý için iþleri kolaylaþtýrýp imleci ileri alýr —buna "fast forward" (hýzlý ileri alma) denir.
+Birleï¿½tirme ï¿½ï¿½ktï¿½sï¿½ndaki "Fast forward" ifadesine dikkat. Birleï¿½tirdiï¿½iniz dalï¿½n gï¿½sterdiï¿½i kayï¿½t, ï¿½stï¿½nde bulunduï¿½unuz dalï¿½n doï¿½rudan devamï¿½ olduï¿½undan, Git yalnï¿½zca imleci ileri alï¿½r. Baï¿½ka bir deyiï¿½le, bir kaydï¿½, kendi tarihï¿½esinde geri giderek ulaï¿½ï¿½labilecek bir baï¿½ka kayï¿½tla birleï¿½tiriyorsanï¿½z, Git ï¿½raksayan ve birleï¿½tirilmesi gereken herhangi bir ï¿½ey olmadï¿½ï¿½ï¿½ iï¿½in iï¿½leri kolaylaï¿½tï¿½rï¿½p imleci ileri alï¿½r ï¿½buna "fast forward" (hï¿½zlï¿½ ileri alma) denir.
 
-Yaptýðýnýz deðiþiklik artýk `master` dalý tarafýndan iþaret edilen kaydýn bellek kopyasýndadýr ve yayýmlanabilir (bkz. Figür 3-14).
+Yaptï¿½ï¿½ï¿½nï¿½z deï¿½iï¿½iklik artï¿½k `master` dalï¿½ tarafï¿½ndan iï¿½aret edilen kaydï¿½n bellek kopyasï¿½ndadï¿½r ve yayï¿½mlanabilir (bkz. Figï¿½r 3-14).
 
 Insert 18333fig0314.png 
-Figür 3-14. Birleþtirmeden sonra master dalýnýz hotfix dalýnýzla ayný yeri gösterir.
+Figï¿½r 3-14. Birleï¿½tirmeden sonra master dalï¿½nï¿½z hotfix dalï¿½nï¿½zla aynï¿½ yeri gï¿½sterir.
 
-Bu çok önemli yama yayýmlandýktan sonra, kaldýðýnýz yere geri dönebilirsiniz. Fakat önce `hotfix` dalýný sileceksiniz, çünkü artýk ona ihtiyacýnýz kalmadý —`master` dalý ayný yeri gösteriyor. `git branch` komutunu `-d` seçeneðiyle birlikte kullanarak silme iþlemini yapabilirsiniz:
+Bu ï¿½ok ï¿½nemli yama yayï¿½mlandï¿½ktan sonra, kaldï¿½ï¿½ï¿½nï¿½z yere geri dï¿½nebilirsiniz. Fakat ï¿½nce `hotfix` dalï¿½nï¿½ sileceksiniz, ï¿½ï¿½nkï¿½ artï¿½k ona ihtiyacï¿½nï¿½z kalmadï¿½ ï¿½`master` dalï¿½ aynï¿½ yeri gï¿½steriyor. `git branch` komutunu `-d` seï¿½eneï¿½iyle birlikte kullanarak silme iï¿½lemini yapabilirsiniz:
 
 	$ git branch -d hotfix
 	Deleted branch hotfix (3a0874c).
 
-Þimdi kaldýðýnýz yere geri dönebilir ve #53 numaralý sorun üzerinde çalýþmaya devam edebilirsiniz (bkz. 3-15).
+ï¿½imdi kaldï¿½ï¿½ï¿½nï¿½z yere geri dï¿½nebilir ve #53 numaralï¿½ sorun ï¿½zerinde ï¿½alï¿½ï¿½maya devam edebilirsiniz (bkz. 3-15).
 
 	$ git checkout iss53
 	Switched to branch "iss53"
@@ -190,13 +191,13 @@ Bu çok önemli yama yayýmlandýktan sonra, kaldýðýnýz yere geri dönebilirsiniz. Fa
 	 1 files changed, 1 insertions(+), 0 deletions(-)
 
 Insert 18333fig0315.png 
-Figür 3-15. iss53 dalýnýz baðýmsýz olarak ilerleyebilir.
+Figï¿½r 3-15. iss53 dalï¿½nï¿½z baï¿½ï¿½msï¿½z olarak ilerleyebilir.
 
-Þunu belirtmekte yarar var: `hotfix` dalýnda yaptýðýnýz düzeltme `iss53` dalýndaki dosyalarda bulunmuyor. Eðer bu deðiþikliði çekmek isterseniz, `git merge master` komutunu çalýþtýrarak `master` dalýnýzý `iss53` dalýnýzla birleþtirebilirsiniz; alternatif olarak `iss53` dalýndaki deðiþiklikleri `master`dalýyla birleþtirmeye hazýr hale getirene kadar bekleyebilirsiniz.
+ï¿½unu belirtmekte yarar var: `hotfix` dalï¿½nda yaptï¿½ï¿½ï¿½nï¿½z dï¿½zeltme `iss53` dalï¿½ndaki dosyalarda bulunmuyor. Eï¿½er bu deï¿½iï¿½ikliï¿½i ï¿½ekmek isterseniz, `git merge master` komutunu ï¿½alï¿½ï¿½tï¿½rarak `master` dalï¿½nï¿½zï¿½ `iss53` dalï¿½nï¿½zla birleï¿½tirebilirsiniz; alternatif olarak `iss53` dalï¿½ndaki deï¿½iï¿½iklikleri `master`dalï¿½yla birleï¿½tirmeye hazï¿½r hale getirene kadar bekleyebilirsiniz.
 
-### Birleþtirmenin Temelleri ###
+### Birleï¿½tirmenin Temelleri ###
 
-Diyelim ki #53 numaralý sorunla ilgili çalýþmanýzý tamamladýnýz ve `master` dalýyla birleþtirmeye hazýrsýnýz. Bunu yapabilmek için `iss53` dalýnýzý, ayný `hotfix` dalýný yaptýðýnýz gibi birleþtireceksiniz. Bütün yapmanýz gereken birleþtirmeyi gerçekleþtirmek istediðiniz dalý seçmek (_checkout_) ve `git merge` komutunu çalýþtýrmak:
+Diyelim ki #53 numaralï¿½ sorunla ilgili ï¿½alï¿½ï¿½manï¿½zï¿½ tamamladï¿½nï¿½z ve `master` dalï¿½yla birleï¿½tirmeye hazï¿½rsï¿½nï¿½z. Bunu yapabilmek iï¿½in `iss53` dalï¿½nï¿½zï¿½, aynï¿½ `hotfix` dalï¿½nï¿½ yaptï¿½ï¿½ï¿½nï¿½z gibi birleï¿½tireceksiniz. Bï¿½tï¿½n yapmanï¿½z gereken birleï¿½tirmeyi gerï¿½ekleï¿½tirmek istediï¿½iniz dalï¿½ seï¿½mek (_checkout_) ve `git merge` komutunu ï¿½alï¿½ï¿½tï¿½rmak:
 
 	$ git checkout master
 	$ git merge iss53
@@ -204,32 +205,32 @@ Diyelim ki #53 numaralý sorunla ilgili çalýþmanýzý tamamladýnýz ve `master` dalý
 	 README |    1 +
 	 1 files changed, 1 insertions(+), 0 deletions(-)
 
-Bu daha önce yaptýðýnýz `hotfix` birleþtirmesinden biraz farklý görünüyor. Burada, kayýt tarihçeniz daha eski bir noktadan ýraksamýþtý. Üzerinde bulunduðunuz dalýn gösterdiði kayýt birleþtirmekte olduðunuz dalýn doðrudan atasý olmadýðýndan Git'in biraz iþ yapmasý gerekiyor. Bu örnekte Git, iki dalýn en uç noktasý ve ikisinin ortak atasýnýn kullanýldýðý üç taraflý basit bir birleþtirme yapýyor. Figür 3-16, bu birleþtirmede kullanýlan üç farklý bellek kopyasýný vurguluyor.
+Bu daha ï¿½nce yaptï¿½ï¿½ï¿½nï¿½z `hotfix` birleï¿½tirmesinden biraz farklï¿½ gï¿½rï¿½nï¿½yor. Burada, kayï¿½t tarihï¿½eniz daha eski bir noktadan ï¿½raksamï¿½ï¿½tï¿½. ï¿½zerinde bulunduï¿½unuz dalï¿½n gï¿½sterdiï¿½i kayï¿½t birleï¿½tirmekte olduï¿½unuz dalï¿½n doï¿½rudan atasï¿½ olmadï¿½ï¿½ï¿½ndan Git'in biraz iï¿½ yapmasï¿½ gerekiyor. Bu ï¿½rnekte Git, iki dalï¿½n en uï¿½ noktasï¿½ ve ikisinin ortak atasï¿½nï¿½n kullanï¿½ldï¿½ï¿½ï¿½ ï¿½ï¿½ taraflï¿½ basit bir birleï¿½tirme yapï¿½yor. Figï¿½r 3-16, bu birleï¿½tirmede kullanï¿½lan ï¿½ï¿½ farklï¿½ bellek kopyasï¿½nï¿½ vurguluyor.
 
 Insert 18333fig0316.png 
-Figür 3-16. Git, dallarý birleþtirmek için en uygun ortak atayý buluyor.
+Figï¿½r 3-16. Git, dallarï¿½ birleï¿½tirmek iï¿½in en uygun ortak atayï¿½ buluyor.
 
-Git, yalnýzca dal imlecini ileri kaydýrmak yerine üç taraflý birleþtirmenin sonucunda ortaya çýkan bellek kopyasý için otomatik bir kayýt oluþturuyor (bkz. Figür 3-17). Buna birleþtirme kaydý denir ve özelliði birden çok atasýnýn olmasýdýr.
+Git, yalnï¿½zca dal imlecini ileri kaydï¿½rmak yerine ï¿½ï¿½ taraflï¿½ birleï¿½tirmenin sonucunda ortaya ï¿½ï¿½kan bellek kopyasï¿½ iï¿½in otomatik bir kayï¿½t oluï¿½turuyor (bkz. Figï¿½r 3-17). Buna birleï¿½tirme kaydï¿½ denir ve ï¿½zelliï¿½i birden ï¿½ok atasï¿½nï¿½n olmasï¿½dï¿½r.
 
-Git'in en uygun ortak atayý otomatik olarak bulduðunu vurgulamakta yarar var; bu kullanýcýnýn en uygun ortak paydayý bulmak zorunda olduðu CVS ve Subversion'daki durumdan (1.5 sürümünden önceki haliyle) farklýdýr. Bu Git kullanarak birleþtirme yapmayý söz konusu diðer sistemlere göre çok daha kolay bir hale getirir.
+Git'in en uygun ortak atayï¿½ otomatik olarak bulduï¿½unu vurgulamakta yarar var; bu kullanï¿½cï¿½nï¿½n en uygun ortak paydayï¿½ bulmak zorunda olduï¿½u CVS ve Subversion'daki durumdan (1.5 sï¿½rï¿½mï¿½nden ï¿½nceki haliyle) farklï¿½dï¿½r. Bu Git kullanarak birleï¿½tirme yapmayï¿½ sï¿½z konusu diï¿½er sistemlere gï¿½re ï¿½ok daha kolay bir hale getirir.
 
 Insert 18333fig0317.png 
-Figür 3-17. Git, otomatik olarak, birleþtirilmiþ çalýþmayý içeren yeni bir kayýt nesnesi yaratýr.
+Figï¿½r 3-17. Git, otomatik olarak, birleï¿½tirilmiï¿½ ï¿½alï¿½ï¿½mayï¿½ iï¿½eren yeni bir kayï¿½t nesnesi yaratï¿½r.
 
-Çalýþmanýz birleþtirildiðine göre, artýk `iss53` dalýna ihtiyacýnýz kalmadý. Dalý silip, sorun izleme sisteminizdeki sorunu da kapatabilirsiniz:
+ï¿½alï¿½ï¿½manï¿½z birleï¿½tirildiï¿½ine gï¿½re, artï¿½k `iss53` dalï¿½na ihtiyacï¿½nï¿½z kalmadï¿½. Dalï¿½ silip, sorun izleme sisteminizdeki sorunu da kapatabilirsiniz:
 
 	$ git branch -d iss53
 
-### Temel Birleþtirme Uyuþmazlýklarý ###
+### Temel Birleï¿½tirme Uyuï¿½mazlï¿½klarï¿½ ###
 
-Zaman zaman bu süreç o kadar da pürüzsüz ilerlemez. Eðer ayný dosyanýn ayný bölümünü her iki dalda da deðiþtirmiþseniz, Git temiz bir birleþtirme yapamaz. #53 numaralarý sorun için hazýrladýðýnýz düzeltme `hotfix`le ayný yazýlým parçasýný deðiþtiriyorsa, þuna benzer bir birleþtirme uyuþmazlýðýyla karþýlaþýrsýnýz:
+Zaman zaman bu sï¿½reï¿½ o kadar da pï¿½rï¿½zsï¿½z ilerlemez. Eï¿½er aynï¿½ dosyanï¿½n aynï¿½ bï¿½lï¿½mï¿½nï¿½ her iki dalda da deï¿½iï¿½tirmiï¿½seniz, Git temiz bir birleï¿½tirme yapamaz. #53 numaralarï¿½ sorun iï¿½in hazï¿½rladï¿½ï¿½ï¿½nï¿½z dï¿½zeltme `hotfix`le aynï¿½ yazï¿½lï¿½m parï¿½asï¿½nï¿½ deï¿½iï¿½tiriyorsa, ï¿½una benzer bir birleï¿½tirme uyuï¿½mazlï¿½ï¿½ï¿½yla karï¿½ï¿½laï¿½ï¿½rsï¿½nï¿½z:
 
 	$ git merge iss53
 	Auto-merging index.html
 	CONFLICT (content): Merge conflict in index.html
 	Automatic merge failed; fix conflicts and then commit the result.
 
-Burada Git otomatik olarak yeni bir birleþtirme kaydý oluþturmadý. Sizin uyuþmazlýðý çözmenizi beklemek için sürece ara verdi. Bir birleþtirme uyuþmazlýðýndan sonra hangi dosyalarýn birleþtirilmemiþ olduðunu görmek için `git status` komutunu çalýþtýrabilirsiniz.
+Burada Git otomatik olarak yeni bir birleï¿½tirme kaydï¿½ oluï¿½turmadï¿½. Sizin uyuï¿½mazlï¿½ï¿½ï¿½ ï¿½ï¿½zmenizi beklemek iï¿½in sï¿½rece ara verdi. Bir birleï¿½tirme uyuï¿½mazlï¿½ï¿½ï¿½ndan sonra hangi dosyalarï¿½n birleï¿½tirilmemiï¿½ olduï¿½unu gï¿½rmek iï¿½in `git status` komutunu ï¿½alï¿½ï¿½tï¿½rabilirsiniz.
 
 	[master*]$ git status
 	index.html: needs merge
@@ -241,7 +242,7 @@ Burada Git otomatik olarak yeni bir birleþtirme kaydý oluþturmadý. Sizin uyuþmaz
 	#	unmerged:   index.html
 	#
 
-Birleþtirme uyuþmazlýðý henüz çözümlenmemiþ her þey _unmerged_ (birleþtirilmemiþ) olarak gösterilecektir. Git, dosyalarý açýp uyuþmazlýklarý çözümleyebilmeniz için standart uyuþmazlýk çözümleme iþaretçileri koyar. Dosyanýzda þuna benzer bir bölümle karþýlaþýrsýnýz:
+Birleï¿½tirme uyuï¿½mazlï¿½ï¿½ï¿½ henï¿½z ï¿½ï¿½zï¿½mlenmemiï¿½ her ï¿½ey _unmerged_ (birleï¿½tirilmemiï¿½) olarak gï¿½sterilecektir. Git, dosyalarï¿½ aï¿½ï¿½p uyuï¿½mazlï¿½klarï¿½ ï¿½ï¿½zï¿½mleyebilmeniz iï¿½in standart uyuï¿½mazlï¿½k ï¿½ï¿½zï¿½mleme iï¿½aretï¿½ileri koyar. Dosyanï¿½zda ï¿½una benzer bir bï¿½lï¿½mle karï¿½ï¿½laï¿½ï¿½rsï¿½nï¿½z:
 
 	<<<<<<< HEAD:index.html
 	<div id="footer">contact : email.support@github.com</div>
@@ -251,14 +252,14 @@ Birleþtirme uyuþmazlýðý henüz çözümlenmemiþ her þey _unmerged_ (birleþtirilmemiþ
 	</div>
 	>>>>>>> iss53:index.html
 
-Burada , `HEAD`deki sürüm (ki bu `master` dalýndaki sürümdür çünkü birleþtirme komutunu bu daldan çalýþtýrdýnýz) üstte, (`=======` iþaretinin üstündeki her þey), `iss53` dalýndaki sürüm ise altta gösterilmektedir. Uyuþmazlýðý çözümleyebilmek için bu ikisinden birini seçmeli, ya da birleþtirmeyi istediðiniz gibi kendiniz düzenlemelisiniz. Söz gelimi, uyuþmazlýðý çözmek için bütün bu kod bloðunun yerine þunu yerleþtirebilirsiniz:
+Burada , `HEAD`deki sï¿½rï¿½m (ki bu `master` dalï¿½ndaki sï¿½rï¿½mdï¿½r ï¿½ï¿½nkï¿½ birleï¿½tirme komutunu bu daldan ï¿½alï¿½ï¿½tï¿½rdï¿½nï¿½z) ï¿½stte, (`=======` iï¿½aretinin ï¿½stï¿½ndeki her ï¿½ey), `iss53` dalï¿½ndaki sï¿½rï¿½m ise altta gï¿½sterilmektedir. Uyuï¿½mazlï¿½ï¿½ï¿½ ï¿½ï¿½zï¿½mleyebilmek iï¿½in bu ikisinden birini seï¿½meli, ya da birleï¿½tirmeyi istediï¿½iniz gibi kendiniz dï¿½zenlemelisiniz. Sï¿½z gelimi, uyuï¿½mazlï¿½ï¿½ï¿½ ï¿½ï¿½zmek iï¿½in bï¿½tï¿½n bu kod bloï¿½unun yerine ï¿½unu yerleï¿½tirebilirsiniz:
 
 	<div id="footer">
 	please contact us at email.support@github.com
 	</div>
 
-Çözümlemede iki taraftan da bir þeyler var ve `<<<<<<<`, `=======`, ve `>>>>>>>` iþaretlerini içeren satýrlar tamamen silinmiþ durumda. Uyuþmazlýk olan her bir dosyadaki her bir uyuþmazlýk bloðunu çözümledikten sonra her dosyanýn üzerinde `git add` komutunu çalýþtýrarak, uyuþmazlýðýn o dosya için çözülmüþ olduðunu belirtebilirsiniz. Bir dosyayý ayda hazýrlamak o dosyayý uyuþmazlýðý çözümlenmiþ olarak iþaretler.
-Uyuþmazlýklarý çözümlemek için görsel bir araç kullanmak isterseniz `git mergetool` komutunu çalýþtýrabilirsiniz; bu komut size tek tek herbir uyuþmazlýðý gösterecek uygun bir birleþtirme aracýný çalýþtýrýr:
+ï¿½ï¿½zï¿½mlemede iki taraftan da bir ï¿½eyler var ve `<<<<<<<`, `=======`, ve `>>>>>>>` iï¿½aretlerini iï¿½eren satï¿½rlar tamamen silinmiï¿½ durumda. Uyuï¿½mazlï¿½k olan her bir dosyadaki her bir uyuï¿½mazlï¿½k bloï¿½unu ï¿½ï¿½zï¿½mledikten sonra her dosyanï¿½n ï¿½zerinde `git add` komutunu ï¿½alï¿½ï¿½tï¿½rarak, uyuï¿½mazlï¿½ï¿½ï¿½n o dosya iï¿½in ï¿½ï¿½zï¿½lmï¿½ï¿½ olduï¿½unu belirtebilirsiniz. Bir dosyayï¿½ ayda hazï¿½rlamak o dosyayï¿½ uyuï¿½mazlï¿½ï¿½ï¿½ ï¿½ï¿½zï¿½mlenmiï¿½ olarak iï¿½aretler.
+Uyuï¿½mazlï¿½klarï¿½ ï¿½ï¿½zï¿½mlemek iï¿½in gï¿½rsel bir araï¿½ kullanmak isterseniz `git mergetool` komutunu ï¿½alï¿½ï¿½tï¿½rabilirsiniz; bu komut size tek tek herbir uyuï¿½mazlï¿½ï¿½ï¿½ gï¿½sterecek uygun bir birleï¿½tirme aracï¿½nï¿½ ï¿½alï¿½ï¿½tï¿½rï¿½r:
 
 	$ git mergetool
 	merge tool candidates: kdiff3 tkdiff xxdiff meld gvimdiff opendiff emerge vimdiff
@@ -269,11 +270,11 @@ Uyuþmazlýklarý çözümlemek için görsel bir araç kullanmak isterseniz `git mergeto
 	  {remote}: modified
 	Hit return to start merge resolution tool (opendiff):
 
-Varsayýlan aracýn dýþýnda bir araç kullanmak isterseniz (Git, Mac'te çalýþtýðým için bu örnekte `opendiff`'i seçti), Git'in desteklediði bütün birleþtirme araçlarýnýn listesini en üstte “merge tool candidates” yazýsýndan hemen sonra görebilirsiniz. Kullanmak istediðiniz aracýn adýný yazýn. 7. Bölüm'de kendi çalýþma ortamýnýz için varsayýlan deðeri nasýl deðiþtirebileceðinizi inceleyeceðiz.
+Varsayï¿½lan aracï¿½n dï¿½ï¿½ï¿½nda bir araï¿½ kullanmak isterseniz (Git, Mac'te ï¿½alï¿½ï¿½tï¿½ï¿½ï¿½m iï¿½in bu ï¿½rnekte `opendiff`'i seï¿½ti), Git'in desteklediï¿½i bï¿½tï¿½n birleï¿½tirme araï¿½larï¿½nï¿½n listesini en ï¿½stte ï¿½merge tool candidatesï¿½ yazï¿½sï¿½ndan hemen sonra gï¿½rebilirsiniz. Kullanmak istediï¿½iniz aracï¿½n adï¿½nï¿½ yazï¿½n. 7. Bï¿½lï¿½m'de kendi ï¿½alï¿½ï¿½ma ortamï¿½nï¿½z iï¿½in varsayï¿½lan deï¿½eri nasï¿½l deï¿½iï¿½tirebileceï¿½inizi inceleyeceï¿½iz.
 
-Birleþtirme aracýný kapattýktan sonra, Git size birleþtirmenin baþarýlý olup olmadýðýný soracaktýr. Eðer baþarýlý olduðunu söylerseniz, sizin yerinize dosyayý kayda hazýrlayýp çözümlenmiþ olarak iþaretler.
+Birleï¿½tirme aracï¿½nï¿½ kapattï¿½ktan sonra, Git size birleï¿½tirmenin baï¿½arï¿½lï¿½ olup olmadï¿½ï¿½ï¿½nï¿½ soracaktï¿½r. Eï¿½er baï¿½arï¿½lï¿½ olduï¿½unu sï¿½ylerseniz, sizin yerinize dosyayï¿½ kayda hazï¿½rlayï¿½p ï¿½ï¿½zï¿½mlenmiï¿½ olarak iï¿½aretler.
 
-Bütün uyuþmazlýklarýn çözümlendiðinden emin olmak için tekrar `git status` komutunu çalýþtýrabilirsiniz:
+Bï¿½tï¿½n uyuï¿½mazlï¿½klarï¿½n ï¿½ï¿½zï¿½mlendiï¿½inden emin olmak iï¿½in tekrar `git status` komutunu ï¿½alï¿½ï¿½tï¿½rabilirsiniz:
 
 	$ git status
 	# On branch master
@@ -283,7 +284,7 @@ Bütün uyuþmazlýklarýn çözümlendiðinden emin olmak için tekrar `git status` komut
 	#	modified:   index.html
 	#
 
-Durumdan memnunsanýz ve uyuþmazlýðý olan bütün dosyalarýn kayda hazýrlandýðýndan eminseniz, `git commit`'i kullanarak birleþtirme kaydýný tamamlayabilirsiniz. Öntanýmlý kayýt mesajý þöyle görünür:
+Durumdan memnunsanï¿½z ve uyuï¿½mazlï¿½ï¿½ï¿½ olan bï¿½tï¿½n dosyalarï¿½n kayda hazï¿½rlandï¿½ï¿½ï¿½ndan eminseniz, `git commit`'i kullanarak birleï¿½tirme kaydï¿½nï¿½ tamamlayabilirsiniz. ï¿½ntanï¿½mlï¿½ kayï¿½t mesajï¿½ ï¿½ï¿½yle gï¿½rï¿½nï¿½r:
 
 	Merge branch 'iss53'
 
@@ -296,123 +297,123 @@ Durumdan memnunsanýz ve uyuþmazlýðý olan bütün dosyalarýn kayda hazýrlandýðýndan
 	# and try again.
 	#
 
-Ýleride bu birleþtirme iþlemini inceleyecek olanlar için yararlý olacaðýný düþünüyorsanýz bu kayýt mesajýný ayrýntýlandýrabilirsiniz —eðer aþikâr deðilse, birleþtirmeyi neden yaptýðýnýzý, ve birleþtirmede neler yaptýðýnýzý açýklayabilirsiniz.
+ï¿½leride bu birleï¿½tirme iï¿½lemini inceleyecek olanlar iï¿½in yararlï¿½ olacaï¿½ï¿½nï¿½ dï¿½ï¿½ï¿½nï¿½yorsanï¿½z bu kayï¿½t mesajï¿½nï¿½ ayrï¿½ntï¿½landï¿½rabilirsiniz ï¿½eï¿½er aï¿½ikï¿½r deï¿½ilse, birleï¿½tirmeyi neden yaptï¿½ï¿½ï¿½nï¿½zï¿½, ve birleï¿½tirmede neler yaptï¿½ï¿½ï¿½nï¿½zï¿½ aï¿½ï¿½klayabilirsiniz.
 
-## Dal Yönetimi ##
+## Dal Yï¿½netimi ##
 
-Dal yaratma, birleþtirme ve silme iþlemlerini yaptýðýmýza göre, gelin þimdi de dallar üzerinde çalýþýrken iþimize yarayacak kimi dal yönetim araçlarýna göz atalým.
+Dal yaratma, birleï¿½tirme ve silme iï¿½lemlerini yaptï¿½ï¿½ï¿½mï¿½za gï¿½re, gelin ï¿½imdi de dallar ï¿½zerinde ï¿½alï¿½ï¿½ï¿½rken iï¿½imize yarayacak kimi dal yï¿½netim araï¿½larï¿½na gï¿½z atalï¿½m.
 
-`git branch` komutu dal yaratmak ve silmekten fazlasýný yapar. Bu komutu hiçbir seçenek kullanmadan çalýþtýrýrsanýz, mevcut dallarýnýzýn bir listesini görürsünüz:
+`git branch` komutu dal yaratmak ve silmekten fazlasï¿½nï¿½ yapar. Bu komutu hiï¿½bir seï¿½enek kullanmadan ï¿½alï¿½ï¿½tï¿½rï¿½rsanï¿½z, mevcut dallarï¿½nï¿½zï¿½n bir listesini gï¿½rï¿½rsï¿½nï¿½z:
 
 	$ git branch
 	  iss53
 	* master
 	  testing
 
-`master` dalýnýn önündeki `*` karakterine dikkatinizi çekmiþtir: bu, o dalý seçmiþ olduðunuzu (_checkout_) gösteriyor. Yani, bu noktada bir kayýt yapacak olursanýz, yeni deðiþikliðiniz `master` dalýný ileri götürecek. Her bir dalýn en son kaydýnýn ne olduðunu görmek isterseniz `git branch -v` komutunu çalýþtýrabilirsiniz:
+`master` dalï¿½nï¿½n ï¿½nï¿½ndeki `*` karakterine dikkatinizi ï¿½ekmiï¿½tir: bu, o dalï¿½ seï¿½miï¿½ olduï¿½unuzu (_checkout_) gï¿½steriyor. Yani, bu noktada bir kayï¿½t yapacak olursanï¿½z, yeni deï¿½iï¿½ikliï¿½iniz `master` dalï¿½nï¿½ ileri gï¿½tï¿½recek. Her bir dalï¿½n en son kaydï¿½nï¿½n ne olduï¿½unu gï¿½rmek isterseniz `git branch -v` komutunu ï¿½alï¿½ï¿½tï¿½rabilirsiniz:
 
 	$ git branch -v
 	  iss53   93b412c fix javascript issue
 	* master  7a98805 Merge branch 'iss53'
 	  testing 782fd34 add scott to the author list in the readmes
 
-Dallarýnýzýn ne durumda olduðunu incelerken yararlý olacak bir baþka þey de, hangi dallarýn üzerinde bulunduðunuz dalla birleþtirilip hangisinin birleþtirilmediðini görmek olabilir. `--merged` ve `--no-merge` seçenekleri Git'in 1.5.6 sürümünden itibaren kullanýma sunulmuþtur. Hangi dallarýn üzerinde bulunduðunuz dalla birleþtirilmiþ olduðunu görmek için `git branch --merged` komutunu kullanabilirsiniz:
+Dallarï¿½nï¿½zï¿½n ne durumda olduï¿½unu incelerken yararlï¿½ olacak bir baï¿½ka ï¿½ey de, hangi dallarï¿½n ï¿½zerinde bulunduï¿½unuz dalla birleï¿½tirilip hangisinin birleï¿½tirilmediï¿½ini gï¿½rmek olabilir. `--merged` ve `--no-merge` seï¿½enekleri Git'in 1.5.6 sï¿½rï¿½mï¿½nden itibaren kullanï¿½ma sunulmuï¿½tur. Hangi dallarï¿½n ï¿½zerinde bulunduï¿½unuz dalla birleï¿½tirilmiï¿½ olduï¿½unu gï¿½rmek iï¿½in `git branch --merged` komutunu kullanabilirsiniz:
 
 	$ git branch --merged
 	  iss53
 	* master
 
-`iss53` dalýný daha önce birleþtirdiðiniz için listede görüyorsunuz. Bu listede önünde `*` olmayan dallarý `git branch -d` komutuyla silebilirsiniz; onlardaki deðiþiklikleri zaten baþka bir dalla birleþtirdiðiniz için, herhangi bir kaybýnýz olmaz.
+`iss53` dalï¿½nï¿½ daha ï¿½nce birleï¿½tirdiï¿½iniz iï¿½in listede gï¿½rï¿½yorsunuz. Bu listede ï¿½nï¿½nde `*` olmayan dallarï¿½ `git branch -d` komutuyla silebilirsiniz; onlardaki deï¿½iï¿½iklikleri zaten baï¿½ka bir dalla birleï¿½tirdiï¿½iniz iï¿½in, herhangi bir kaybï¿½nï¿½z olmaz.
 
-Henüz birleþtirmediðiniz deðiþikliklerin bulunduðu dallarý görmek için `git branch --no-merged` komutunu çalýþtýrabilirsiniz:
+Henï¿½z birleï¿½tirmediï¿½iniz deï¿½iï¿½ikliklerin bulunduï¿½u dallarï¿½ gï¿½rmek iï¿½in `git branch --no-merged` komutunu ï¿½alï¿½ï¿½tï¿½rabilirsiniz:
 
 	$ git branch --no-merged
 	  testing
-Burada diðer dalý görüyorsunuz. Bu dalda henüz birleþtirmediðiniz deðiþiklikler bulunduðu için `git branch -d` komutu hata verecektir:
+Burada diï¿½er dalï¿½ gï¿½rï¿½yorsunuz. Bu dalda henï¿½z birleï¿½tirmediï¿½iniz deï¿½iï¿½iklikler bulunduï¿½u iï¿½in `git branch -d` komutu hata verecektir:
 
 	$ git branch -d testing
 	error: The branch 'testing' is not an ancestor of your current HEAD.
 	If you are sure you want to delete it, run 'git branch -D testing'.
 
-Oradaki deðiþiklikleri kaybetmeyi göze alarak dalý her þeye raðmen silmek istiyorsanýz, yukarýdaki çýktýda da belirtildiði gibi, `-D` seçeneðiyle üsteleyebilirsiniz.
+Oradaki deï¿½iï¿½iklikleri kaybetmeyi gï¿½ze alarak dalï¿½ her ï¿½eye raï¿½men silmek istiyorsanï¿½z, yukarï¿½daki ï¿½ï¿½ktï¿½da da belirtildiï¿½i gibi, `-D` seï¿½eneï¿½iyle ï¿½steleyebilirsiniz.
 
-## Dallanma Ýþ Akýþlarý ##
+## Dallanma ï¿½ï¿½ Akï¿½ï¿½larï¿½ ##
 
-Dallanma ve birleþtirmenin temellerine hakim olduðunuza göre, þimdi bu bilgiyi kullanarak neler yapabileceðimize bakalým. Bu alt bölümde masrafsýz dallanmanýn olanaklý kýldýðý bazý yaygýn iþ akýþlarý üzerinde duracaðýz, böylece bunlarý kendi geliþtirme döngünüzde kullanýp kullanmamaya karar verebilirsiniz.
+Dallanma ve birleï¿½tirmenin temellerine hakim olduï¿½unuza gï¿½re, ï¿½imdi bu bilgiyi kullanarak neler yapabileceï¿½imize bakalï¿½m. Bu alt bï¿½lï¿½mde masrafsï¿½z dallanmanï¿½n olanaklï¿½ kï¿½ldï¿½ï¿½ï¿½ bazï¿½ yaygï¿½n iï¿½ akï¿½ï¿½larï¿½ ï¿½zerinde duracaï¿½ï¿½z, bï¿½ylece bunlarï¿½ kendi geliï¿½tirme dï¿½ngï¿½nï¿½zde kullanï¿½p kullanmamaya karar verebilirsiniz.
 
-### Uzun Süreli Dallar ###
+### Uzun Sï¿½reli Dallar ###
 
-Git, basit üç taraflý birleþtirme yaptýðý için uzun bir zaman dilimi boyunca bir daldan diðerine çok sayýda birleþtirme yapmak genellikle kolaydýr. Yani, sürekli açýk olan ve geliþtirme döngünüzün deðiþik aþamalarýnda kullanabileceðiniz birkaç dal bulundurabilirsiniz; düzenli olarak bazýlarýndan diðerlerine birleþtirme yapabilirsiniz.
+Git, basit ï¿½ï¿½ taraflï¿½ birleï¿½tirme yaptï¿½ï¿½ï¿½ iï¿½in uzun bir zaman dilimi boyunca bir daldan diï¿½erine ï¿½ok sayï¿½da birleï¿½tirme yapmak genellikle kolaydï¿½r. Yani, sï¿½rekli aï¿½ï¿½k olan ve geliï¿½tirme dï¿½ngï¿½nï¿½zï¿½n deï¿½iï¿½ik aï¿½amalarï¿½nda kullanabileceï¿½iniz birkaï¿½ dal bulundurabilirsiniz; dï¿½zenli olarak bazï¿½larï¿½ndan diï¿½erlerine birleï¿½tirme yapabilirsiniz.
 
-Git'i kullanan pek çok yazýlýmcý bu yaklaþýmý benimser, `master` dalýnda yalnýzca kararlý (_stable_) durumdaki kod bulunur —yalnýzca yayýmlanmýþ olan ya da yayýmlanacak kod. `develop` ya da `next` adýnda, kararlýlýk testlerinin yürütüldüðü bir paralel dallarý daha vardýr —bu dal o kadar kararlý olmayabilir, fakat kararlý duruma getirildiðinde `master` dalýna birleþtirilir. Kýsa ömürlü, belirli bir iþlevin geliþtirilmesine ayrýlmýþ dallarýn (sizin `iss53` adlý dalýnýz gibi) hazýr olduklarýnda birleþtirilmeleri için —bütün testlerden geçtiklerinden ve yeni hatalara kapý aralamadýklarýndan emin olmak amacýyla— kullanýlýr.
+Git'i kullanan pek ï¿½ok yazï¿½lï¿½mcï¿½ bu yaklaï¿½ï¿½mï¿½ benimser, `master` dalï¿½nda yalnï¿½zca kararlï¿½ (_stable_) durumdaki kod bulunur ï¿½yalnï¿½zca yayï¿½mlanmï¿½ï¿½ olan ya da yayï¿½mlanacak kod. `develop` ya da `next` adï¿½nda, kararlï¿½lï¿½k testlerinin yï¿½rï¿½tï¿½ldï¿½ï¿½ï¿½ bir paralel dallarï¿½ daha vardï¿½r ï¿½bu dal o kadar kararlï¿½ olmayabilir, fakat kararlï¿½ duruma getirildiï¿½inde `master` dalï¿½na birleï¿½tirilir. Kï¿½sa ï¿½mï¿½rlï¿½, belirli bir iï¿½levin geliï¿½tirilmesine ayrï¿½lmï¿½ï¿½ dallarï¿½n (sizin `iss53` adlï¿½ dalï¿½nï¿½z gibi) hazï¿½r olduklarï¿½nda birleï¿½tirilmeleri iï¿½in ï¿½bï¿½tï¿½n testlerden geï¿½tiklerinden ve yeni hatalara kapï¿½ aralamadï¿½klarï¿½ndan emin olmak amacï¿½ylaï¿½ kullanï¿½lï¿½r.
 
-Gerçekte, yazýlým tarihçesinde ileri doðru hareket eden imleçlerden söz ediyoruz. Kararlý dallar eski kayýtlarý, güncel dallar çok daha yenilerini gösterir (bkz. Figür 3-18).
+Gerï¿½ekte, yazï¿½lï¿½m tarihï¿½esinde ileri doï¿½ru hareket eden imleï¿½lerden sï¿½z ediyoruz. Kararlï¿½ dallar eski kayï¿½tlarï¿½, gï¿½ncel dallar ï¿½ok daha yenilerini gï¿½sterir (bkz. Figï¿½r 3-18).
 
 Insert 18333fig0318.png 
-Figür 3-18. Daha kararlý dallar genellikle kayýt tarihçesinde daha geride bulunurlar.
+Figï¿½r 3-18. Daha kararlï¿½ dallar genellikle kayï¿½t tarihï¿½esinde daha geride bulunurlar.
 
-Bu dallarý, çalýþma ambarlarý olarak hayal ediliriz, bir dizi kayýt bütünüyle test ediltikten sonra daha kararlý baþka br ambara konulurlar (bkz. Figür 3-19).
+Bu dallarï¿½, ï¿½alï¿½ï¿½ma ambarlarï¿½ olarak hayal ediliriz, bir dizi kayï¿½t bï¿½tï¿½nï¿½yle test ediltikten sonra daha kararlï¿½ baï¿½ka br ambara konulurlar (bkz. Figï¿½r 3-19).
 
 Insert 18333fig0319.png 
-Figure 3-19. Dallarýn ambarlar gibi olduðunu düþünebilirsiniz.
+Figure 3-19. Dallarï¿½n ambarlar gibi olduï¿½unu dï¿½ï¿½ï¿½nebilirsiniz.
 
-Çeþitli kararlýlýk seviyeleri tanýmlayýp bu iþleyiþi o þekilde kullanabilirsiniz. Büyük projelerde `proposed` (önerilen) ya da `pu` (proposed updates - önerilen güncellemeler) adýnda bir dal daha olabilir. Bu dala, `next` ya da `master` dalýna birleþtirilecek kadar kararlý aþamada bulunmayan dallar birleþtirilir. Sonuçta, dallar farklý kararlýlýk seviyelerinde bulunurlar; daha kararlý bir seviyeye ulaþtýklarýnda, bir üstlerindeki dala birleþtirilirler.
-Tekrarlayalým: birden çok uzun ömürlü dal bulundurmak zorunlu deðildir, ama, özellikle çok büyük ya da karmaþýk projelerde çalýþýyorsanýz çoðunlukla yararlýdýr.
+ï¿½eï¿½itli kararlï¿½lï¿½k seviyeleri tanï¿½mlayï¿½p bu iï¿½leyiï¿½i o ï¿½ekilde kullanabilirsiniz. Bï¿½yï¿½k projelerde `proposed` (ï¿½nerilen) ya da `pu` (proposed updates - ï¿½nerilen gï¿½ncellemeler) adï¿½nda bir dal daha olabilir. Bu dala, `next` ya da `master` dalï¿½na birleï¿½tirilecek kadar kararlï¿½ aï¿½amada bulunmayan dallar birleï¿½tirilir. Sonuï¿½ta, dallar farklï¿½ kararlï¿½lï¿½k seviyelerinde bulunurlar; daha kararlï¿½ bir seviyeye ulaï¿½tï¿½klarï¿½nda, bir ï¿½stlerindeki dala birleï¿½tirilirler.
+Tekrarlayalï¿½m: birden ï¿½ok uzun ï¿½mï¿½rlï¿½ dal bulundurmak zorunlu deï¿½ildir, ama, ï¿½zellikle ï¿½ok bï¿½yï¿½k ya da karmaï¿½ï¿½k projelerde ï¿½alï¿½ï¿½ï¿½yorsanï¿½z ï¿½oï¿½unlukla yararlï¿½dï¿½r.
 
-### Ýþlev Dallarý ###
+### ï¿½ï¿½lev Dallarï¿½ ###
 
-Ýþlev dallarý, her ölçekte proje için yararlýdýr. Ýþlev dallarý, belirli bir özellikle ilgili deðiþikliklerin geliþtirilmesi için kullanýlan kýsa ömürlü dallardýr. Baþka SKS'lerde bu çok masraflý olduðu için, muhtemelen bu yaklaþýmý daha önce benimsemediniz. Ama Git'te dal yaratmak, o dal üzerinde çalýþmak, dalý birleþtirmek ve daha sonra silmek, günde birkaç kez yapýlan yaygýn bir yöntemdir.
+ï¿½ï¿½lev dallarï¿½, her ï¿½lï¿½ekte proje iï¿½in yararlï¿½dï¿½r. ï¿½ï¿½lev dallarï¿½, belirli bir ï¿½zellikle ilgili deï¿½iï¿½ikliklerin geliï¿½tirilmesi iï¿½in kullanï¿½lan kï¿½sa ï¿½mï¿½rlï¿½ dallardï¿½r. Baï¿½ka SKS'lerde bu ï¿½ok masraflï¿½ olduï¿½u iï¿½in, muhtemelen bu yaklaï¿½ï¿½mï¿½ daha ï¿½nce benimsemediniz. Ama Git'te dal yaratmak, o dal ï¿½zerinde ï¿½alï¿½ï¿½mak, dalï¿½ birleï¿½tirmek ve daha sonra silmek, gï¿½nde birkaï¿½ kez yapï¿½lan yaygï¿½n bir yï¿½ntemdir.
 
-Bunu bir önceki alt bölümde `iss53` ve `hotfix` dallarý üzerinde çalýþýrken gördünüz. Bu dallarda birkaç deðiþiklik yaptýnýz ve bu deðiþiklikleri `master` dalýna birleþtirdikten hemen sonra bu dallarý sildiniz. Bu teknik sayesinde, baðlamlar arasýnda hýzlý ve bütünlüklü geçiþler yapabilirsiniz —çalýþmalarýnýz belirli bir iþlevin geliþtirilmesine adanmýþ farklý ambarlara ayrýlmýþ olduðundan, geçen süre zarfýnda, diyelim kod gözden geçirmesi sýrasýnda neler olduðunu kolaylýkla görebilirsiniz. Deðiþikliklerinizi iþlev dallarýnda dakikalarca, günlerce ya da aylarca tutabilir, hazýr olduklarý zaman, hangisinin dalýn daha önce oluþturulduðuna aldýrmadan birleþtirebilirsiniz.
+Bunu bir ï¿½nceki alt bï¿½lï¿½mde `iss53` ve `hotfix` dallarï¿½ ï¿½zerinde ï¿½alï¿½ï¿½ï¿½rken gï¿½rdï¿½nï¿½z. Bu dallarda birkaï¿½ deï¿½iï¿½iklik yaptï¿½nï¿½z ve bu deï¿½iï¿½iklikleri `master` dalï¿½na birleï¿½tirdikten hemen sonra bu dallarï¿½ sildiniz. Bu teknik sayesinde, baï¿½lamlar arasï¿½nda hï¿½zlï¿½ ve bï¿½tï¿½nlï¿½klï¿½ geï¿½iï¿½ler yapabilirsiniz ï¿½ï¿½alï¿½ï¿½malarï¿½nï¿½z belirli bir iï¿½levin geliï¿½tirilmesine adanmï¿½ï¿½ farklï¿½ ambarlara ayrï¿½lmï¿½ï¿½ olduï¿½undan, geï¿½en sï¿½re zarfï¿½nda, diyelim kod gï¿½zden geï¿½irmesi sï¿½rasï¿½nda neler olduï¿½unu kolaylï¿½kla gï¿½rebilirsiniz. Deï¿½iï¿½ikliklerinizi iï¿½lev dallarï¿½nda dakikalarca, gï¿½nlerce ya da aylarca tutabilir, hazï¿½r olduklarï¿½ zaman, hangisinin dalï¿½n daha ï¿½nce oluï¿½turulduï¿½una aldï¿½rmadan birleï¿½tirebilirsiniz.
 
-Diyelim ki `master` dalýnda çalýþýyorsunuz, sonra bir hatayý gidermek için yeni bir dal oluþturuyorsunuz (`iss91`), derken ayný hatayý baþka türlü gidermek için yeni bir dal oluþturuyorsunuz (`iss91v2`), sonra `master`'a geri dönüp biraz daha çalýþýyorsunuz, sonra aklýnýza gelen ama çok da gerekli olmadýðýný düþündüðünüz bir þeyle ilgili çalýþmak için yeni bir dal oluþturuyorsunuz (`dumbidea`)... Kayýt tarihçeniz Figür 3-20'deki gibi görünecektir.
+Diyelim ki `master` dalï¿½nda ï¿½alï¿½ï¿½ï¿½yorsunuz, sonra bir hatayï¿½ gidermek iï¿½in yeni bir dal oluï¿½turuyorsunuz (`iss91`), derken aynï¿½ hatayï¿½ baï¿½ka tï¿½rlï¿½ gidermek iï¿½in yeni bir dal oluï¿½turuyorsunuz (`iss91v2`), sonra `master`'a geri dï¿½nï¿½p biraz daha ï¿½alï¿½ï¿½ï¿½yorsunuz, sonra aklï¿½nï¿½za gelen ama ï¿½ok da gerekli olmadï¿½ï¿½ï¿½nï¿½ dï¿½ï¿½ï¿½ndï¿½ï¿½ï¿½nï¿½z bir ï¿½eyle ilgili ï¿½alï¿½ï¿½mak iï¿½in yeni bir dal oluï¿½turuyorsunuz (`dumbidea`)... Kayï¿½t tarihï¿½eniz Figï¿½r 3-20'deki gibi gï¿½rï¿½necektir.
 
 Insert 18333fig0320.png 
-Figür 3-20. Birden çok iþlev dalýnýn bulunduðu kayýt tarihçeniz.
+Figï¿½r 3-20. Birden ï¿½ok iï¿½lev dalï¿½nï¿½n bulunduï¿½u kayï¿½t tarihï¿½eniz.
 
-Þimdi diyelim ki, hatanýn giderilmesinde ikinci çözümü (`iss91v2`) kullanmaya karar veriyorsunuz ve iþ arkadaþlarýnýz `dumbidea` dalýnda yaptýklarýnýzý dahice buluyor. `iss91` dalýnýzý çöpe atabilir (C5 ve C6 kayýtlarýný kaybedeceksiniz) diðer iki dalý birleþtirebilirsiniz. Bu durumda tarihçeniz Figür 3-21'deki gibi görünecektir.
+ï¿½imdi diyelim ki, hatanï¿½n giderilmesinde ikinci ï¿½ï¿½zï¿½mï¿½ (`iss91v2`) kullanmaya karar veriyorsunuz ve iï¿½ arkadaï¿½larï¿½nï¿½z `dumbidea` dalï¿½nda yaptï¿½klarï¿½nï¿½zï¿½ dahice buluyor. `iss91` dalï¿½nï¿½zï¿½ ï¿½ï¿½pe atabilir (C5 ve C6 kayï¿½tlarï¿½nï¿½ kaybedeceksiniz) diï¿½er iki dalï¿½ birleï¿½tirebilirsiniz. Bu durumda tarihï¿½eniz Figï¿½r 3-21'deki gibi gï¿½rï¿½necektir.
 
 Insert 18333fig0321.png 
-Figür 3-21. dumbidea ve iss91v2'yi birleþtirdikten sonra kayýt tarihçeniz.
+Figï¿½r 3-21. dumbidea ve iss91v2'yi birleï¿½tirdikten sonra kayï¿½t tarihï¿½eniz.
 
-Unutmayýn, bütün bunlarý yerel dallarda yapýyorsunuz. Dal yaratýrken ve birleþtirme yaparken her þey yalnýzca yerel yazýlým havuzunda gerçekleþiyor —hiçbir sunucu iletiþimi olmuyor.
+Unutmayï¿½n, bï¿½tï¿½n bunlarï¿½ yerel dallarda yapï¿½yorsunuz. Dal yaratï¿½rken ve birleï¿½tirme yaparken her ï¿½ey yalnï¿½zca yerel yazï¿½lï¿½m havuzunda gerï¿½ekleï¿½iyor ï¿½hiï¿½bir sunucu iletiï¿½imi olmuyor.
 
-## Uzak Uçbirim Dallarý ##
+## Uzak Uï¿½birim Dallarï¿½ ##
 
-Yerel yazýlým havuzunuzdaki uzak uçbirim dallarý, uzak uçbirimlerdeki yazýlým havuzlarýnýzýn durumlarýný gösteren imleçlerdir. Bunlar, hareket ettiremediðiniz yerel dallardýr; yalnýzca sunucuyla iletiþim kurduðunuzda hareket ederler. Bu dallar, son baðlandýðýnýzda sunucudaki yazýlým havuzunun ne durumda olduðunu hatýrlatan iþaretçilerdir.
+Yerel yazï¿½lï¿½m havuzunuzdaki uzak uï¿½birim dallarï¿½, uzak uï¿½birimlerdeki yazï¿½lï¿½m havuzlarï¿½nï¿½zï¿½n durumlarï¿½nï¿½ gï¿½steren imleï¿½lerdir. Bunlar, hareket ettiremediï¿½iniz yerel dallardï¿½r; yalnï¿½zca sunucuyla iletiï¿½im kurduï¿½unuzda hareket ederler. Bu dallar, son baï¿½landï¿½ï¿½ï¿½nï¿½zda sunucudaki yazï¿½lï¿½m havuzunun ne durumda olduï¿½unu hatï¿½rlatan iï¿½aretï¿½ilerdir.
 
-`(remote)`/`(dal)` biçimindedirler. Örneðin, sunucuya son baðlandýðýnýzda `origin` uzak uçbirimindeki `master` dalýnýn nasýl olduðunu görmek isterseniz, `origin/master` dalýna bakmalýsýnýz. Bir hatayý bir iþ ortaðýyla birlikte çözüyorsanýz ve onlar `iss53` adýnda bir dalý sunucuya itmiþlerse, sizin yerel dalýnýzýn adý `iss53` iken, sunucuya itilmiþ olan dalýn adý `origin/iss53` olacaktýr.
+`(remote)`/`(dal)` biï¿½imindedirler. ï¿½rneï¿½in, sunucuya son baï¿½landï¿½ï¿½ï¿½nï¿½zda `origin` uzak uï¿½birimindeki `master` dalï¿½nï¿½n nasï¿½l olduï¿½unu gï¿½rmek isterseniz, `origin/master` dalï¿½na bakmalï¿½sï¿½nï¿½z. Bir hatayï¿½ bir iï¿½ ortaï¿½ï¿½yla birlikte ï¿½ï¿½zï¿½yorsanï¿½z ve onlar `iss53` adï¿½nda bir dalï¿½ sunucuya itmiï¿½lerse, sizin yerel dalï¿½nï¿½zï¿½n adï¿½ `iss53` iken, sunucuya itilmiï¿½ olan dalï¿½n adï¿½ `origin/iss53` olacaktï¿½r.
 
-Bu biraz kafa karýþtýrýcý olabilir, gelin bir örnekle açýklayalým. Diyelim ki `git.þirketimiz.com` adresinde bir Git sunucunuz var. Buradan klonlama yaparsanýz, Git bu yazýlým havuzunu otomatik olarak `origin` olarak adlandýracak, bütün veriyi indirecek, onun `master` dalýnýn gösterdiði kaydý gösteren `origin/master` adýnda hareket ettiremeyeceðiniz bir yerel dal oluþturacaktýr. Git ayrýca,  üzerinde çalýþabilmeniz için `origin`in `master` dalýnýn olduðu yeri gösteren `master` adýnda yerel bir dal da oluþturacaktýr (bkz. Figür 3-22).
+Bu biraz kafa karï¿½ï¿½tï¿½rï¿½cï¿½ olabilir, gelin bir ï¿½rnekle aï¿½ï¿½klayalï¿½m. Diyelim ki `git.ï¿½irketimiz.com` adresinde bir Git sunucunuz var. Buradan klonlama yaparsanï¿½z, Git bu yazï¿½lï¿½m havuzunu otomatik olarak `origin` olarak adlandï¿½racak, bï¿½tï¿½n veriyi indirecek, onun `master` dalï¿½nï¿½n gï¿½sterdiï¿½i kaydï¿½ gï¿½steren `origin/master` adï¿½nda hareket ettiremeyeceï¿½iniz bir yerel dal oluï¿½turacaktï¿½r. Git ayrï¿½ca,  ï¿½zerinde ï¿½alï¿½ï¿½abilmeniz iï¿½in `origin`in `master` dalï¿½nï¿½n olduï¿½u yeri gï¿½steren `master` adï¿½nda yerel bir dal da oluï¿½turacaktï¿½r (bkz. Figï¿½r 3-22).
 
 Insert 18333fig0322.png 
-Figür 3-22. Bir Git klonladýðýnýzda hem yerel bir master dalýnýz hem de origin'in master dalýný gösteren origin/master adýnda bir dalýnýz olur.
+Figï¿½r 3-22. Bir Git klonladï¿½ï¿½ï¿½nï¿½zda hem yerel bir master dalï¿½nï¿½z hem de origin'in master dalï¿½nï¿½ gï¿½steren origin/master adï¿½nda bir dalï¿½nï¿½z olur.
 
-Eðer siz kendi master dalýnýzda çalýþýrken biir baþkasý `git.þirketimiz.com`'a itme yapýp `master` dalýný güncellerse, tarihçeleriniz birbirinden farklýlaþacaktýr. Üstelik, `origin` sunucusuyla iletiþime geçmediðiniz sürece sizin `origin/master` dalýnýz hareket etmeyecektir (bkz. Figür 3-23).
+Eï¿½er siz kendi master dalï¿½nï¿½zda ï¿½alï¿½ï¿½ï¿½rken biir baï¿½kasï¿½ `git.ï¿½irketimiz.com`'a itme yapï¿½p `master` dalï¿½nï¿½ gï¿½ncellerse, tarihï¿½eleriniz birbirinden farklï¿½laï¿½acaktï¿½r. ï¿½stelik, `origin` sunucusuyla iletiï¿½ime geï¿½mediï¿½iniz sï¿½rece sizin `origin/master` dalï¿½nï¿½z hareket etmeyecektir (bkz. Figï¿½r 3-23).
 
 Insert 18333fig0323.png 
-Figür 3-23. Siz yerelde çalýþýyorken bir baþkasý sunucuya itme yaparsa, tarihçeleriniz birbirinden farklý hareket etmeye baþlar.
+Figï¿½r 3-23. Siz yerelde ï¿½alï¿½ï¿½ï¿½yorken bir baï¿½kasï¿½ sunucuya itme yaparsa, tarihï¿½eleriniz birbirinden farklï¿½ hareket etmeye baï¿½lar.
 
-Çalýþmalarýnýzý eþitlemek için `git fetch origin` komutunu çalýþtýrabilirsiniz. Bu komut `origin` sunucusunun hangisi olduðuna bakar (bu örnekte `git.þirketimiz.com`), orada bulunup da sizde olmayan her türlü veriyi indirir, yerel veritabanýnýzý güncelleyip yerelinizdeki `origin/master` dalýný yeni, güncel konumuna taþýr (bkz. Figür 3-24).
+ï¿½alï¿½ï¿½malarï¿½nï¿½zï¿½ eï¿½itlemek iï¿½in `git fetch origin` komutunu ï¿½alï¿½ï¿½tï¿½rabilirsiniz. Bu komut `origin` sunucusunun hangisi olduï¿½una bakar (bu ï¿½rnekte `git.ï¿½irketimiz.com`), orada bulunup da sizde olmayan her tï¿½rlï¿½ veriyi indirir, yerel veritabanï¿½nï¿½zï¿½ gï¿½ncelleyip yerelinizdeki `origin/master` dalï¿½nï¿½ yeni, gï¿½ncel konumuna taï¿½ï¿½r (bkz. Figï¿½r 3-24).
 
 Insert 18333fig0324.png 
-Figür 3-24. git fetch komutu uzak uçbirim imleçlerinizi günceller.
+Figï¿½r 3-24. git fetch komutu uzak uï¿½birim imleï¿½lerinizi gï¿½nceller.
 
-Birden çok uzak uçbirime sahip bir projede uzak uçbirim imleçlerinin nasýl görüneceðini incelemek için, Scrum takýmlarýnýzdan birisi tarafýndan kullanýlan baþka bir sunucunuzun daha olduðunu varsayalým. Bu sunucunun adresi `git.team1.þirketimiz.com` olsun. 2. Bölüm'de incelediðimiz gibi, bu sunucuyu projenize uzak uçbirim olarak eklemek için `git remote add` komutunu kullanabilirsiniz. Bu uçbirimin adý `teamone` olsun, ki bu adý daha sonra bütün URL yerine kýsaltma olarak kullanacaksýnýz (bkz. Figür 3-25).
+Birden ï¿½ok uzak uï¿½birime sahip bir projede uzak uï¿½birim imleï¿½lerinin nasï¿½l gï¿½rï¿½neceï¿½ini incelemek iï¿½in, Scrum takï¿½mlarï¿½nï¿½zdan birisi tarafï¿½ndan kullanï¿½lan baï¿½ka bir sunucunuzun daha olduï¿½unu varsayalï¿½m. Bu sunucunun adresi `git.team1.ï¿½irketimiz.com` olsun. 2. Bï¿½lï¿½m'de incelediï¿½imiz gibi, bu sunucuyu projenize uzak uï¿½birim olarak eklemek iï¿½in `git remote add` komutunu kullanabilirsiniz. Bu uï¿½birimin adï¿½ `teamone` olsun, ki bu adï¿½ daha sonra bï¿½tï¿½n URL yerine kï¿½saltma olarak kullanacaksï¿½nï¿½z (bkz. Figï¿½r 3-25).
 
 Insert 18333fig0325.png 
-Figür 3-25. Baþka bir sunucuyu uzak uçbirim olarak eklemek.
+Figï¿½r 3-25. Baï¿½ka bir sunucuyu uzak uï¿½birim olarak eklemek.
 
-`teamone` uzak uçbiriminde bulunup da sizde bulunmayan þeyleri getirmek için `git fetch teamone` komutunu çalýþtýrabilirsiniz. O sunucuda bulunan veriler `origin` sunucusunda bulunanlarýn alt kümesi olduðundan, Git herhangi bir veri çekmez, ama `teamone/master` adýnda, `teamone` sunucusunun `master` dalýnýn gösterdiði kaydý gösteren bir uzak uçbirim dalý oluþturur (bkz. Figür 3-26).
+`teamone` uzak uï¿½biriminde bulunup da sizde bulunmayan ï¿½eyleri getirmek iï¿½in `git fetch teamone` komutunu ï¿½alï¿½ï¿½tï¿½rabilirsiniz. O sunucuda bulunan veriler `origin` sunucusunda bulunanlarï¿½n alt kï¿½mesi olduï¿½undan, Git herhangi bir veri ï¿½ekmez, ama `teamone/master` adï¿½nda, `teamone` sunucusunun `master` dalï¿½nï¿½n gï¿½sterdiï¿½i kaydï¿½ gï¿½steren bir uzak uï¿½birim dalï¿½ oluï¿½turur (bkz. Figï¿½r 3-26).
 
 Insert 18333fig0326.png 
-Figür 3-26. teamone'nin master dalýnýn pozisyonunu gösteren bir yerel imleciniz oluyor.
+Figï¿½r 3-26. teamone'nin master dalï¿½nï¿½n pozisyonunu gï¿½steren bir yerel imleciniz oluyor.
 
-### Ýtme Ýþlemi ###
+### ï¿½tme ï¿½ï¿½lemi ###
 
-Bir daldaki çalýþmalarýnýzý baþkalarýyla paylaþmak istediðinizde, onu yazma yetkinizin olduðu bir uzak uçbirime itmelisiniz (_push_). yerel dallarýnýz otomatik olarak sunucuyla eþitlenmez —paylaþmak istediðiniz dallarý açýk þekilde itmelisiniz. Böylece, paylaþmak istemediðiniz dallar için özel yerel dallar kullanýp, yalnýzca paylaþmak istediðiniz iþlev dallarýný iteblirsiniz.
+Bir daldaki ï¿½alï¿½ï¿½malarï¿½nï¿½zï¿½ baï¿½kalarï¿½yla paylaï¿½mak istediï¿½inizde, onu yazma yetkinizin olduï¿½u bir uzak uï¿½birime itmelisiniz (_push_). yerel dallarï¿½nï¿½z otomatik olarak sunucuyla eï¿½itlenmez ï¿½paylaï¿½mak istediï¿½iniz dallarï¿½ aï¿½ï¿½k ï¿½ekilde itmelisiniz. Bï¿½ylece, paylaï¿½mak istemediï¿½iniz dallar iï¿½in ï¿½zel yerel dallar kullanï¿½p, yalnï¿½zca paylaï¿½mak istediï¿½iniz iï¿½lev dallarï¿½nï¿½ iteblirsiniz.
 
-Baþkalarýyla ortaklaþa çalýþmak istediðiniz `serverfix` adýnda bir dalýnýz varsa, onu da ilk dalýnýzý ittiðiniz gibi itebilirsiniz. `git push (remote) (branch)` komutunu çalýþtýrýn.
+Baï¿½kalarï¿½yla ortaklaï¿½a ï¿½alï¿½ï¿½mak istediï¿½iniz `serverfix` adï¿½nda bir dalï¿½nï¿½z varsa, onu da ilk dalï¿½nï¿½zï¿½ ittiï¿½iniz gibi itebilirsiniz. `git push (remote) (branch)` komutunu ï¿½alï¿½ï¿½tï¿½rï¿½n.
 
 	$ git push origin serverfix
 	Counting objects: 20, done.
@@ -422,9 +423,9 @@ Baþkalarýyla ortaklaþa çalýþmak istediðiniz `serverfix` adýnda bir dalýnýz varsa
 	To git@github.com:schacon/simplegit.git
 	 * [new branch]      serverfix -> serverfix
 
-Bu bir tür kýsayol sayýlabilir. Git `serverfix` dal adýný otomatik olarak `refs/heads/serverfix:refs/heads/serverfix` biçiminde açýmlar, bu þu demektir: “yerel `serverfix` dalýmý alýp uzak uçbirimin `serverfix` dalýný güncellemek için kullan.” `refs/heads/` kýsmýnz 9. Bölüm'de ayrýntýsýyla deðineceðiz, ama genellikle bu kýsmý kullanmasanýz da olur. Ayný amaçla `git push origin serverfix:serverfix` komutunu da çalýþtýrabilirsiniz —bu da þu demektir: “Yereldeki serverfix'i al, bunu uzak uçbirimin serverfix'i yap.” Bu biçimi, yereldeki dal adýyla uzak uçbirimdeki dal adý farklý ise kullanabilirsiniz. Dal adýnýn uzak uçbirimde `serferfix` olmasýný istemezseniz `git push origin serverfix:awesomebranch` komutunu çalýþtýrarak yereldeki `serverfix` dalýný uzak uçbirimdeki `awesomebranch` dalýna itebilirsiniz.
+Bu bir tï¿½r kï¿½sayol sayï¿½labilir. Git `serverfix` dal adï¿½nï¿½ otomatik olarak `refs/heads/serverfix:refs/heads/serverfix` biï¿½iminde aï¿½ï¿½mlar, bu ï¿½u demektir: ï¿½yerel `serverfix` dalï¿½mï¿½ alï¿½p uzak uï¿½birimin `serverfix` dalï¿½nï¿½ gï¿½ncellemek iï¿½in kullan.ï¿½ `refs/heads/` kï¿½smï¿½nz 9. Bï¿½lï¿½m'de ayrï¿½ntï¿½sï¿½yla deï¿½ineceï¿½iz, ama genellikle bu kï¿½smï¿½ kullanmasanï¿½z da olur. Aynï¿½ amaï¿½la `git push origin serverfix:serverfix` komutunu da ï¿½alï¿½ï¿½tï¿½rabilirsiniz ï¿½bu da ï¿½u demektir: ï¿½Yereldeki serverfix'i al, bunu uzak uï¿½birimin serverfix'i yap.ï¿½ Bu biï¿½imi, yereldeki dal adï¿½yla uzak uï¿½birimdeki dal adï¿½ farklï¿½ ise kullanabilirsiniz. Dal adï¿½nï¿½n uzak uï¿½birimde `serferfix` olmasï¿½nï¿½ istemezseniz `git push origin serverfix:awesomebranch` komutunu ï¿½alï¿½ï¿½tï¿½rarak yereldeki `serverfix` dalï¿½nï¿½ uzak uï¿½birimdeki `awesomebranch` dalï¿½na itebilirsiniz.
 
-Birlikte çalýþtýðýnýz insanlar sunucudan getirme iþlemi (_fetch_) yaptýklarýnda,  sunucudaki `serverfix` sürümünün bulunduðu yeri gösteren `origin/serverfix` adýnda bir imlece sahip olacaklar.
+Birlikte ï¿½alï¿½ï¿½tï¿½ï¿½ï¿½nï¿½z insanlar sunucudan getirme iï¿½lemi (_fetch_) yaptï¿½klarï¿½nda,  sunucudaki `serverfix` sï¿½rï¿½mï¿½nï¿½n bulunduï¿½u yeri gï¿½steren `origin/serverfix` adï¿½nda bir imlece sahip olacaklar.
 
 	$ git fetch origin
 	remote: Counting objects: 20, done.
@@ -434,47 +435,47 @@ Birlikte çalýþtýðýnýz insanlar sunucudan getirme iþlemi (_fetch_) yaptýklarýnda,
 	From git@github.com:schacon/simplegit
 	 * [new branch]      serverfix    -> origin/serverfix
 
-Unutmayýn, getirme (_fetch_) komutuyla yeni uzak uçbirim dallarýný indirdiðinizde, yerelde otomatik olarak deðiþtirilebilir dallar oluþturulmaz. Baþka bir deyiþle, bu örnekte, `serverfix` adýnda bir dalýnýz olmaz, deðiþtiremeyeceðiniz `origin/serverfix` adýnda bir imleciniz olur.
+Unutmayï¿½n, getirme (_fetch_) komutuyla yeni uzak uï¿½birim dallarï¿½nï¿½ indirdiï¿½inizde, yerelde otomatik olarak deï¿½iï¿½tirilebilir dallar oluï¿½turulmaz. Baï¿½ka bir deyiï¿½le, bu ï¿½rnekte, `serverfix` adï¿½nda bir dalï¿½nï¿½z olmaz, deï¿½iï¿½tiremeyeceï¿½iniz `origin/serverfix` adï¿½nda bir imleciniz olur.
 
-Oradaki deðiþiklikleri üzerinde çalýþmakta olduðunuz dala birleþtirmek isterseniz, `git merge origin/serverfix` komutunu çalýþtýrabilirsiniz. Üzerinde çalýþmak üzere kendinize ait bir `serverfix` dalýnýz olmasýný isterseniz, uzak uçbirim dalýný temel alabilirsiniz:
+Oradaki deï¿½iï¿½iklikleri ï¿½zerinde ï¿½alï¿½ï¿½makta olduï¿½unuz dala birleï¿½tirmek isterseniz, `git merge origin/serverfix` komutunu ï¿½alï¿½ï¿½tï¿½rabilirsiniz. ï¿½zerinde ï¿½alï¿½ï¿½mak ï¿½zere kendinize ait bir `serverfix` dalï¿½nï¿½z olmasï¿½nï¿½ isterseniz, uzak uï¿½birim dalï¿½nï¿½ temel alabilirsiniz:
 
 	$ git checkout -b serverfix origin/serverfix
 	Branch serverfix set up to track remote branch refs/remotes/origin/serverfix.
 	Switched to a new branch "serverfix"
 
-Bu, üzerinde çalýþabileceðiniz ve `origin/serverfix`in gösterdiði yerden baþlayan bir yerel dal yaratýr.
+Bu, ï¿½zerinde ï¿½alï¿½ï¿½abileceï¿½iniz ve `origin/serverfix`in gï¿½sterdiï¿½i yerden baï¿½layan bir yerel dal yaratï¿½r.
 
-### Ýzleme Dallarý ###
+### ï¿½zleme Dallarï¿½ ###
 
-Bir uzak uçbirim dalýndan yerel bir dal seçtiðinizde (_checkout_), bu iþlem otomatik olarak bir _izleme dalý_ (_tracking branch_) oluþturur. Ýzleme dallarý, uzak uçbirim dallarýyla doðrudan iliþkileri bulunan yerel dallardýr. Bir izleme dalýndan `git push` komutunu çalýþtýrdýðýnýzda , Git hangi sunucudaki hangi dala itme iþlemi yapmasý gerektiðini bilir. Ayrýca, bu dallardan birinden `git pull` komutunu çalýþtýrdýðýnýzda, bütün imleçler indirileceði gibi, bu izleme dalýna karþýlýk gelen uzak uçbirim dalý da otomatik olarak bu dalla birleþtirilir.
+Bir uzak uï¿½birim dalï¿½ndan yerel bir dal seï¿½tiï¿½inizde (_checkout_), bu iï¿½lem otomatik olarak bir _izleme dalï¿½_ (_tracking branch_) oluï¿½turur. ï¿½zleme dallarï¿½, uzak uï¿½birim dallarï¿½yla doï¿½rudan iliï¿½kileri bulunan yerel dallardï¿½r. Bir izleme dalï¿½ndan `git push` komutunu ï¿½alï¿½ï¿½tï¿½rdï¿½ï¿½ï¿½nï¿½zda , Git hangi sunucudaki hangi dala itme iï¿½lemi yapmasï¿½ gerektiï¿½ini bilir. Ayrï¿½ca, bu dallardan birinden `git pull` komutunu ï¿½alï¿½ï¿½tï¿½rdï¿½ï¿½ï¿½nï¿½zda, bï¿½tï¿½n imleï¿½ler indirileceï¿½i gibi, bu izleme dalï¿½na karï¿½ï¿½lï¿½k gelen uzak uï¿½birim dalï¿½ da otomatik olarak bu dalla birleï¿½tirilir.
 
-Bir yazýlým havuzunu klonladýðýnýzda, genellikle `origin/master` dalýný izleyen bir `master` dalý yaratýlýr. Bu nedenle `git push` ve `git pull` komutlarý bu durumlarda ek argümanlara gerek kalmadan çalýþýrlar. Öte yandan, isterseniz baþka izleme dallarý da —`origin`'i ya da `master` dalýnýz izlemeyen dallar— oluþturabilirsiniz. Yukarýda basit bir örneðini gördük: `git checkout -b [dal] [uzak_ucbirim]/[dal]`. Git'in 1.6.2'den itibaren olan sürümlerinde `--track` kýsayolunu da kullanabilirsiniz:
+Bir yazï¿½lï¿½m havuzunu klonladï¿½ï¿½ï¿½nï¿½zda, genellikle `origin/master` dalï¿½nï¿½ izleyen bir `master` dalï¿½ yaratï¿½lï¿½r. Bu nedenle `git push` ve `git pull` komutlarï¿½ bu durumlarda ek argï¿½manlara gerek kalmadan ï¿½alï¿½ï¿½ï¿½rlar. ï¿½te yandan, isterseniz baï¿½ka izleme dallarï¿½ da ï¿½`origin`'i ya da `master` dalï¿½nï¿½z izlemeyen dallarï¿½ oluï¿½turabilirsiniz. Yukarï¿½da basit bir ï¿½rneï¿½ini gï¿½rdï¿½k: `git checkout -b [dal] [uzak_ucbirim]/[dal]`. Git'in 1.6.2'den itibaren olan sï¿½rï¿½mlerinde `--track` kï¿½sayolunu da kullanabilirsiniz:
 
 	$ git checkout --track origin/serverfix
 	Branch serverfix set up to track remote branch refs/remotes/origin/serverfix.
 	Switched to a new branch "serverfix"
 
-Uzak uçbirim dalýnýn adýndan baþka bir adla yerel dal oluþturmak isterseniz, yukarýdaki komutu farklý bir yerel dal adýyla kullanabilirsiniz:
+Uzak uï¿½birim dalï¿½nï¿½n adï¿½ndan baï¿½ka bir adla yerel dal oluï¿½turmak isterseniz, yukarï¿½daki komutu farklï¿½ bir yerel dal adï¿½yla kullanabilirsiniz:
 
 	$ git checkout -b sf origin/serverfix
 	Branch sf set up to track remote branch refs/remotes/origin/serverfix.
 	Switched to a new branch "sf"
 
-Þimdi, yereldeki sf dalý, otomatik olarak `origin/serverfix` dalýna itme ve çekme iþlemi yapabilecek.
+ï¿½imdi, yereldeki sf dalï¿½, otomatik olarak `origin/serverfix` dalï¿½na itme ve ï¿½ekme iï¿½lemi yapabilecek.
 
-### Uzak Uçbirim Dallarýný Silmek ###
+### Uzak Uï¿½birim Dallarï¿½nï¿½ Silmek ###
 
-Suppose you’re done with a remote branch — say, you and your collaborators are finished with a feature and have merged it into your remote’s `master` branch (or whatever branch your stable codeline is in). You can delete a remote branch using the rather obtuse syntax `git push [remotename] :[branch]`. If you want to delete your `serverfix` branch from the server, you run the following:
+Suppose youï¿½re done with a remote branch ï¿½ say, you and your collaborators are finished with a feature and have merged it into your remoteï¿½s `master` branch (or whatever branch your stable codeline is in). You can delete a remote branch using the rather obtuse syntax `git push [remotename] :[branch]`. If you want to delete your `serverfix` branch from the server, you run the following:
 
 	$ git push origin :serverfix
 	To git@github.com:schacon/simplegit.git
 	 - [deleted]         serverfix
 
-Boom. No more branch on your server. You may want to dog-ear this page, because you’ll need that command, and you’ll likely forget the syntax. A way to remember this command is by recalling the `git push [remotename] [localbranch]:[remotebranch]` syntax that we went over a bit earlier. If you leave off the `[localbranch]` portion, then you’re basically saying, “Take nothing on my side and make it be `[remotebranch]`.”
+Boom. No more branch on your server. You may want to dog-ear this page, because youï¿½ll need that command, and youï¿½ll likely forget the syntax. A way to remember this command is by recalling the `git push [remotename] [localbranch]:[remotebranch]` syntax that we went over a bit earlier. If you leave off the `[localbranch]` portion, then youï¿½re basically saying, ï¿½Take nothing on my side and make it be `[remotebranch]`.ï¿½
 
-## Rebasing ## Zemin, Kök, Temel
+## Rebasing ## Zemin, Kï¿½k, Temel
 
-In Git, there are two main ways to integrate changes from one branch into another: the `merge` and the `rebase`. In this section you’ll learn what rebasing is, how to do it, why it’s a pretty amazing tool, and in what cases you won’t want to use it.
+In Git, there are two main ways to integrate changes from one branch into another: the `merge` and the `rebase`. In this section youï¿½ll learn what rebasing is, how to do it, why itï¿½s a pretty amazing tool, and in what cases you wonï¿½t want to use it.
 
 ### The Basic Rebase ###
 
@@ -483,21 +484,21 @@ If you go back to an earlier example from the Merge section (see Figure 3-27), y
 Insert 18333fig0327.png 
 Figure 3-27. Your initial diverged commit history.
 
-The easiest way to integrate the branches, as we’ve already covered, is the `merge` command. It performs a three-way merge between the two latest branch snapshots (C3 and C4) and the most recent common ancestor of the two (C2), creating a new snapshot (and commit), as shown in Figure 3-28.
+The easiest way to integrate the branches, as weï¿½ve already covered, is the `merge` command. It performs a three-way merge between the two latest branch snapshots (C3 and C4) and the most recent common ancestor of the two (C2), creating a new snapshot (and commit), as shown in Figure 3-28.
 
 Insert 18333fig0328.png 
 Figure 3-28. Merging a branch to integrate the diverged work history.
 
 However, there is another way: you can take the patch of the change that was introduced in C3 and reapply it on top of C4. In Git, this is called _rebasing_. With the `rebase` command, you can take all the changes that were committed on one branch and replay them on another one.
 
-In this example, you’d run the following:
+In this example, youï¿½d run the following:
 
 	$ git checkout experiment
 	$ git rebase master
 	First, rewinding head to replay your work on top of it...
 	Applying: added staged command
 
-It works by going to the common ancestor of the two branches (the one you’re on and the one you’re rebasing onto), getting the diff introduced by each commit of the branch you’re on, saving those diffs to temporary files, resetting the current branch to the same commit as the branch you are rebasing onto, and finally applying each change in turn. Figure 3-29 illustrates this process.
+It works by going to the common ancestor of the two branches (the one youï¿½re on and the one youï¿½re rebasing onto), getting the diff introduced by each commit of the branch youï¿½re on, saving those diffs to temporary files, resetting the current branch to the same commit as the branch you are rebasing onto, and finally applying each change in turn. Figure 3-29 illustrates this process.
 
 Insert 18333fig0329.png 
 Figure 3-29. Rebasing the change introduced in C3 onto C4.
@@ -509,9 +510,9 @@ Figure 3-30. Fast-forwarding the master branch.
 
 Now, the snapshot pointed to by C3' is exactly the same as the one that was pointed to by C5 in the merge example. There is no difference in the end product of the integration, but rebasing makes for a cleaner history. If you examine the log of a rebased branch, it looks like a linear history: it appears that all the work happened in series, even when it originally happened in parallel.
 
-Often, you’ll do this to make sure your commits apply cleanly on a remote branch — perhaps in a project to which you’re trying to contribute but that you don’t maintain. In this case, you’d do your work in a branch and then rebase your work onto `origin/master` when you were ready to submit your patches to the main project. That way, the maintainer doesn’t have to do any integration work — just a fast-forward or a clean apply.
+Often, youï¿½ll do this to make sure your commits apply cleanly on a remote branch ï¿½ perhaps in a project to which youï¿½re trying to contribute but that you donï¿½t maintain. In this case, youï¿½d do your work in a branch and then rebase your work onto `origin/master` when you were ready to submit your patches to the main project. That way, the maintainer doesnï¿½t have to do any integration work ï¿½ just a fast-forward or a clean apply.
 
-Note that the snapshot pointed to by the final commit you end up with, whether it’s the last of the rebased commits for a rebase or the final merge commit after a merge, is the same snapshot — it’s only the history that is different. Rebasing replays changes from one line of work onto another in the order they were introduced, whereas merging takes the endpoints and merges them together.
+Note that the snapshot pointed to by the final commit you end up with, whether itï¿½s the last of the rebased commits for a rebase or the final merge commit after a merge, is the same snapshot ï¿½ itï¿½s only the history that is different. Rebasing replays changes from one line of work onto another in the order they were introduced, whereas merging takes the endpoints and merges them together.
 
 ### More Interesting Rebases ###
 
@@ -520,11 +521,11 @@ You can also have your rebase replay on something other than the rebase branch. 
 Insert 18333fig0331.png 
 Figure 3-31. A history with a topic branch off another topic branch.
 
-Suppose you decide that you want to merge your client-side changes into your mainline for a release, but you want to hold off on the server-side changes until it’s tested further. You can take the changes on client that aren’t on server (C8 and C9) and replay them on your master branch by using the `--onto` option of `git rebase`:
+Suppose you decide that you want to merge your client-side changes into your mainline for a release, but you want to hold off on the server-side changes until itï¿½s tested further. You can take the changes on client that arenï¿½t on server (C8 and C9) and replay them on your master branch by using the `--onto` option of `git rebase`:
 
 	$ git rebase --onto master server client
 
-This basically says, “Check out the client branch, figure out the patches from the common ancestor of the `client` and `server` branches, and then replay them onto `master`.” It’s a bit complex; but the result, shown in Figure 3-32, is pretty cool.
+This basically says, ï¿½Check out the client branch, figure out the patches from the common ancestor of the `client` and `server` branches, and then replay them onto `master`.ï¿½ Itï¿½s a bit complex; but the result, shown in Figure 3-32, is pretty cool.
 
 Insert 18333fig0332.png 
 Figure 3-32. Rebasing a topic branch off another topic branch.
@@ -537,7 +538,7 @@ Now you can fast-forward your master branch (see Figure 3-33):
 Insert 18333fig0333.png 
 Figure 3-33. Fast-forwarding your master branch to include the client branch changes.
 
-Let’s say you decide to pull in your server branch as well. You can rebase the server branch onto the master branch without having to check it out first by running `git rebase [basebranch] [topicbranch]` — which checks out the topic branch (in this case, `server`) for you and replays it onto the base branch (`master`):
+Letï¿½s say you decide to pull in your server branch as well. You can rebase the server branch onto the master branch without having to check it out first by running `git rebase [basebranch] [topicbranch]` ï¿½ which checks out the topic branch (in this case, `server`) for you and replays it onto the base branch (`master`):
 
 	$ git rebase master server
 
@@ -551,7 +552,7 @@ Then, you can fast-forward the base branch (`master`):
 	$ git checkout master
 	$ git merge server
 
-You can remove the `client` and `server` branches because all the work is integrated and you don’t need them anymore, leaving your history for this entire process looking like Figure 3-35:
+You can remove the `client` and `server` branches because all the work is integrated and you donï¿½t need them anymore, leaving your history for this entire process looking like Figure 3-35:
 
 	$ git branch -d client
 	$ git branch -d server
@@ -561,15 +562,15 @@ Figure 3-35. Final commit history.
 
 ### The Perils of Rebasing ###
 
-Ahh, but the bliss of rebasing isn’t without its drawbacks, which can be summed up in a single line:
+Ahh, but the bliss of rebasing isnï¿½t without its drawbacks, which can be summed up in a single line:
 
 **Do not rebase commits that you have pushed to a public repository.**
 
-If you follow that guideline, you’ll be fine. If you don’t, people will hate you, and you’ll be scorned by friends and family.
+If you follow that guideline, youï¿½ll be fine. If you donï¿½t, people will hate you, and youï¿½ll be scorned by friends and family.
 
-When you rebase stuff, you’re abandoning existing commits and creating new ones that are similar but different. If you push commits somewhere and others pull them down and base work on them, and then you rewrite those commits with `git rebase` and push them up again, your collaborators will have to re-merge their work and things will get messy when you try to pull their work back into yours.
+When you rebase stuff, youï¿½re abandoning existing commits and creating new ones that are similar but different. If you push commits somewhere and others pull them down and base work on them, and then you rewrite those commits with `git rebase` and push them up again, your collaborators will have to re-merge their work and things will get messy when you try to pull their work back into yours.
 
-Let’s look at an example of how rebasing work that you’ve made public can cause problems. Suppose you clone from a central server and then do some work off that. Your commit history looks like Figure 3-36.
+Letï¿½s look at an example of how rebasing work that youï¿½ve made public can cause problems. Suppose you clone from a central server and then do some work off that. Your commit history looks like Figure 3-36.
 
 Insert 18333fig0336.png 
 Figure 3-36. Clone a repository, and base some work on it.
@@ -582,17 +583,17 @@ Figure 3-37. Fetch more commits, and merge them into your work.
 Next, the person who pushed the merged work decides to go back and rebase their work instead; they do a `git push --force` to overwrite the history on the server. You then fetch from that server, bringing down the new commits.
 
 Insert 18333fig0338.png 
-Figure 3-38. Someone pushes rebased commits, abandoning commits you’ve based your work on.
+Figure 3-38. Someone pushes rebased commits, abandoning commits youï¿½ve based your work on.
 
-At this point, you have to merge this work in again, even though you’ve already done so. Rebasing changes the SHA-1 hashes of these commits so to Git they look like new commits, when in fact you already have the C4 work in your history (see Figure 3-39).
+At this point, you have to merge this work in again, even though youï¿½ve already done so. Rebasing changes the SHA-1 hashes of these commits so to Git they look like new commits, when in fact you already have the C4 work in your history (see Figure 3-39).
 
 Insert 18333fig0339.png 
 Figure 3-39. You merge in the same work again into a new merge commit.
 
-You have to merge that work in at some point so you can keep up with the other developer in the future. After you do that, your commit history will contain both the C4 and C4' commits, which have different SHA-1 hashes but introduce the same work and have the same commit message. If you run a `git log` when your history looks like this, you’ll see two commits that have the same author date and message, which will be confusing. Furthermore, if you push this history back up to the server, you’ll reintroduce all those rebased commits to the central server, which can further confuse people.
+You have to merge that work in at some point so you can keep up with the other developer in the future. After you do that, your commit history will contain both the C4 and C4' commits, which have different SHA-1 hashes but introduce the same work and have the same commit message. If you run a `git log` when your history looks like this, youï¿½ll see two commits that have the same author date and message, which will be confusing. Furthermore, if you push this history back up to the server, youï¿½ll reintroduce all those rebased commits to the central server, which can further confuse people.
 
-If you treat rebasing as a way to clean up and work with commits before you push them, and if you only rebase commits that have never been available publicly, then you’ll be fine. If you rebase commits that have already been pushed publicly, and people may have based work on those commits, then you may be in for some frustrating trouble.
+If you treat rebasing as a way to clean up and work with commits before you push them, and if you only rebase commits that have never been available publicly, then youï¿½ll be fine. If you rebase commits that have already been pushed publicly, and people may have based work on those commits, then you may be in for some frustrating trouble.
 
 ## Summary ##
 
-We’ve covered basic branching and merging in Git. You should feel comfortable creating and switching to new branches, switching between branches and merging local branches together.  You should also be able to share your branches by pushing them to a shared server, working with others on shared branches and rebasing your branches before they are shared.
+Weï¿½ve covered basic branching and merging in Git. You should feel comfortable creating and switching to new branches, switching between branches and merging local branches together.  You should also be able to share your branches by pushing them to a shared server, working with others on shared branches and rebasing your branches before they are shared.
