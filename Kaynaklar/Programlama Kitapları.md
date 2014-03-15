@@ -1,5 +1,5 @@
 ###Index
-====
+----
 * [C](#c)
 * [D](#d)
 * [Fortran](#fortran)
