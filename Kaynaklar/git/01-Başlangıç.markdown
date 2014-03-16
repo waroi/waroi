@@ -1,134 +1,134 @@
-# Ba�lang�� #
+# Başlangıç #
 
-Bu b�l�mde Git kullan�m� hakk�nda temel bilgileri bulacaks�n�z. ��e, s�r�m kontrol sistemleri hakk�nda a��klamalarla ba�layaca��z; daha sonra Git kurulumunun nas�l yap�laca��n�, en son olarak da arac�n yap�land�rma ve kullan�m�n� a��klayaca��z. Bu b�l�m�n sonunda Git'in varl�k sebebini ve neden onu kullanman�z gerekti�ini anlayacak, Git'i kullanmaya ba�lamak i�in kurulumu tamamlam�� olacaks�n�z.
+Bu bölümde Git kullanımı hakkında temel bilgileri bulacaksınız. İşe, sürüm kontrol sistemleri hakkında açıklamalarla başlayacağız; daha sonra Git kurulumunun nasıl yapılacağını, en son olarak da aracın yapılandırma ve kullanımını açıklayacağız. Bu bölümün sonunda Git'in varlık sebebini ve neden onu kullanmanız gerektiğini anlayacak, Git'i kullanmaya başlamak için kurulumu tamamlamış olacaksınız.
 
-## S�r�m Kontrol� Hakk�nda ##
+## Sürüm Kontrolü Hakkında ##
 
-S�r�m kontrol� nedir ve ne i�e yarar? S�r�m kontrol�, bir ya da daha fazla dosya �zerinde yap�lan de�i�iklikleri kaydeden ve daha sonra belirli bir s�r�me geri d�nebilmenizi sa�layan bir sistemdir. Bu kitaptaki �rneklerde yaz�l�m kaynak kod dosyalar�n�n s�r�m kontrol�n� yapacaks�n�z, ne var ki ger�ekte s�r�m kontrol�n� neredeyse her t�rden dosya i�in kullanabilirsiniz.
+Sürüm kontrolü nedir ve ne işe yarar? Sürüm kontrolü, bir ya da daha fazla dosya üzerinde yapılan değişiklikleri kaydeden ve daha sonra belirli bir sürüme geri dönebilmenizi sağlayan bir sistemdir. Bu kitaptaki örneklerde yazılım kaynak kod dosyalarının sürüm kontrolünü yapacaksınız, ne var ki gerçekte sürüm kontrolünü neredeyse her türden dosya için kullanabilirsiniz.
 
-Bir grafik ya da web tasar�mc�s�ysan�z ve bir g�rselin ya da tasar�m�n de�i�ik s�r�mlerini korumak istiyorsan�z (ki muhtemelen bunu yapmak istersiniz), bir S�r�m Kontrol Sistemi (SKS) kullanman�z �ok ak�ll�ca olacakt�r. SKS, dosyalar�n ya da b�t�n projenin ge�mi�teki belirli bir s�r�m�ne eri�menizi, zaman i�inde yap�lan de�i�iklikleri kar��la�t�rman�z�, soruna neden olan �eyde en son kimin de�i�iklik yapt���n�, belirli bir hatay� kimin, ne zaman sisteme dahil etti�ini ve daha ba�ka pek �ok �eyi g�rebilmenizi sa�lar. �te yandan, SKS kullanmak, bir hata yapt���n�zda ya da baz� dosyalar� yanl��l�kla sildi�inizde durumu kolayca tel�fi etmenize yard�mc� olur. �stelik, b�t�n bunlar size kayda de�er bir ek y�k de getirmez.
+Bir grafik ya da web tasarımcısıysanız ve bir görselin ya da tasarımın değişik sürümlerini korumak istiyorsanız (ki muhtemelen bunu yapmak istersiniz), bir Sürüm Kontrol Sistemi (SKS) kullanmanız çok akıllıca olacaktır. SKS, dosyaların ya da bütün projenin geçmişteki belirli bir sürümüne erişmenizi, zaman içinde yapılan değişiklikleri karşılaştırmanızı, soruna neden olan şeyde en son kimin değişiklik yaptığını, belirli bir hatayı kimin, ne zaman sisteme dahil ettiğini ve daha başka pek çok şeyi görebilmenizi sağlar. Öte yandan, SKS kullanmak, bir hata yaptığınızda ya da bazı dosyaları yanlışlıkla sildiğinizde durumu kolayca telâfi etmenize yardımcı olur. Üstelik, bütün bunlar size kayda değer bir ek yük de getirmez.
 
-### Yerel S�r�m Kontrol Sistemleri ###
+### Yerel Sürüm Kontrol Sistemleri ###
 
-�o�u insan, dosyalar� bir klas�re (ak�llar� ba�lar�ndaysa tarih ve zaman bilgisini de i�eren bir klas�re) kopyalayarak s�r�m kontrol� yapmay� tercih eder. Bu yakla��m �ok yayg�nd�r, ��nk� �ok kolayd�r; ama ayn� zamanda hatalara da alabildi�ine a��kt�r. Hangi klas�rde oldu�unuzu unutup yanl�� dosyaya yazabilir ya da istemedi�iniz dosyalar�n �st�ne kopyalama yapabilirsiniz.
+Çoğu insan, dosyaları bir klasöre (akılları başlarındaysa tarih ve zaman bilgisini de içeren bir klasöre) kopyalayarak sürüm kontrolü yapmayı tercih eder. Bu yaklaşım çok yaygındır, çünkü çok kolaydır; ama aynı zamanda hatalara da alabildiğine açıktır. Hangi klasörde olduğunuzu unutup yanlış dosyaya yazabilir ya da istemediğiniz dosyaların üstüne kopyalama yapabilirsiniz.
 
-Bu sorunla ba� edebilmek i�in, programc�lar uzun zaman �nce, dosyalardaki b�t�n de�i�iklikleri s�r�m kontrol�ne alan basit bir veritaban�na sahip olan yerel SKS'ler geli�tirdiler (bkz. Fig�r 1-1).
+Bu sorunla baş edebilmek için, programcılar uzun zaman önce, dosyalardaki bütün değişiklikleri sürüm kontrolüne alan basit bir veritabanına sahip olan yerel SKS'ler geliştirdiler (bkz. Figür 1-1).
 
 Insert 18333fig0101.png 
-Fig�r 1-1. Yerel s�r�m kontrol diyagram�.
+Figür 1-1. Yerel sürüm kontrol diyagramı.
 
-En yayg�n SKS ara�lar�ndan biri, bug�n h�l� pek�ok bilgisayara kurulu olarak da��t�lan, rcs ad�nda bir sistemdi. �nl� Mac OS X i�letim sistemi bile, Developer Tools'u y�kledi�inizde, rcs komutunu kurmaktad�r. Bu ara�, iki s�r�m aras�ndaki yamalar� (yani, dosyalar aras�ndaki farklar�) �zel bir bi�imde diske kaydeder; daha sonra, bu yamalar� birbirine ekleyerek, bir dosyan�n belirli bir s�r�mdeki g�r�n�m�n� yeniden olu�turur.
+En yaygın SKS araçlarından biri, bugün hâlâ pekçok bilgisayara kurulu olarak dağıtılan, rcs adında bir sistemdi. Ünlü Mac OS X işletim sistemi bile, Developer Tools'u yüklediğinizde, rcs komutunu kurmaktadır. Bu araç, iki sürüm arasındaki yamaları (yani, dosyalar arasındaki farkları) özel bir biçimde diske kaydeder; daha sonra, bu yamaları birbirine ekleyerek, bir dosyanın belirli bir sürümdeki görünümünü yeniden oluşturur.
 
-### Merkezi S�r�m Kontrol Sistemleri ###
+### Merkezi Sürüm Kontrol Sistemleri ###
 
-�nsanlar�n kar��la�t��� ikinci b�y�k sorun, ba�ka sistemlerdeki programc�larla birlikte �al��ma ihtiyac�ndan ileri gelir. Bu sorunla ba�a ��kabilmek i�in, Merkezi S�r�m Kontrol Sistemleri (MSKS) geli�tirilmi�tir. Bu sistemler, mesel� CVS, Subversion ve Perforce, s�r�m kontrol�ne al�nan b�t�n dosyalar� tutan bir sunucu ve bu sunucudan dosyalar� se�erek alan (_check out_) istemcilerden olu�ur. Bu y�ntem, y�llarca, s�r�m kontrol�nde standart y�ntem olarak kabul g�rd� (bkz. Fig�r 1-2).
+İnsanların karşılaştığı ikinci büyük sorun, başka sistemlerdeki programcılarla birlikte çalışma ihtiyacından ileri gelir. Bu sorunla başa çıkabilmek için, Merkezi Sürüm Kontrol Sistemleri (MSKS) geliştirilmiştir. Bu sistemler, meselâ CVS, Subversion ve Perforce, sürüm kontrolüne alınan bütün dosyaları tutan bir sunucu ve bu sunucudan dosyaları seçerek alan (_check out_) istemcilerden oluşur. Bu yöntem, yıllarca, sürüm kontrolünde standart yöntem olarak kabul gördü (bkz. Figür 1-2).
 
 Insert 18333fig0102.png 
-Fig�r 1-2. Merkezi s�r�m kontrol diyagram�.
+Figür 1-2. Merkezi sürüm kontrol diyagramı.
 
-Bu y�ntemin, �zellikle yerel SKS'lere g�re, �ok say�da avantaj� vard�r. �rne�in, bir projedeki herkes, di�erlerinin ne yapt���ndan belirli �l��de haberdard�r. Sistem y�neticileri kimin hangi yetkilere sahip olaca��n� olduk�a ayr�nt�l� bi�imde d�zenleyebilirler; �stelik bir MSKS'yi y�netmek, her istemcide ayr� ayr� kurulu olan yerel veritabanlar�n� y�netmeye g�re �ok daha kolayd�r.
+Bu yöntemin, özellikle yerel SKS'lere göre, çok sayıda avantajı vardır. Örneğin, bir projedeki herkes, diğerlerinin ne yaptığından belirli ölçüde haberdardır. Sistem yöneticileri kimin hangi yetkilere sahip olacağını oldukça ayrıntılı biçimde düzenleyebilirler; üstelik bir MSKS'yi yönetmek, her istemcide ayrı ayrı kurulu olan yerel veritabanlarını yönetmeye göre çok daha kolaydır.
 
-Ne var ki, bu y�ntemin de ciddi baz� s�k�nt�lar� vard�r. En a�ikar s�k�nt�, merkezi sunucunun ar�zalanmas� durumunda ortaya ��kacak k�r�lma noktas� problemidir. Sunucu bir saatli�ine ��kecek olsa, o bir saat boyunca kullan�c�lar�n �al��malar�n� sisteme aktarmalar� ya da �al��t�klar� �eylerin s�r�mlenmi� kopyalar�n� kaydetmeleri m�mk�n olmayacakt�r. Merkezi veritaban�n�n sabit diski bozulacak olsa, yedekleme de olmas� gerekti�i gibi yap�lmam��sa, elinizdeki her �eyi �projenin, kullan�c�lar�n bilgisayarlar�nda kalan yerel bellek kopyalar� (_snapshot_) d���ndaki b�t�n tarih�esini� kaybedersiniz. Yerel SKS'ler de bu sorundan muzdariptir �projenin b�t�n tarih�esini tek bir yerde tuttu�unuz s�rece her �eyi kaybetme riskiniz vard�r.
+Ne var ki, bu yöntemin de ciddi bazı sıkıntıları vardır. En aşikar sıkıntı, merkezi sunucunun arızalanması durumunda ortaya çıkacak kırılma noktası problemidir. Sunucu bir saatliğine çökecek olsa, o bir saat boyunca kullanıcıların çalışmalarını sisteme aktarmaları ya da çalıştıkları şeylerin sürümlenmiş kopyalarını kaydetmeleri mümkün olmayacaktır. Merkezi veritabanının sabit diski bozulacak olsa, yedekleme de olması gerektiği gibi yapılmamışsa, elinizdeki her şeyi —projenin, kullanıcıların bilgisayarlarında kalan yerel bellek kopyaları (_snapshot_) dışındaki bütün tarihçesini— kaybedersiniz. Yerel SKS'ler de bu sorundan muzdariptir —projenin bütün tarihçesini tek bir yerde tuttuğunuz sürece her şeyi kaybetme riskiniz vardır.
 
-### Da��t�k S�r�m Kontrol Sistemleri ###
+### Dağıtık Sürüm Kontrol Sistemleri ###
 
-Bu noktada Da��t�k S�r�m Kontrol Sistemleri (DSKS) devreye girer. Bir DSKS'de (Git, Mercurial, Bazaar ya da Darcs �rneklerinde oldu�u gibi), istemciler (kullan�c�lar) dosyalar�n yaln�zca en son bellek kopyalar�n� almakla kalmazlar: yaz�l�m havuzunu (_repository_) b�t�n�yle yans�larlar (kopyalarlar).
+Bu noktada Dağıtık Sürüm Kontrol Sistemleri (DSKS) devreye girer. Bir DSKS'de (Git, Mercurial, Bazaar ya da Darcs örneklerinde olduğu gibi), istemciler (kullanıcılar) dosyaların yalnızca en son bellek kopyalarını almakla kalmazlar: yazılım havuzunu (_repository_) bütünüyle yansılarlar (kopyalarlar).
 
-B�ylece, sunuculardan biri ��kerse, ve o sunucu �zerinden ortak �al��ma y�r�ten sistemler varsa, istemcilerden birinin yaz�l�m havuzu sunucuya geri y�klenerek sistem kurtar�labilir. Her se�me (_checkout_) i�lemi esas�nda b�t�n verinin yedeklenmesiyle sonu�lan�r (bkz. Fig�r 1-3).
+Böylece, sunuculardan biri çökerse, ve o sunucu üzerinden ortak çalışma yürüten sistemler varsa, istemcilerden birinin yazılım havuzu sunucuya geri yüklenerek sistem kurtarılabilir. Her seçme (_checkout_) işlemi esasında bütün verinin yedeklenmesiyle sonuçlanır (bkz. Figür 1-3).
 
 Insert 18333fig0103.png 
-Fig�r 1-3. Da��t�k s�r�m kontrol diyagram�.
+Figür 1-3. Dağıtık sürüm kontrol diyagramı.
 
-Dahas�, bu sistemlerden �o�u birden �ok uzak u�birimdeki yaz�l�m havuzuyla rahatl�kla �al���r, b�ylece, ayn� proje i�in ayn� anda farkl� insan topluluklar�yla farkl� bi�imlerde ortak �al��malar y�r�tebilirsiniz. Bu, birden �ok i� ak��� ile �al��abilmenizi sa�lar, ki bu merkezi sistemlerde (hiyerar�ik modeller gibi) m�mk�n de�ildir.
+Dahası, bu sistemlerden çoğu birden çok uzak uçbirimdeki yazılım havuzuyla rahatlıkla çalışır, böylece, aynı proje için aynı anda farklı insan topluluklarıyla farklı biçimlerde ortak çalışmalar yürütebilirsiniz. Bu, birden çok iş akışı ile çalışabilmenizi sağlar, ki bu merkezi sistemlerde (hiyerarşik modeller gibi) mümkün değildir.
 
-## Git'in K�sa Bir Tarih�esi ##
+## Git'in Kısa Bir Tarihçesi ##
 
-Hayattaki pek �ok harika �ey gibi, Git de bir miktar yarat�c� y�k�m ve ate�li tart��mayla ba�lad�. Linux �ekirde�i (_kernel_) olduk�a b�y�k �l�ekli bir a��k kaynak kodlu yaz�l�m projesidir. Linux �ekirdek bak�m ve geli�tirme ya�am s�resinin �o�unda (1991-2002), yaz�l�m de�i�iklikleri yamalar ve ar�iv dosyalar� olarak tutulup ta��nd�. 2002 y�l�nda, Linux �ekirdek projesi, BitKeeper ad�nda tescilli bir DSKS kullanmaya ba�lad�.
+Hayattaki pek çok harika şey gibi, Git de bir miktar yaratıcı yıkım ve ateşli tartışmayla başladı. Linux çekirdeği (_kernel_) oldukça büyük ölçekli bir açık kaynak kodlu yazılım projesidir. Linux çekirdek bakım ve geliştirme yaşam süresinin çoğunda (1991-2002), yazılım değişiklikleri yamalar ve arşiv dosyaları olarak tutulup taşındı. 2002 yılında, Linux çekirdek projesi, BitKeeper adında tescilli bir DSKS kullanmaya başladı.
 
-2005 y�l�nda, Linux �ekirde�ini geli�tiren toplulukla BitKeeper'� geli�tiren �irket aras�ndaki ili�ki bozuldu ve arac�n topluluk taraf�ndan �cretsiz olarak kullan�labilmesi uygulamas�na son verildi. Bu, Linux geli�tirim toplulu�unu (ve �zellikle Linux'un yarat�c�s� olan Linus Torvalds'�) BitKeeper'� kullan�rken ald�klar� derslerden yola ��karak kendi ara�lar�n� geli�tirme konusunda harekete ge�irdi. Yeni sistemin hedeflerinden baz�lar� �unlard�:
+2005 yılında, Linux çekirdeğini geliştiren toplulukla BitKeeper'ı geliştiren şirket arasındaki ilişki bozuldu ve aracın topluluk tarafından ücretsiz olarak kullanılabilmesi uygulamasına son verildi. Bu, Linux geliştirim topluluğunu (ve özellikle Linux'un yaratıcısı olan Linus Torvalds'ı) BitKeeper'ı kullanırken aldıkları derslerden yola çıkarak kendi araçlarını geliştirme konusunda harekete geçirdi. Yeni sistemin hedeflerinden bazıları şunlardı:
 
-*	H�z
-*	Basit tasar�m
-*	�izgisel olmayan geli�tirim i�in g��l� destek (binlerce paralel dal (_branch_))
-*	B�t�n�yle da��t�k olma
-*	Linux �ekirde�i gibi b�y�k projelerle verimli bi�imde ba�a ��kabilme (h�z ve veri boyutu)
+*	Hız
+*	Basit tasarım
+*	Çizgisel olmayan geliştirim için güçlü destek (binlerce paralel dal (_branch_))
+*	Bütünüyle dağıtık olma
+*	Linux çekirdeği gibi büyük projelerle verimli biçimde başa çıkabilme (hız ve veri boyutu)
 
-2005'teki do�umundan beri, Git kullan�m kolayl�klar�n� geli�tirebilmek i�in evrilip olgunla�t�, ama yine de bu niteliklerini korudu. Git, inan�lmaz �l��de h�zl�, b�y�k �l�ekli projelerde alabildi�ine verimli ve �izgisel olmayan geli�tirim (bkz. 3. B�l�m) i�in inan�lmaz bir dallanma (_branching_) sistemine sahip.
+2005'teki doğumundan beri, Git kullanım kolaylıklarını geliştirebilmek için evrilip olgunlaştı, ama yine de bu niteliklerini korudu. Git, inanılmaz ölçüde hızlı, büyük ölçekli projelerde alabildiğine verimli ve çizgisel olmayan geliştirim (bkz. 3. Bölüm) için inanılmaz bir dallanma (_branching_) sistemine sahip.
 
 ## Git'in Temelleri ##
 
-Peki Git �z�nde nedir? Bu, �z�msenmesi gereken �nemli bir alt b�l�m, ��nk� Git'in ne oldu�unu ve temel �al��ma ilkelerini anlarsan�z, Git'i etkili bi�imde kullanman�z �ok daha kolay olacakt�r. Git'i ��renirken, Subversion ve Perforce gibi di�er SKS'ler hakk�nda bildiklerinizi akl�n�zdan ��karmaya �al���n; bu arac� kullan�rken ya�anabilecek kafa kar���kl�klar�n� �nlemenize yard�mc� olacakt�r. Git'in, kullan�c� aray�z� s�z konusu sistemlerle benzerlik g�sterse de, bilgiyi depolama ve yorumlama bi�imi �ok farkl�d�r; bu farkl�l�klar� anlamak, arac� kullan�rken kafa kar���kl���na d��menizi engellemekte yard�mc� olacakt�r.
+Peki Git özünde nedir? Bu, özümsenmesi gereken önemli bir alt bölüm, çünkü Git'in ne olduğunu ve temel çalışma ilkelerini anlarsanız, Git'i etkili biçimde kullanmanız çok daha kolay olacaktır. Git'i öğrenirken, Subversion ve Perforce gibi diğer SKS'ler hakkında bildiklerinizi aklınızdan çıkarmaya çalışın; bu aracı kullanırken yaşanabilecek kafa karışıklıklarını önlemenize yardımcı olacaktır. Git'in, kullanıcı arayüzü söz konusu sistemlerle benzerlik gösterse de, bilgiyi depolama ve yorumlama biçimi çok farklıdır; bu farklılıkları anlamak, aracı kullanırken kafa karışıklığına düşmenizi engellemekte yardımcı olacaktır.
 
-### Farklar De�il, Bellek Kopyalar� ###
+### Farklar Değil, Bellek Kopyaları ###
 
-Git ile di�er SKS'ler (Subversion ve ahbaplar� dahil) aras�ndaki esas fark, Git'in bilgiyi yorumlay�� bi�imiyle ilgilidir. Kavramsal olarak, di�er sistemlerin �o�u, bilgiyi dosya-tabanl� bir dizi de�i�iklik olarak depolar. Bu sistemler (CVS, Subversion, Perforce, Bazaar ve saire) bilgiyi, kay�t alt�nda tuttuklar� bir dosya k�mesi ve zamanla her bir dosya �zerinde yap�lan de�i�ikliklerin listesi olarak yorumlarlar (bkz. Fig�r 1-4).
+Git ile diğer SKS'ler (Subversion ve ahbapları dahil) arasındaki esas fark, Git'in bilgiyi yorumlayış biçimiyle ilgilidir. Kavramsal olarak, diğer sistemlerin çoğu, bilgiyi dosya-tabanlı bir dizi değişiklik olarak depolar. Bu sistemler (CVS, Subversion, Perforce, Bazaar ve saire) bilgiyi, kayıt altında tuttukları bir dosya kümesi ve zamanla her bir dosya üzerinde yapılan değişikliklerin listesi olarak yorumlarlar (bkz. Figür 1-4).
 
 Insert 18333fig0104.png 
-Fig�r 1-4. Di�er sistemler veriyi her bir dosyan�n ilk s�r�mu �zerinde yap�lan de�i�iklikler olarak depolama e�ilimindedir.
+Figür 1-4. Diğer sistemler veriyi her bir dosyanın ilk sürümu üzerinde yapılan değişiklikler olarak depolama eğilimindedir.
 
-Git, veriyi b�yle yorumlay�p depolamaz. Bunun yerine, Git, veriyi, bir mini dosya sisteminin bellek kopyalar� olarak yorumlar. Her kay�t i�leminde (_commit_), ya da projenizin konumunu her kaydedi�inizde, Git o anda dosyalar�n�z�n nas�l g�r�nd���n�n bir foto�raf�n� �ekip o bellek kopyas�na bir referans� depolar. Verimli olabilmek i�in, de�i�meyen dosyalar� yeniden depolamaz, yaln�zca halihaz�rda depolanm�� olan bir �nceki �zde� kopyaya bir ba�lant� kurar. Git'in veriyi yorumlay��� daha �ok Fig�r 1-5'teki gibidir.
+Git, veriyi böyle yorumlayıp depolamaz. Bunun yerine, Git, veriyi, bir mini dosya sisteminin bellek kopyaları olarak yorumlar. Her kayıt işleminde (_commit_), ya da projenizin konumunu her kaydedişinizde, Git o anda dosyalarınızın nasıl göründüğünün bir fotoğrafını çekip o bellek kopyasına bir referansı depolar. Verimli olabilmek için, değişmeyen dosyaları yeniden depolamaz, yalnızca halihazırda depolanmış olan bir önceki özdeş kopyaya bir bağlantı kurar. Git'in veriyi yorumlayışı daha çok Figür 1-5'teki gibidir.
 
 Insert 18333fig0105.png 
-Fig�r 1-5. Git veriyi projenin zaman i�indeki bellek kopyalar� olarak depolar.
+Figür 1-5. Git veriyi projenin zaman içindeki bellek kopyaları olarak depolar.
 
-Bu, Git'le neredeyse b�t�n di�er SKS'ler aras�nda ciddi bir ayr�md�r. Bu ayr�m nedeniyle Git, s�r�m kontrol�n�n, di�er s�r�m kontrol sistemlerinin �o�u taraf�ndan �nceki ku�aklardan devral�nan neredeyse b�t�n y�nlerini yeniden g�zden ge�irmek zorunda b�rak�r. Bu ayr�m Git'i basit bir SKS olman�n �tesinde, etkili ara�lara sahip bir mini dosya sistemi gibi olmaya iter. Veriyi bu �ekilde yorumlaman�n yararlar�ndan baz�lar�n� dallanmay� i�leyece�imiz 3. B�l�m'de ele alaca��z.
+Bu, Git'le neredeyse bütün diğer SKS'ler arasında ciddi bir ayrımdır. Bu ayrım nedeniyle Git, sürüm kontrolünün, diğer sürüm kontrol sistemlerinin çoğu tarafından önceki kuşaklardan devralınan neredeyse bütün yönlerini yeniden gözden geçirmek zorunda bırakır. Bu ayrım Git'i basit bir SKS olmanın ötesinde, etkili araçlara sahip bir mini dosya sistemi gibi olmaya iter. Veriyi bu şekilde yorumlamanın yararlarından bazılarını dallanmayı işleyeceğimiz 3. Bölüm'de ele alacağız.
 
-### Neredeyse Her ��lem Yerel ###
+### Neredeyse Her İşlem Yerel ###
 
-Git'teki i�lemlerin �o�u, yaln�zca yerel dosyalara ve kaynaklara ihtiya� duyar �genellikle bilgisayar a��ndaki ba�ka bir bilgisayardaki bilgilere ihtiya� yoktur. E�er �o�u i�lemin a� gecikmesi maliyetiyle ger�ekle�ti�i bir MSKS kullanm��san�z, Git'in bu y�n�n� g�r�nce, onun h�z tanr�lar� taraf�ndan kutsanm�� oldu�unu d���nebilirsiniz. ��nk� projenin b�t�n tarih�esi orada, yerel diskinde bulunmaktad�r, i�lemlerin �o�u anl�k ger�ekle�iyor gibi g�r�n�r.
+Git'teki işlemlerin çoğu, yalnızca yerel dosyalara ve kaynaklara ihtiyaç duyar —genellikle bilgisayar ağındaki başka bir bilgisayardaki bilgilere ihtiyaç yoktur. Eğer çoğu işlemin ağ gecikmesi maliyetiyle gerçekleştiği bir MSKS kullanmışsanız, Git'in bu yönünü görünce, onun hız tanrıları tarafından kutsanmış olduğunu düşünebilirsiniz. Çünkü projenin bütün tarihçesi orada, yerel diskinde bulunmaktadır, işlemlerin çoğu anlık gerçekleşiyor gibi görünür.
 
-�rne�in, projenin tarih�esini taramak i�in Git bir sunucuya ba�lan�p oradan tarih�eyi indirdikten sonra g�r�nt�lemekle u�ra�maz �yerel veritaban�n� okumak yeterlidir. Bu da proje terih�esini neredeyse an�nda g�r�nteleyebilmeniz anlam�na gelir. Bir dosyan�n �imdiki haliyle bir ay �nceki hali aras�ndaki farklar� g�rmek isterseniz, Git, bir sunucudan fark hesaplamas� yapmas�n� talep etmek ya da kar��la�t�rmay� yerelde yapabilmek i�in dosyan�n bir ay �nceki halini indirmek zorunda kalmak yerine, dosyan�n bir ay �nceki halini yerelde bulup fark hesaplamas�n� yerelde yapar.
+Örneğin, projenin tarihçesini taramak için Git bir sunucuya bağlanıp oradan tarihçeyi indirdikten sonra görüntülemekle uğraşmaz —yerel veritabanını okumak yeterlidir. Bu da proje terihçesini neredeyse anında görünteleyebilmeniz anlamına gelir. Bir dosyanın şimdiki haliyle bir ay önceki hali arasındaki farkları görmek isterseniz, Git, bir sunucudan fark hesaplaması yapmasını talep etmek ya da karşılaştırmayı yerelde yapabilmek için dosyanın bir ay önceki halini indirmek zorunda kalmak yerine, dosyanın bir ay önceki halini yerelde bulup fark hesaplamasını yerelde yapar.
 
-Bu ayn� zamanda, e�er ba�lant�n�z kopmu�sa, ya da VPN ba�lant�n� yoksa yapamayaca��n�z �eylerin de say�ca olduk�a s�n�rl� oldu�u anlam�na geliyor. U�a�a ya da trene binmi� oldu�unuz halde biraz �al��mak istiyorsan�z, y�kleme yapabilece�iniz bir a� ba�lant�s�na kavu�ana kadar g�le oynaya kay�t yapabilirsiniz. Eve vard���n�zda VPN istemcinizin olmas� gerekti�i gibi �al��m�yorsa, yine de �al��maya devam edebilirsiniz. pek �ok ba�ka sistemde bunlar� yapmak ya imk^ans�z ya da zahmetlidir. S�z gelimi Perforce'ta, bir sunucuya ba�l� de�ilseniz fazlaca bir �ey yapamazs�n�z; Subversion ve CVS'te dosyalar� de�i�tirebilirsiniz, ama veritaban�na kay�t yapamazs�n�z (��nk� veritaban�na ba�lant�n�z yoktur). Bu, �ok �nemli bir sorun gibi g�r�nmeyebilir, ama ne kadar fark yaratabilece�ini g�rd���n�zde �a��rabilirsiniz.
+Bu aynı zamanda, eğer bağlantınız kopmuşsa, ya da VPN bağlantını yoksa yapamayacağınız şeylerin de sayıca oldukça sınırlı olduğu anlamına geliyor. Uçağa ya da trene binmiş olduğunuz halde biraz çalışmak istiyorsanız, yükleme yapabileceğiniz bir ağ bağlantısına kavuşana kadar güle oynaya kayıt yapabilirsiniz. Eve vardığınızda VPN istemcinizin olması gerektiği gibi çalışmıyorsa, yine de çalışmaya devam edebilirsiniz. pek çok başka sistemde bunları yapmak ya imk^ansız ya da zahmetlidir. Söz gelimi Perforce'ta, bir sunucuya bağlı değilseniz fazlaca bir şey yapamazsınız; Subversion ve CVS'te dosyaları değiştirebilirsiniz, ama veritabanına kayıt yapamazsınız (çünkü veritabanına bağlantınız yoktur). Bu, çok önemli bir sorun gibi görünmeyebilir, ama ne kadar fark yaratabileceğini gördüğünüzde şaşırabilirsiniz.
 
-### Git B�t�nl�kl�d�r ###
+### Git Bütünlüklüdür ###
 
-Git'te her �ey depolanmadan �nce s�nama toplam�ndan ge�irilir (_checksum_) ve daha sonra bu s�nama toplam� kullan�larak ifade edilir. Bu da demek oluyor ki, Git fark etmeden bir dosyan�n ya da klas�r�n i�eri�ini de�i�tirmek m�mk�n de�ildir. Bu i�lev Git'in merkezi i�levlerinden biridir ve felsefesiyle bir b�t�nl�k olu�turur. Transfer s�ras�nda veri kayb� ya da doysa ar�zas� olmu�sa, Git bunu mutlaka fark edecektir.
+Git'te her şey depolanmadan önce sınama toplamından geçirilir (_checksum_) ve daha sonra bu sınama toplamı kullanılarak ifade edilir. Bu da demek oluyor ki, Git fark etmeden bir dosyanın ya da klasörün içeriğini değiştirmek mümkün değildir. Bu işlev Git'in merkezi işlevlerinden biridir ve felsefesiyle bir bütünlük oluşturur. Transfer sırasında veri kaybı ya da doysa arızası olmuşsa, Git bunu mutlaka fark edecektir.
 
-Git'in s�nama toplam� i�in kulland��� mekanizmaya SHA-1 �zeti denir. Bu, on alt�l� say� sisteminin (_hexadecimal_) sembolleriyle g�sterilen (0-9 ve A-F) ve dosya ve klas�r d�zenini temel alan bir hesaplamayla elde denilen 40 karakterlik bir karakter dizisidir. Bir SHA-1 �zeti �una benzer:
+Git'in sınama toplamı için kullandığı mekanizmaya SHA-1 özeti denir. Bu, on altılı sayı sisteminin (_hexadecimal_) sembolleriyle gösterilen (0-9 ve A-F) ve dosya ve klasör düzenini temel alan bir hesaplamayla elde denilen 40 karakterlik bir karakter dizisidir. Bir SHA-1 özeti şuna benzer:
 
 	24b9da6552252987aa493b52f8696cd6d3b00373
 
-Bu �zetler s�kl�kla kar��n�za ��kacak, ��nk� Git onlar� yayg�n bi�imde kullanyor. Hatta, Git her �eyi dosya ad�yla de�il, i�eri�inin �zet de�eriyle adreslenen veritaban�nda tutar.
+Bu özetler sıklıkla karşınıza çıkacak, çünkü Git onları yaygın biçimde kullanyor. Hatta, Git her şeyi dosya adıyla değil, içeriğinin özet değeriyle adreslenen veritabanında tutar.
 
-### Git Genellikle Yaln�zca Veri Ekler ###
+### Git Genellikle Yalnızca Veri Ekler ###
 
-Git'te i�lem yapt���n�zda neredeyse bu i�lemlerin tamam� Git veritaban�na veri ekler. Sistemin geri d�nd�r�lemez bir �ey yapmas�n� ya da veri silmesini sa�lamak �ok zordur. Her SKS'de oldu�u gibi hen�z kaydetmedi�iniz de�i�iklikleri kaybedebilir ya da bozabilirsiniz; ama Git'e bir bellek kopyas�n� kaydettikten sonra veri kaybetmek �ok zordur, �zellikle de veritaban�n�z� d�zenli olarak ba�ka bir yaz�l�m havuzuna itiyorsan�z (_push_).
+Git'te işlem yaptığınızda neredeyse bu işlemlerin tamamı Git veritabanına veri ekler. Sistemin geri döndürülemez bir şey yapmasını ya da veri silmesini sağlamak çok zordur. Her SKS'de olduğu gibi henüz kaydetmediğiniz değişiklikleri kaybedebilir ya da bozabilirsiniz; ama Git'e bir bellek kopyasını kaydettikten sonra veri kaybetmek çok zordur, özellikle de veritabanınızı düzenli olarak başka bir yazılım havuzuna itiyorsanız (_push_).
 
-Bu Git kullanmay� keyifli hale getirir, ��nk� i�leri ciddi bi�imde s�k�nt�ya sokmadan denemeler yapabilece�imizi biliriz. Git'in veriyi nas�l depolad��� ve kaybolmu� g�r�nen veriyi nas�l kurtarabilece�iniz hakk�nda daha derinlikli bir inceleme i�in bkz. 9. B�l�m.
+Bu Git kullanmayı keyifli hale getirir, çünkü işleri ciddi biçimde sıkıntıya sokmadan denemeler yapabileceğimizi biliriz. Git'in veriyi nasıl depoladığı ve kaybolmuş görünen veriyi nasıl kurtarabileceğiniz hakkında daha derinlikli bir inceleme için bkz. 9. Bölüm.
 
-### �� A�ama ###
+### Üç Aşama ###
 
-�imdi dikkat! ��renme s�recinizin p�r�zs�z ilerlemesini istiyorsan�z, akl�n�zda bulundurman�z gereken esas �ey bu. Git'te, dosyalar�n�z�n i�inde bulunabilece�i �� a�ama (_state_) vard�r: kaydedilmi�, de�i�tirilmi� ve haz�rlanm��. Kaydedilmi�, verinin g�venli bi�imde veritaban�nda depolanm�� oldu�u anlam�na gelir. De�i�tirilmi�, dosyay� de�i�tirmi� oldu�unuz fakat hen�z veritaban�na kaydetmedi�iniz anlam�na gelir. Haz�rlanm�� ise, de�i�tirilmi� bir dosyay� bir sonraki kay�t i�leminde bellek kopyas�na al�nmak �zere i�aretledi�iniz anlam�na gelir.
+Şimdi dikkat! Öğrenme sürecinizin pürüzsüz ilerlemesini istiyorsanız, aklınızda bulundurmanız gereken esas şey bu. Git'te, dosyalarınızın içinde bulunabileceği üç aşama (_state_) vardır: kaydedilmiş, değiştirilmiş ve hazırlanmış. Kaydedilmiş, verinin güvenli biçimde veritabanında depolanmış olduğu anlamına gelir. Değiştirilmiş, dosyayı değiştirmiş olduğunuz fakat henüz veritabanına kaydetmediğiniz anlamına gelir. Hazırlanmış ise, değiştirilmiş bir dosyayı bir sonraki kayıt işleminde bellek kopyasına alınmak üzere işaretlediğiniz anlamına gelir.
 
-Bu da bizi bir Git projesinin �� ana b�l�m�ne getiriyor: Git klas�r�, �al��ma klas�r� ve haz�rl�k alan�.
+Bu da bizi bir Git projesinin üç ana bölümüne getiriyor: Git klasörü, çalışma klasörü ve hazırlık alanı.
 
 Insert 18333fig0106.png 
-Fig�r 1-6. �al��ma klas�r�, haz�rl�k alan� ve Git klas�r�.
+Figür 1-6. Çalışma klasörü, hazırlık alanı ve Git klasörü.
 
-Git klas�r�, Git'in �stverileri (_metadata_) ve nesne veritaban�n� depolad��� yerdir. Bu, Git'in en �nemli par�as�d�r ve bir yaz�l�m havuzunu bir bilgisayardan bir ba�kas�na klonlad���n�zda kopyalanan �eydir.
+Git klasörü, Git'in üstverileri (_metadata_) ve nesne veritabanını depoladığı yerdir. Bu, Git'in en önemli parçasıdır ve bir yazılım havuzunu bir bilgisayardan bir başkasına klonladığınızda kopyalanan şeydir.
 
-�al��ma klas�r� projenin bir s�r�m�nden yap�lan tek bir se�medir. Bu dosyalar Git klas�r�ndeki s�k��t�r�lm�� veritaban�ndan ��kart�l�p sizin kullan�m�n�z i�in sabit diske yerle�tirilir.
+Çalışma klasörü projenin bir sürümünden yapılan tek bir seçmedir. Bu dosyalar Git klasöründeki sıkıştırılmış veritabanından çıkartılıp sizin kullanımınız için sabit diske yerleştirilir.
 
-Haz�rl�k alan� (_staging area_), genellikle Git klas�r�n�zde bulunan ve bir sonraki kay�t i�lemine hangi de�i�ikliklerin dahil olaca��n� tutan sade bir dosyad�r. Buna bazen indeks dendi�i de olur, ama haz�rl�k alan� ifadesi giderek daha standart hale geliyor.
+Hazırlık alanı (_staging area_), genellikle Git klasörünüzde bulunan ve bir sonraki kayıt işlemine hangi değişikliklerin dahil olacağını tutan sade bir dosyadır. Buna bazen indeks dendiği de olur, ama hazırlık alanı ifadesi giderek daha standart hale geliyor.
 
-Git i�leyi�i temelde ��yledir:
+Git işleyişi temelde şöyledir:
 
-1. �al��ma klas�r�n�zdeki dosyalar �zerinde de�i�iklik yapars�n�z.
-2. Dosyalar� bellek kopyalar�n� haz�rl�k alan�na ekleyerek haz�rlars�n�z.
-3. Dosyalar�n haz�rl�k alan�ndaki hallerini al�p oradaki bellek kopyas�n� kal�c� olarak Git klas�r�ne depolayan bir kay�t i�lemi yapars�n�z.
+1. Çalışma klasörünüzdeki dosyalar üzerinde değişiklik yaparsınız.
+2. Dosyaları bellek kopyalarını hazırlık alanına ekleyerek hazırlarsınız.
+3. Dosyaların hazırlık alanındaki hallerini alıp oradaki bellek kopyasını kalıcı olarak Git klasörüne depolayan bir kayıt işlemi yaparsınız.
 
-Bir dosyan�n belirli bir s�r�m� Git klas�r�ndeyse, onun kaydedilmi� oldu�u kabul edilir. E�er �zerinde de�i�iklik yap�lm�� fakat haz�rl�k alan�na eklenmi�se, haz�rlanm�� oldu�u s�ylenir. Ve se�me i�leminden sonra �zerinde de�i�iklik yap�lm�� fakat kay�t i�in haz�rlanmam��sa, de�i�tirilmi� olarak nitelenir.
+Bir dosyanın belirli bir sürümü Git klasöründeyse, onun kaydedilmiş olduğu kabul edilir. Eğer üzerinde değişiklik yapılmış fakat hazırlık alanına eklenmişse, hazırlanmış olduğu söylenir. Ve seçme işleminden sonra üzerinde değişiklik yapılmış fakat kayıt için hazırlanmamışsa, değiştirilmiş olarak nitelenir.
 
 ## Git'in Kurulumu ##
 
-Gelin Git'i kullanmaya ba�layal�m. Her �eyden �nce, Git'i kurman�z gerekiyor. Bunu iki ba�l�ca bi�imde ger�ekle�tirebilirsiniz: kaynak kodundan ya da platformunuz i�in halihaz�rda varolan paketi kullanarak kurabilirsiniz.
+Gelin Git'i kullanmaya başlayalım. Her şeyden önce, Git'i kurmanız gerekiyor. Bunu iki başlıca biçimde gerçekleştirebilirsiniz: kaynak kodundan ya da platformunuz için halihazırda varolan paketi kullanarak kurabilirsiniz.
 
 ### Kaynak Kodundan Kurulum ###
 
-Yapabiliyorsan�z, Git'i kaynak kodundan kurmak kullan��l�d�r, ��nk� b�ylece en yeni versiyonunu edinebilirsiniz. Git'in her yeni versiyonu yararl� kullan�c� aray�z� g�ncellemeleri i�erir, dolay�s�yla en son versiyonu kurmak, e�er yaz�l�m derlemek konusunda s�k�nt� ya�amayaca��n�z� d���n�yorsan�z, en iyi yoldur. Ayr�ca kimi zaman, Linux da��t�mlar� yaz�l�mlar�n �ok eski paketlerini i�erirler; dolay�s�yla, �ok g�ncel bir da��t�ma sahip de�ilseniz ya da tersta��malar (_backport_) kullanm�yorsan�z, kaynak koddan kurulum en mant�kl� se�enek olabilir.
+Yapabiliyorsanız, Git'i kaynak kodundan kurmak kullanışlıdır, çünkü böylece en yeni versiyonunu edinebilirsiniz. Git'in her yeni versiyonu yararlı kullanıcı arayüzü güncellemeleri içerir, dolayısıyla en son versiyonu kurmak, eğer yazılım derlemek konusunda sıkıntı yaşamayacağınızı düşünüyorsanız, en iyi yoldur. Ayrıca kimi zaman, Linux dağıtımları yazılımların çok eski paketlerini içerirler; dolayısıyla, çok güncel bir dağıtıma sahip değilseniz ya da terstaşımalar (_backport_) kullanmıyorsanız, kaynak koddan kurulum en mantıklı seçenek olabilir.
 
-Git'i kurmak i�in, Git'in ba��ml� oldu�u �u k�t�phanelerin sisteminizde bulunmas� gerekiyor: curl, zlib, openssl, expat, ve libiconv. �rne�in, (Fedora gibi) yum arac�na ya da (Debian tabanl� sistemler gibi) apt-get arac�na sahip bir sistemdeyseniz, ba��ml�l�klar� kurmak i�in �u komutlardan birini kullanabilirsiniz:
+Git'i kurmak için, Git'in bağımlı olduğu şu kütüphanelerin sisteminizde bulunması gerekiyor: curl, zlib, openssl, expat, ve libiconv. Örneğin, (Fedora gibi) yum aracına ya da (Debian tabanlı sistemler gibi) apt-get aracına sahip bir sistemdeyseniz, bağımlılıkları kurmak için şu komutlardan birini kullanabilirsiniz:
 
 	$ yum install curl-devel expat-devel gettext-devel \
 	  openssl-devel zlib-devel
@@ -136,7 +136,7 @@ Git'i kurmak i�in, Git'in ba��ml� oldu�u �u k�t�phanelerin siste
 	$ apt-get install libcurl4-gnutls-dev libexpat1-dev gettext \
 	  libz-dev libssl-dev
 	
-B�t�n gerekli ba��ml�l�klar� y�kledikten sonra Git web sitesinden en son bellek kopyas�n� edinebilirsiniz:
+Bütün gerekli bağımlılıkları yükledikten sonra Git web sitesinden en son bellek kopyasını edinebilirsiniz:
 
 	http://git-scm.com/download
 
@@ -147,85 +147,82 @@ Sonra derleyip kurabilirsiniz:
 	$ make prefix=/usr/local all
 	$ sudo make prefix=/usr/local install
 
-Bu ad�mdan sonra, Git'teki yeni g�ncellemeleri Git'in kendisini kullanarak edinebilirsiniz:
+Bu adımdan sonra, Git'teki yeni güncellemeleri Git'in kendisini kullanarak edinebilirsiniz:
 
 	$ git clone git://git.kernel.org/pub/scm/git/git.git
 	
 ### Linux'ta Kurulum ###
 
-Git'i Linux sisteminize paket kurucu yard�m�yla kurmak istiyorsan�z, bunu genellikle da��t�m�n�zla birlikte gelen temel paket y�netim arac�yla yapabilirsiniz. Fedora kullan�c�s�ysan�z, yum'u kullanabilirsiniz:
+Git'i Linux sisteminize paket kurucu yardımıyla kurmak istiyorsanız, bunu genellikle dağıtımınızla birlikte gelen temel paket yönetim aracıyla yapabilirsiniz. Fedora kullanıcısıysanız, yum'u kullanabilirsiniz:
 
 	$ yum install git-core
 
-Ubuntu gibi Debian-tabanl� bir sistemdeyseniz, apt-get'i kullanabilirsiniz:
+Ubuntu gibi Debian-tabanlı bir sistemdeyseniz, apt-get'i kullanabilirsiniz:
 
 	$ apt-get install git
 	
-Pisi Linux veya pisi tabanlı bir sistemde iseniz:
-
-	$ pisi it git
 
 ### Mac'te Kurulum ###
 
-Git'i Mac'te kurmak i�in iki kolay yol vard�r. En kolay�, Google Code sayfas�ndan indirebilece�iniz g�rsel Git y�kleyicisini kullanmakt�r (bkz. Fig�r 1-7).
+Git'i Mac'te kurmak için iki kolay yol vardır. En kolayı, Google Code sayfasından indirebileceğiniz görsel Git yükleyicisini kullanmaktır (bkz. Figür 1-7).
 
 	http://code.google.com/p/git-osx-installer
 
 Insert 18333fig0107.png 
-Fig�r 1-7. Git OS X y�kleyicisi.
+Figür 1-7. Git OS X yükleyicisi.
 
-Di�er ba�l�ca yol, Git'i MacPorts (`http://www.macports.org`) vas�tas�yla kurmakt�r. MacPorts halihaz�rda kurulu bulunuyorsa Git'i �u komutla kurabilirsiniz:
+Diğer başlıca yol, Git'i MacPorts (`http://www.macports.org`) vasıtasıyla kurmaktır. MacPorts halihazırda kurulu bulunuyorsa Git'i şu komutla kurabilirsiniz:
 
 	$ sudo port install git-core +svn +doc +bash_completion +gitweb
 
-B�t�n ek paketleri kurman�z �art de�il, ama Git'i Subversion yaz�l�m havuzlar�yla kullanman�z gerekecekse en az�ndan +svn'i edinmelisiniz.
+Bütün ek paketleri kurmanız şart değil, ama Git'i Subversion yazılım havuzlarıyla kullanmanız gerekecekse en azından +svn'i edinmelisiniz.
 
 ### Windows'ta Kurulum ###
 
-Git'i Windows'da kurmak olduk�a kolayd�r. mysysGit projesi en basit kurulum y�ntemlerinden birine sahip. �al��t�r�labilir kurulum dosyas�n� GitHub sayfas�ndan indirip �al��t�rman�z yeterli:
+Git'i Windows'da kurmak oldukça kolaydır. mysysGit projesi en basit kurulum yöntemlerinden birine sahip. Çalıştırılabilir kurulum dosyasını GitHub sayfasından indirip çalıştırmanız yeterli:
 
 	http://msysgit.github.com/
 
-Kurulum tamamland���nda hem (daha sonra i�e yarayacak olan SSH istemcisini de i�eren) komut sat�r� n�shas�na hem de standart kullan�c� aray�z�ne sahip olacaks�n�z.
+Kurulum tamamlandığında hem (daha sonra işe yarayacak olan SSH istemcisini de içeren) komut satırı nüshasına hem de standart kullanıcı arayüzüne sahip olacaksınız.
 
-## �lk Ayarlamalar ##
+## İlk Ayarlamalar ##
 
-Art�k Git sisteminizde kurulu oldu�una g�re, onu ihtiyac�n�za g�re uyarlamak i�in baz� d�zenlemeler yapabilirsiniz. Bunlar� yaln�zca bir kere yapman�z yeterli olacakt�r: g�ncellemelerden etkilenmeyeceklerdir. Ayr�ca istedi�iniz zaman komutlar� yeniden �al��t�rarak ayarlar� de�i�tirebilirsiniz.
+Artık Git sisteminizde kurulu olduğuna göre, onu ihtiyacınıza göre uyarlamak için bazı düzenlemeler yapabilirsiniz. Bunları yalnızca bir kere yapmanız yeterli olacaktır: güncellemelerden etkilenmeyeceklerdir. Ayrıca istediğiniz zaman komutları yeniden çalıştırarak ayarları değiştirebilirsiniz.
 
-Git, Git'in nas�l g�r�nece�ini ve �al��aca��n� belirleyen b�t�n konfig�rasyon de�i�kenlerini g�rmenizi ve de�i�tirmenizi sa�layan git config ad�nda bir ara�la birlikte gelir. Bu de�i�kenler �� farkl� yerde depolanabilirler:
+Git, Git'in nasıl görüneceğini ve çalışacağını belirleyen bütün konfigürasyon değişkenlerini görmenizi ve değiştirmenizi sağlayan git config adında bir araçla birlikte gelir. Bu değişkenler üç farklı yerde depolanabilirler:
 
-*	`/etc/gitconfig` dosyas�: Sistemdeki b�t�n kullan�c�lar ve onlar�n b�t�n yaz�l�m havuzlar� i�in ge�erli olan de�erleri i�erir. `git config` komutunu `--system` se�ene�iyle kullan�rsan�z, ara� bu dosyadan okuyup de�i�iklikleri bu dosyaya kaydedecektir.
-*	`~/.gitconfig` dosyas�: Kullan�c�ya �zeldir. `--global` se�ene�iyle Git'in bu dosyadan okuyup de�i�iklikleri bu dosyaya kaydetmesini sa�layabilirsiniz.
-*	kullanmakta oldu�unuz yaz�l�m havuzundaki git klas�r�nde bulunan config dosyas� (yani `.git/config`): S�z konusu yaz�l�m havuzuna �zeldir. Her d�zeydeki ayarlar kendisinden �nce gelen d�zeydeki ayarlar� g�lgede b�rak�r (_override_), dolay�s�yla `.git/config`'deki de�erler `/etc/gitconfig`'deki de�erlerden daha bask�nd�r.
+*	`/etc/gitconfig` dosyası: Sistemdeki bütün kullanıcılar ve onların bütün yazılım havuzları için geçerli olan değerleri içerir. `git config` komutunu `--system` seçeneğiyle kullanırsanız, araç bu dosyadan okuyup değişiklikleri bu dosyaya kaydedecektir.
+*	`~/.gitconfig` dosyası: Kullanıcıya özeldir. `--global` seçeneğiyle Git'in bu dosyadan okuyup değişiklikleri bu dosyaya kaydetmesini sağlayabilirsiniz.
+*	kullanmakta olduğunuz yazılım havuzundaki git klasöründe bulunan config dosyası (yani `.git/config`): Söz konusu yazılım havuzuna özeldir. Her düzeydeki ayarlar kendisinden önce gelen düzeydeki ayarları gölgede bırakır (_override_), dolayısıyla `.git/config`'deki değerler `/etc/gitconfig`'deki değerlerden daha baskındır.
 
-Git, Windows sistemlerde `$HOME` klas�r�ndeki (�o�u kullan�c� i�in `C:\Documents and Settings\$USER` klas�r�d�r) `.gitconfig` dosyas�na bakar (�.N.: Windows kullan�c� klas�r�ne %HOMEPATH% �evresel de�i�kenini kullanarak ula�abilirsiniz). Git, Windows sistemlerde de /etc/gitconfig dosyas�n� arar fakat bu konum, Git kurulumu s�ras�nda se�ti�iniz MSys k�k dizinine g�redir.
+Git, Windows sistemlerde `$HOME` klasöründeki (çoğu kullanıcı için `C:\Documents and Settings\$USER` klasörüdür) `.gitconfig` dosyasına bakar (Ç.N.: Windows kullanıcı klasörüne %HOMEPATH% çevresel değişkenini kullanarak ulaşabilirsiniz). Git, Windows sistemlerde de /etc/gitconfig dosyasını arar fakat bu konum, Git kurulumu sırasında seçtiğiniz MSys kök dizinine göredir.
 
-### Kimli�iniz ###
+### Kimliğiniz ###
 
-Git'i kurdu�unuzda yapman�z gereken ilk �ey ad�n�z� ve e-posta adresinizi ayarlamakt�r. Bunun �nemli olmas�n�n nedeni her bir Git kayd�n�n bu bilgiyi kullan�yor olmas� ve bu bilgilerin dola��ma soktu�unuz kay�tlara de�i�mez bi�imde i�lenmesidir.
+Git'i kurduğunuzda yapmanız gereken ilk şey adınızı ve e-posta adresinizi ayarlamaktır. Bunun önemli olmasının nedeni her bir Git kaydının bu bilgiyi kullanıyor olması ve bu bilgilerin dolaşıma soktuğunuz kayıtlara değişmez biçimde işlenmesidir.
 
 	$ git config --global user.name "John Doe"
 	$ git config --global user.email johndoe@example.com
 
-Yinelemek gerekirse, `--global` se�ene�ini kulland���n�zda bunu bir kez yapman�z yeterli olacakt�r, ��nk� Git, o sistemde yapaca��n�z her i�lem i�in bu bilgileri kullanacakt�r. �smi ya da e-posta adresini projeden projeye de�i�tirmek isterseniz, komutu de�i�iklik yapmak istedi�iniz proje klas�r�n�n i�inde `--global` se�ene�i olmadan �al��t�rabilirsiniz.
+Yinelemek gerekirse, `--global` seçeneğini kullandığınızda bunu bir kez yapmanız yeterli olacaktır, çünkü Git, o sistemde yapacağınız her işlem için bu bilgileri kullanacaktır. İsmi ya da e-posta adresini projeden projeye değiştirmek isterseniz, komutu değişiklik yapmak istediğiniz proje klasörünün içinde `--global` seçeneği olmadan çalıştırabilirsiniz.
 
-### Edit�r�n�z ###
+### Editörünüz ###
 
-Kimlik ayarlar�n�z� yapt���n�za g�re, Git sizden bir mesaj yazman�z� istedi�inde kullanaca��n�z edit�rle ilgili d�zenlemeyi yapabilirsiniz. Aksi belirtilmedik�e Git sisteminizdeki �ntan�ml� (_default_) edit�r� kullan�r, bu da genellikle Vi ya da Vim'dir. Emacs gibi ba�ka bir metin edit�r� kullanmak isterseniz, �u komutu kullanabilirsiniz:
+Kimlik ayarlarınızı yaptığınıza göre, Git sizden bir mesaj yazmanızı istediğinde kullanacağınız editörle ilgili düzenlemeyi yapabilirsiniz. Aksi belirtilmedikçe Git sisteminizdeki öntanımlı (_default_) editörü kullanır, bu da genellikle Vi ya da Vim'dir. Emacs gibi başka bir metin editörü kullanmak isterseniz, şu komutu kullanabilirsiniz:
 
 	$ git config --global core.editor emacs
 	
-### Dosya Kar��la�t�rma Arac�n�z ###
+### Dosya Karşılaştırma Aracınız ###
 
-D�zenlemek isteyece�iniz bir di�er yararl� ayar da birle�tirme (_merge_) uyu�mazl�klar�n� gidermek i�in kullanaca��n�z ara�la ilgilidir. vimdiff arac�n� se�mek i�in �u komutu kullanabilirsiniz:
+Düzenlemek isteyeceğiniz bir diğer yararlı ayar da birleştirme (_merge_) uyuşmazlıklarını gidermek için kullanacağınız araçla ilgilidir. vimdiff aracını seçmek için şu komutu kullanabilirsiniz:
 
 	$ git config --global merge.tool vimdiff
 
-Git kdiff3, tkdiff, meld, xxdiff, emerge, vimdiff, gvimdiff, ecmerge ve opendiff ara�lar�n� kabul eder. Dilerseniz �zel bir ara� i�in de ayarlamalar yapabilirsiniz (bununla ilgili daha fazla bilgi i�in bkz. 7. B�l�m).
+Git kdiff3, tkdiff, meld, xxdiff, emerge, vimdiff, gvimdiff, ecmerge ve opendiff araçlarını kabul eder. Dilerseniz özel bir araç için de ayarlamalar yapabilirsiniz (bununla ilgili daha fazla bilgi için bkz. 7. Bölüm).
 
-### Ayarlar�n�z� G�zden Ge�irmek ###
+### Ayarlarınızı Gözden Geçirmek ###
 
-Ayarlar�n�z� g�zden ge�irmek isterseniz, Git'in bulabildi�i b�t�n ayarlar� listelemek i�in `git config --list` komutunu kullanabilirsiniz.
+Ayarlarınızı gözden geçirmek isterseniz, Git'in bulabildiği bütün ayarları listelemek için `git config --list` komutunu kullanabilirsiniz.
 
 	$ git config --list
 	user.name=Scott Chacon
@@ -236,27 +233,27 @@ Ayarlar�n�z� g�zden ge�irmek isterseniz, Git'in bulabildi�i b�t�
 	color.diff=auto
 	...
 
-Bir ayar� birden �ok kez g�rebilirsiniz; bunun nedeni Git'in ayn� ayar� de�i�ik dosyalardan (�rne�in `etc/gitconfig` ve `~/.gitconfig`'den) okumu� olmas�d�r. Bu durumda Git g�rd��� her bir tekil ayar i�in en son buldu�u de�eri kullan�r.
+Bir ayarı birden çok kez görebilirsiniz; bunun nedeni Git'in aynı ayarı değişik dosyalardan (örneğin `etc/gitconfig` ve `~/.gitconfig`'den) okumuş olmasıdır. Bu durumda Git gördüğü her bir tekil ayar için en son bulduğu değeri kullanır.
 
-`git config {ayar}` komutunu kullanarak Git'ten bir ayar�n de�erini g�r�nt�lemesini de isteyebilirsiniz:
+`git config {ayar}` komutunu kullanarak Git'ten bir ayarın değerini görüntülemesini de isteyebilirsiniz:
 
 	$ git config user.name
 	Scott Chacon
 
-## Yard�m Almak ##
+## Yardım Almak ##
 
-Git'i kullan�rken yard�ma ihtiyac�n�z olursa, herhangi bir Git komutunun yard�m k�lavuzu sayfas�n� (_manpage_) �� de�i�ik bi�imde g�r�nt�leyebilirsiniz:
+Git'i kullanırken yardıma ihtiyacınız olursa, herhangi bir Git komutunun yardım kılavuzu sayfasını (_manpage_) üç değişik biçimde görüntüleyebilirsiniz:
 
 	$ git help <eylem>
 	$ git <eylem> --help
 	$ man git-<eylem>
 
-�rne�in, config komutu i�in k�lavuzu sayfas�n� g�r�nt�lemek i�in �u komutu �al��t�rabilirsiniz:
+Örneğin, config komutu için kılavuzu sayfasını görüntülemek için şu komutu çalıştırabilirsiniz:
 
 	$ git help config
 
-Bu komutlar�n g�zel taraf� onlara her an, a� ba�lant�n�z olmasa bile ula�abiliyor olman�zd�r. E�er k�lavuz sayfalar� ve bu kitap yeterli olmazsa ve ki�isel yard�ma ihtiya� duyacak olursan�z, Freenode IRC sunucusundaki (irc.freenode.net) `#git` ya da `#github` kanallar�na ba�lanmay� deneyebilirsiniz. Bu kanallar Git hakk�nda derin bilgiye sahip y�zlerce ki�i taraf�ndan d�zenli olarak ziyaret edilmektedir.
+Bu komutların güzel tarafı onlara her an, ağ bağlantınız olmasa bile ulaşabiliyor olmanızdır. Eğer kılavuz sayfaları ve bu kitap yeterli olmazsa ve kişisel yardıma ihtiyaç duyacak olursanız, Freenode IRC sunucusundaki (irc.freenode.net) `#git` ya da `#github` kanallarına bağlanmayı deneyebilirsiniz. Bu kanallar Git hakkında derin bilgiye sahip yüzlerce kişi tarafından düzenli olarak ziyaret edilmektedir.
 
-## �zet ##
+## Özet ##
 
-Art�k Git'in ne oldu�u ve kullanm�� olabilece�iniz MSKS'den hangi a��lardan farkl� oldu�u konusunda temel bilgilere sahipsiniz. Ayr�ca sisteminizde, sizin kimlik bilgilerinize g�re ayarlanm�� bir Git kurulumu bulunuyor. �imdi Git'in temellerini ��renme zaman�.
+Artık Git'in ne olduğu ve kullanmış olabileceğiniz MSKS'den hangi açılardan farklı olduğu konusunda temel bilgilere sahipsiniz. Ayrıca sisteminizde, sizin kimlik bilgilerinize göre ayarlanmış bir Git kurulumu bulunuyor. Şimdi Git'in temellerini öğrenme zamanı.
