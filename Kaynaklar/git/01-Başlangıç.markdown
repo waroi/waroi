@@ -1,134 +1,134 @@
-# Baþlangýç #
+# Baï¿½langï¿½ï¿½ #
 
-Bu bölümde Git kullanýmý hakkýnda temel bilgileri bulacaksýnýz. Ýþe, sürüm kontrol sistemleri hakkýnda açýklamalarla baþlayacaðýz; daha sonra Git kurulumunun nasýl yapýlacaðýný, en son olarak da aracýn yapýlandýrma ve kullanýmýný açýklayacaðýz. Bu bölümün sonunda Git'in varlýk sebebini ve neden onu kullanmanýz gerektiðini anlayacak, Git'i kullanmaya baþlamak için kurulumu tamamlamýþ olacaksýnýz.
+Bu bï¿½lï¿½mde Git kullanï¿½mï¿½ hakkï¿½nda temel bilgileri bulacaksï¿½nï¿½z. ï¿½ï¿½e, sï¿½rï¿½m kontrol sistemleri hakkï¿½nda aï¿½ï¿½klamalarla baï¿½layacaï¿½ï¿½z; daha sonra Git kurulumunun nasï¿½l yapï¿½lacaï¿½ï¿½nï¿½, en son olarak da aracï¿½n yapï¿½landï¿½rma ve kullanï¿½mï¿½nï¿½ aï¿½ï¿½klayacaï¿½ï¿½z. Bu bï¿½lï¿½mï¿½n sonunda Git'in varlï¿½k sebebini ve neden onu kullanmanï¿½z gerektiï¿½ini anlayacak, Git'i kullanmaya baï¿½lamak iï¿½in kurulumu tamamlamï¿½ï¿½ olacaksï¿½nï¿½z.
 
-## Sürüm Kontrolü Hakkýnda ##
+## Sï¿½rï¿½m Kontrolï¿½ Hakkï¿½nda ##
 
-Sürüm kontrolü nedir ve ne iþe yarar? Sürüm kontrolü, bir ya da daha fazla dosya üzerinde yapýlan deðiþiklikleri kaydeden ve daha sonra belirli bir sürüme geri dönebilmenizi saðlayan bir sistemdir. Bu kitaptaki örneklerde yazýlým kaynak kod dosyalarýnýn sürüm kontrolünü yapacaksýnýz, ne var ki gerçekte sürüm kontrolünü neredeyse her türden dosya için kullanabilirsiniz.
+Sï¿½rï¿½m kontrolï¿½ nedir ve ne iï¿½e yarar? Sï¿½rï¿½m kontrolï¿½, bir ya da daha fazla dosya ï¿½zerinde yapï¿½lan deï¿½iï¿½iklikleri kaydeden ve daha sonra belirli bir sï¿½rï¿½me geri dï¿½nebilmenizi saï¿½layan bir sistemdir. Bu kitaptaki ï¿½rneklerde yazï¿½lï¿½m kaynak kod dosyalarï¿½nï¿½n sï¿½rï¿½m kontrolï¿½nï¿½ yapacaksï¿½nï¿½z, ne var ki gerï¿½ekte sï¿½rï¿½m kontrolï¿½nï¿½ neredeyse her tï¿½rden dosya iï¿½in kullanabilirsiniz.
 
-Bir grafik ya da web tasarýmcýsýysanýz ve bir görselin ya da tasarýmýn deðiþik sürümlerini korumak istiyorsanýz (ki muhtemelen bunu yapmak istersiniz), bir Sürüm Kontrol Sistemi (SKS) kullanmanýz çok akýllýca olacaktýr. SKS, dosyalarýn ya da bütün projenin geçmiþteki belirli bir sürümüne eriþmenizi, zaman içinde yapýlan deðiþiklikleri karþýlaþtýrmanýzý, soruna neden olan þeyde en son kimin deðiþiklik yaptýðýný, belirli bir hatayý kimin, ne zaman sisteme dahil ettiðini ve daha baþka pek çok þeyi görebilmenizi saðlar. Öte yandan, SKS kullanmak, bir hata yaptýðýnýzda ya da bazý dosyalarý yanlýþlýkla sildiðinizde durumu kolayca telâfi etmenize yardýmcý olur. Üstelik, bütün bunlar size kayda deðer bir ek yük de getirmez.
+Bir grafik ya da web tasarï¿½mcï¿½sï¿½ysanï¿½z ve bir gï¿½rselin ya da tasarï¿½mï¿½n deï¿½iï¿½ik sï¿½rï¿½mlerini korumak istiyorsanï¿½z (ki muhtemelen bunu yapmak istersiniz), bir Sï¿½rï¿½m Kontrol Sistemi (SKS) kullanmanï¿½z ï¿½ok akï¿½llï¿½ca olacaktï¿½r. SKS, dosyalarï¿½n ya da bï¿½tï¿½n projenin geï¿½miï¿½teki belirli bir sï¿½rï¿½mï¿½ne eriï¿½menizi, zaman iï¿½inde yapï¿½lan deï¿½iï¿½iklikleri karï¿½ï¿½laï¿½tï¿½rmanï¿½zï¿½, soruna neden olan ï¿½eyde en son kimin deï¿½iï¿½iklik yaptï¿½ï¿½ï¿½nï¿½, belirli bir hatayï¿½ kimin, ne zaman sisteme dahil ettiï¿½ini ve daha baï¿½ka pek ï¿½ok ï¿½eyi gï¿½rebilmenizi saï¿½lar. ï¿½te yandan, SKS kullanmak, bir hata yaptï¿½ï¿½ï¿½nï¿½zda ya da bazï¿½ dosyalarï¿½ yanlï¿½ï¿½lï¿½kla sildiï¿½inizde durumu kolayca telï¿½fi etmenize yardï¿½mcï¿½ olur. ï¿½stelik, bï¿½tï¿½n bunlar size kayda deï¿½er bir ek yï¿½k de getirmez.
 
-### Yerel Sürüm Kontrol Sistemleri ###
+### Yerel Sï¿½rï¿½m Kontrol Sistemleri ###
 
-Çoðu insan, dosyalarý bir klasöre (akýllarý baþlarýndaysa tarih ve zaman bilgisini de içeren bir klasöre) kopyalayarak sürüm kontrolü yapmayý tercih eder. Bu yaklaþým çok yaygýndýr, çünkü çok kolaydýr; ama ayný zamanda hatalara da alabildiðine açýktýr. Hangi klasörde olduðunuzu unutup yanlýþ dosyaya yazabilir ya da istemediðiniz dosyalarýn üstüne kopyalama yapabilirsiniz.
+ï¿½oï¿½u insan, dosyalarï¿½ bir klasï¿½re (akï¿½llarï¿½ baï¿½larï¿½ndaysa tarih ve zaman bilgisini de iï¿½eren bir klasï¿½re) kopyalayarak sï¿½rï¿½m kontrolï¿½ yapmayï¿½ tercih eder. Bu yaklaï¿½ï¿½m ï¿½ok yaygï¿½ndï¿½r, ï¿½ï¿½nkï¿½ ï¿½ok kolaydï¿½r; ama aynï¿½ zamanda hatalara da alabildiï¿½ine aï¿½ï¿½ktï¿½r. Hangi klasï¿½rde olduï¿½unuzu unutup yanlï¿½ï¿½ dosyaya yazabilir ya da istemediï¿½iniz dosyalarï¿½n ï¿½stï¿½ne kopyalama yapabilirsiniz.
 
-Bu sorunla baþ edebilmek için, programcýlar uzun zaman önce, dosyalardaki bütün deðiþiklikleri sürüm kontrolüne alan basit bir veritabanýna sahip olan yerel SKS'ler geliþtirdiler (bkz. Figür 1-1).
+Bu sorunla baï¿½ edebilmek iï¿½in, programcï¿½lar uzun zaman ï¿½nce, dosyalardaki bï¿½tï¿½n deï¿½iï¿½iklikleri sï¿½rï¿½m kontrolï¿½ne alan basit bir veritabanï¿½na sahip olan yerel SKS'ler geliï¿½tirdiler (bkz. Figï¿½r 1-1).
 
 Insert 18333fig0101.png 
-Figür 1-1. Yerel sürüm kontrol diyagramý.
+Figï¿½r 1-1. Yerel sï¿½rï¿½m kontrol diyagramï¿½.
 
-En yaygýn SKS araçlarýndan biri, bugün hâlâ pekçok bilgisayara kurulu olarak daðýtýlan, rcs adýnda bir sistemdi. Ünlü Mac OS X iþletim sistemi bile, Developer Tools'u yüklediðinizde, rcs komutunu kurmaktadýr. Bu araç, iki sürüm arasýndaki yamalarý (yani, dosyalar arasýndaki farklarý) özel bir biçimde diske kaydeder; daha sonra, bu yamalarý birbirine ekleyerek, bir dosyanýn belirli bir sürümdeki görünümünü yeniden oluþturur.
+En yaygï¿½n SKS araï¿½larï¿½ndan biri, bugï¿½n hï¿½lï¿½ pekï¿½ok bilgisayara kurulu olarak daï¿½ï¿½tï¿½lan, rcs adï¿½nda bir sistemdi. ï¿½nlï¿½ Mac OS X iï¿½letim sistemi bile, Developer Tools'u yï¿½klediï¿½inizde, rcs komutunu kurmaktadï¿½r. Bu araï¿½, iki sï¿½rï¿½m arasï¿½ndaki yamalarï¿½ (yani, dosyalar arasï¿½ndaki farklarï¿½) ï¿½zel bir biï¿½imde diske kaydeder; daha sonra, bu yamalarï¿½ birbirine ekleyerek, bir dosyanï¿½n belirli bir sï¿½rï¿½mdeki gï¿½rï¿½nï¿½mï¿½nï¿½ yeniden oluï¿½turur.
 
-### Merkezi Sürüm Kontrol Sistemleri ###
+### Merkezi Sï¿½rï¿½m Kontrol Sistemleri ###
 
-Ýnsanlarýn karþýlaþtýðý ikinci büyük sorun, baþka sistemlerdeki programcýlarla birlikte çalýþma ihtiyacýndan ileri gelir. Bu sorunla baþa çýkabilmek için, Merkezi Sürüm Kontrol Sistemleri (MSKS) geliþtirilmiþtir. Bu sistemler, meselâ CVS, Subversion ve Perforce, sürüm kontrolüne alýnan bütün dosyalarý tutan bir sunucu ve bu sunucudan dosyalarý seçerek alan (_check out_) istemcilerden oluþur. Bu yöntem, yýllarca, sürüm kontrolünde standart yöntem olarak kabul gördü (bkz. Figür 1-2).
+ï¿½nsanlarï¿½n karï¿½ï¿½laï¿½tï¿½ï¿½ï¿½ ikinci bï¿½yï¿½k sorun, baï¿½ka sistemlerdeki programcï¿½larla birlikte ï¿½alï¿½ï¿½ma ihtiyacï¿½ndan ileri gelir. Bu sorunla baï¿½a ï¿½ï¿½kabilmek iï¿½in, Merkezi Sï¿½rï¿½m Kontrol Sistemleri (MSKS) geliï¿½tirilmiï¿½tir. Bu sistemler, meselï¿½ CVS, Subversion ve Perforce, sï¿½rï¿½m kontrolï¿½ne alï¿½nan bï¿½tï¿½n dosyalarï¿½ tutan bir sunucu ve bu sunucudan dosyalarï¿½ seï¿½erek alan (_check out_) istemcilerden oluï¿½ur. Bu yï¿½ntem, yï¿½llarca, sï¿½rï¿½m kontrolï¿½nde standart yï¿½ntem olarak kabul gï¿½rdï¿½ (bkz. Figï¿½r 1-2).
 
 Insert 18333fig0102.png 
-Figür 1-2. Merkezi sürüm kontrol diyagramý.
+Figï¿½r 1-2. Merkezi sï¿½rï¿½m kontrol diyagramï¿½.
 
-Bu yöntemin, özellikle yerel SKS'lere göre, çok sayýda avantajý vardýr. Örneðin, bir projedeki herkes, diðerlerinin ne yaptýðýndan belirli ölçüde haberdardýr. Sistem yöneticileri kimin hangi yetkilere sahip olacaðýný oldukça ayrýntýlý biçimde düzenleyebilirler; üstelik bir MSKS'yi yönetmek, her istemcide ayrý ayrý kurulu olan yerel veritabanlarýný yönetmeye göre çok daha kolaydýr.
+Bu yï¿½ntemin, ï¿½zellikle yerel SKS'lere gï¿½re, ï¿½ok sayï¿½da avantajï¿½ vardï¿½r. ï¿½rneï¿½in, bir projedeki herkes, diï¿½erlerinin ne yaptï¿½ï¿½ï¿½ndan belirli ï¿½lï¿½ï¿½de haberdardï¿½r. Sistem yï¿½neticileri kimin hangi yetkilere sahip olacaï¿½ï¿½nï¿½ oldukï¿½a ayrï¿½ntï¿½lï¿½ biï¿½imde dï¿½zenleyebilirler; ï¿½stelik bir MSKS'yi yï¿½netmek, her istemcide ayrï¿½ ayrï¿½ kurulu olan yerel veritabanlarï¿½nï¿½ yï¿½netmeye gï¿½re ï¿½ok daha kolaydï¿½r.
 
-Ne var ki, bu yöntemin de ciddi bazý sýkýntýlarý vardýr. En aþikar sýkýntý, merkezi sunucunun arýzalanmasý durumunda ortaya çýkacak kýrýlma noktasý problemidir. Sunucu bir saatliðine çökecek olsa, o bir saat boyunca kullanýcýlarýn çalýþmalarýný sisteme aktarmalarý ya da çalýþtýklarý þeylerin sürümlenmiþ kopyalarýný kaydetmeleri mümkün olmayacaktýr. Merkezi veritabanýnýn sabit diski bozulacak olsa, yedekleme de olmasý gerektiði gibi yapýlmamýþsa, elinizdeki her þeyi —projenin, kullanýcýlarýn bilgisayarlarýnda kalan yerel bellek kopyalarý (_snapshot_) dýþýndaki bütün tarihçesini— kaybedersiniz. Yerel SKS'ler de bu sorundan muzdariptir —projenin bütün tarihçesini tek bir yerde tuttuðunuz sürece her þeyi kaybetme riskiniz vardýr.
+Ne var ki, bu yï¿½ntemin de ciddi bazï¿½ sï¿½kï¿½ntï¿½larï¿½ vardï¿½r. En aï¿½ikar sï¿½kï¿½ntï¿½, merkezi sunucunun arï¿½zalanmasï¿½ durumunda ortaya ï¿½ï¿½kacak kï¿½rï¿½lma noktasï¿½ problemidir. Sunucu bir saatliï¿½ine ï¿½ï¿½kecek olsa, o bir saat boyunca kullanï¿½cï¿½larï¿½n ï¿½alï¿½ï¿½malarï¿½nï¿½ sisteme aktarmalarï¿½ ya da ï¿½alï¿½ï¿½tï¿½klarï¿½ ï¿½eylerin sï¿½rï¿½mlenmiï¿½ kopyalarï¿½nï¿½ kaydetmeleri mï¿½mkï¿½n olmayacaktï¿½r. Merkezi veritabanï¿½nï¿½n sabit diski bozulacak olsa, yedekleme de olmasï¿½ gerektiï¿½i gibi yapï¿½lmamï¿½ï¿½sa, elinizdeki her ï¿½eyi ï¿½projenin, kullanï¿½cï¿½larï¿½n bilgisayarlarï¿½nda kalan yerel bellek kopyalarï¿½ (_snapshot_) dï¿½ï¿½ï¿½ndaki bï¿½tï¿½n tarihï¿½esiniï¿½ kaybedersiniz. Yerel SKS'ler de bu sorundan muzdariptir ï¿½projenin bï¿½tï¿½n tarihï¿½esini tek bir yerde tuttuï¿½unuz sï¿½rece her ï¿½eyi kaybetme riskiniz vardï¿½r.
 
-### Daðýtýk Sürüm Kontrol Sistemleri ###
+### Daï¿½ï¿½tï¿½k Sï¿½rï¿½m Kontrol Sistemleri ###
 
-Bu noktada Daðýtýk Sürüm Kontrol Sistemleri (DSKS) devreye girer. Bir DSKS'de (Git, Mercurial, Bazaar ya da Darcs örneklerinde olduðu gibi), istemciler (kullanýcýlar) dosyalarýn yalnýzca en son bellek kopyalarýný almakla kalmazlar: yazýlým havuzunu (_repository_) bütünüyle yansýlarlar (kopyalarlar).
+Bu noktada Daï¿½ï¿½tï¿½k Sï¿½rï¿½m Kontrol Sistemleri (DSKS) devreye girer. Bir DSKS'de (Git, Mercurial, Bazaar ya da Darcs ï¿½rneklerinde olduï¿½u gibi), istemciler (kullanï¿½cï¿½lar) dosyalarï¿½n yalnï¿½zca en son bellek kopyalarï¿½nï¿½ almakla kalmazlar: yazï¿½lï¿½m havuzunu (_repository_) bï¿½tï¿½nï¿½yle yansï¿½larlar (kopyalarlar).
 
-Böylece, sunuculardan biri çökerse, ve o sunucu üzerinden ortak çalýþma yürüten sistemler varsa, istemcilerden birinin yazýlým havuzu sunucuya geri yüklenerek sistem kurtarýlabilir. Her seçme (_checkout_) iþlemi esasýnda bütün verinin yedeklenmesiyle sonuçlanýr (bkz. Figür 1-3).
+Bï¿½ylece, sunuculardan biri ï¿½ï¿½kerse, ve o sunucu ï¿½zerinden ortak ï¿½alï¿½ï¿½ma yï¿½rï¿½ten sistemler varsa, istemcilerden birinin yazï¿½lï¿½m havuzu sunucuya geri yï¿½klenerek sistem kurtarï¿½labilir. Her seï¿½me (_checkout_) iï¿½lemi esasï¿½nda bï¿½tï¿½n verinin yedeklenmesiyle sonuï¿½lanï¿½r (bkz. Figï¿½r 1-3).
 
 Insert 18333fig0103.png 
-Figür 1-3. Daðýtýk sürüm kontrol diyagramý.
+Figï¿½r 1-3. Daï¿½ï¿½tï¿½k sï¿½rï¿½m kontrol diyagramï¿½.
 
-Dahasý, bu sistemlerden çoðu birden çok uzak uçbirimdeki yazýlým havuzuyla rahatlýkla çalýþýr, böylece, ayný proje için ayný anda farklý insan topluluklarýyla farklý biçimlerde ortak çalýþmalar yürütebilirsiniz. Bu, birden çok iþ akýþý ile çalýþabilmenizi saðlar, ki bu merkezi sistemlerde (hiyerarþik modeller gibi) mümkün deðildir.
+Dahasï¿½, bu sistemlerden ï¿½oï¿½u birden ï¿½ok uzak uï¿½birimdeki yazï¿½lï¿½m havuzuyla rahatlï¿½kla ï¿½alï¿½ï¿½ï¿½r, bï¿½ylece, aynï¿½ proje iï¿½in aynï¿½ anda farklï¿½ insan topluluklarï¿½yla farklï¿½ biï¿½imlerde ortak ï¿½alï¿½ï¿½malar yï¿½rï¿½tebilirsiniz. Bu, birden ï¿½ok iï¿½ akï¿½ï¿½ï¿½ ile ï¿½alï¿½ï¿½abilmenizi saï¿½lar, ki bu merkezi sistemlerde (hiyerarï¿½ik modeller gibi) mï¿½mkï¿½n deï¿½ildir.
 
-## Git'in Kýsa Bir Tarihçesi ##
+## Git'in Kï¿½sa Bir Tarihï¿½esi ##
 
-Hayattaki pek çok harika þey gibi, Git de bir miktar yaratýcý yýkým ve ateþli tartýþmayla baþladý. Linux çekirdeði (_kernel_) oldukça büyük ölçekli bir açýk kaynak kodlu yazýlým projesidir. Linux çekirdek bakým ve geliþtirme yaþam süresinin çoðunda (1991-2002), yazýlým deðiþiklikleri yamalar ve arþiv dosyalarý olarak tutulup taþýndý. 2002 yýlýnda, Linux çekirdek projesi, BitKeeper adýnda tescilli bir DSKS kullanmaya baþladý.
+Hayattaki pek ï¿½ok harika ï¿½ey gibi, Git de bir miktar yaratï¿½cï¿½ yï¿½kï¿½m ve ateï¿½li tartï¿½ï¿½mayla baï¿½ladï¿½. Linux ï¿½ekirdeï¿½i (_kernel_) oldukï¿½a bï¿½yï¿½k ï¿½lï¿½ekli bir aï¿½ï¿½k kaynak kodlu yazï¿½lï¿½m projesidir. Linux ï¿½ekirdek bakï¿½m ve geliï¿½tirme yaï¿½am sï¿½resinin ï¿½oï¿½unda (1991-2002), yazï¿½lï¿½m deï¿½iï¿½iklikleri yamalar ve arï¿½iv dosyalarï¿½ olarak tutulup taï¿½ï¿½ndï¿½. 2002 yï¿½lï¿½nda, Linux ï¿½ekirdek projesi, BitKeeper adï¿½nda tescilli bir DSKS kullanmaya baï¿½ladï¿½.
 
-2005 yýlýnda, Linux çekirdeðini geliþtiren toplulukla BitKeeper'ý geliþtiren þirket arasýndaki iliþki bozuldu ve aracýn topluluk tarafýndan ücretsiz olarak kullanýlabilmesi uygulamasýna son verildi. Bu, Linux geliþtirim topluluðunu (ve özellikle Linux'un yaratýcýsý olan Linus Torvalds'ý) BitKeeper'ý kullanýrken aldýklarý derslerden yola çýkarak kendi araçlarýný geliþtirme konusunda harekete geçirdi. Yeni sistemin hedeflerinden bazýlarý þunlardý:
+2005 yï¿½lï¿½nda, Linux ï¿½ekirdeï¿½ini geliï¿½tiren toplulukla BitKeeper'ï¿½ geliï¿½tiren ï¿½irket arasï¿½ndaki iliï¿½ki bozuldu ve aracï¿½n topluluk tarafï¿½ndan ï¿½cretsiz olarak kullanï¿½labilmesi uygulamasï¿½na son verildi. Bu, Linux geliï¿½tirim topluluï¿½unu (ve ï¿½zellikle Linux'un yaratï¿½cï¿½sï¿½ olan Linus Torvalds'ï¿½) BitKeeper'ï¿½ kullanï¿½rken aldï¿½klarï¿½ derslerden yola ï¿½ï¿½karak kendi araï¿½larï¿½nï¿½ geliï¿½tirme konusunda harekete geï¿½irdi. Yeni sistemin hedeflerinden bazï¿½larï¿½ ï¿½unlardï¿½:
 
-*	Hýz
-*	Basit tasarým
-*	Çizgisel olmayan geliþtirim için güçlü destek (binlerce paralel dal (_branch_))
-*	Bütünüyle daðýtýk olma
-*	Linux çekirdeði gibi büyük projelerle verimli biçimde baþa çýkabilme (hýz ve veri boyutu)
+*	Hï¿½z
+*	Basit tasarï¿½m
+*	ï¿½izgisel olmayan geliï¿½tirim iï¿½in gï¿½ï¿½lï¿½ destek (binlerce paralel dal (_branch_))
+*	Bï¿½tï¿½nï¿½yle daï¿½ï¿½tï¿½k olma
+*	Linux ï¿½ekirdeï¿½i gibi bï¿½yï¿½k projelerle verimli biï¿½imde baï¿½a ï¿½ï¿½kabilme (hï¿½z ve veri boyutu)
 
-2005'teki doðumundan beri, Git kullaným kolaylýklarýný geliþtirebilmek için evrilip olgunlaþtý, ama yine de bu niteliklerini korudu. Git, inanýlmaz ölçüde hýzlý, büyük ölçekli projelerde alabildiðine verimli ve çizgisel olmayan geliþtirim (bkz. 3. Bölüm) için inanýlmaz bir dallanma (_branching_) sistemine sahip.
+2005'teki doï¿½umundan beri, Git kullanï¿½m kolaylï¿½klarï¿½nï¿½ geliï¿½tirebilmek iï¿½in evrilip olgunlaï¿½tï¿½, ama yine de bu niteliklerini korudu. Git, inanï¿½lmaz ï¿½lï¿½ï¿½de hï¿½zlï¿½, bï¿½yï¿½k ï¿½lï¿½ekli projelerde alabildiï¿½ine verimli ve ï¿½izgisel olmayan geliï¿½tirim (bkz. 3. Bï¿½lï¿½m) iï¿½in inanï¿½lmaz bir dallanma (_branching_) sistemine sahip.
 
 ## Git'in Temelleri ##
 
-Peki Git özünde nedir? Bu, özümsenmesi gereken önemli bir alt bölüm, çünkü Git'in ne olduðunu ve temel çalýþma ilkelerini anlarsanýz, Git'i etkili biçimde kullanmanýz çok daha kolay olacaktýr. Git'i öðrenirken, Subversion ve Perforce gibi diðer SKS'ler hakkýnda bildiklerinizi aklýnýzdan çýkarmaya çalýþýn; bu aracý kullanýrken yaþanabilecek kafa karýþýklýklarýný önlemenize yardýmcý olacaktýr. Git'in, kullanýcý arayüzü söz konusu sistemlerle benzerlik gösterse de, bilgiyi depolama ve yorumlama biçimi çok farklýdýr; bu farklýlýklarý anlamak, aracý kullanýrken kafa karýþýklýðýna düþmenizi engellemekte yardýmcý olacaktýr.
+Peki Git ï¿½zï¿½nde nedir? Bu, ï¿½zï¿½msenmesi gereken ï¿½nemli bir alt bï¿½lï¿½m, ï¿½ï¿½nkï¿½ Git'in ne olduï¿½unu ve temel ï¿½alï¿½ï¿½ma ilkelerini anlarsanï¿½z, Git'i etkili biï¿½imde kullanmanï¿½z ï¿½ok daha kolay olacaktï¿½r. Git'i ï¿½ï¿½renirken, Subversion ve Perforce gibi diï¿½er SKS'ler hakkï¿½nda bildiklerinizi aklï¿½nï¿½zdan ï¿½ï¿½karmaya ï¿½alï¿½ï¿½ï¿½n; bu aracï¿½ kullanï¿½rken yaï¿½anabilecek kafa karï¿½ï¿½ï¿½klï¿½klarï¿½nï¿½ ï¿½nlemenize yardï¿½mcï¿½ olacaktï¿½r. Git'in, kullanï¿½cï¿½ arayï¿½zï¿½ sï¿½z konusu sistemlerle benzerlik gï¿½sterse de, bilgiyi depolama ve yorumlama biï¿½imi ï¿½ok farklï¿½dï¿½r; bu farklï¿½lï¿½klarï¿½ anlamak, aracï¿½ kullanï¿½rken kafa karï¿½ï¿½ï¿½klï¿½ï¿½ï¿½na dï¿½ï¿½menizi engellemekte yardï¿½mcï¿½ olacaktï¿½r.
 
-### Farklar Deðil, Bellek Kopyalarý ###
+### Farklar Deï¿½il, Bellek Kopyalarï¿½ ###
 
-Git ile diðer SKS'ler (Subversion ve ahbaplarý dahil) arasýndaki esas fark, Git'in bilgiyi yorumlayýþ biçimiyle ilgilidir. Kavramsal olarak, diðer sistemlerin çoðu, bilgiyi dosya-tabanlý bir dizi deðiþiklik olarak depolar. Bu sistemler (CVS, Subversion, Perforce, Bazaar ve saire) bilgiyi, kayýt altýnda tuttuklarý bir dosya kümesi ve zamanla her bir dosya üzerinde yapýlan deðiþikliklerin listesi olarak yorumlarlar (bkz. Figür 1-4).
+Git ile diï¿½er SKS'ler (Subversion ve ahbaplarï¿½ dahil) arasï¿½ndaki esas fark, Git'in bilgiyi yorumlayï¿½ï¿½ biï¿½imiyle ilgilidir. Kavramsal olarak, diï¿½er sistemlerin ï¿½oï¿½u, bilgiyi dosya-tabanlï¿½ bir dizi deï¿½iï¿½iklik olarak depolar. Bu sistemler (CVS, Subversion, Perforce, Bazaar ve saire) bilgiyi, kayï¿½t altï¿½nda tuttuklarï¿½ bir dosya kï¿½mesi ve zamanla her bir dosya ï¿½zerinde yapï¿½lan deï¿½iï¿½ikliklerin listesi olarak yorumlarlar (bkz. Figï¿½r 1-4).
 
 Insert 18333fig0104.png 
-Figür 1-4. Diðer sistemler veriyi her bir dosyanýn ilk sürümu üzerinde yapýlan deðiþiklikler olarak depolama eðilimindedir.
+Figï¿½r 1-4. Diï¿½er sistemler veriyi her bir dosyanï¿½n ilk sï¿½rï¿½mu ï¿½zerinde yapï¿½lan deï¿½iï¿½iklikler olarak depolama eï¿½ilimindedir.
 
-Git, veriyi böyle yorumlayýp depolamaz. Bunun yerine, Git, veriyi, bir mini dosya sisteminin bellek kopyalarý olarak yorumlar. Her kayýt iþleminde (_commit_), ya da projenizin konumunu her kaydediþinizde, Git o anda dosyalarýnýzýn nasýl göründüðünün bir fotoðrafýný çekip o bellek kopyasýna bir referansý depolar. Verimli olabilmek için, deðiþmeyen dosyalarý yeniden depolamaz, yalnýzca halihazýrda depolanmýþ olan bir önceki özdeþ kopyaya bir baðlantý kurar. Git'in veriyi yorumlayýþý daha çok Figür 1-5'teki gibidir.
+Git, veriyi bï¿½yle yorumlayï¿½p depolamaz. Bunun yerine, Git, veriyi, bir mini dosya sisteminin bellek kopyalarï¿½ olarak yorumlar. Her kayï¿½t iï¿½leminde (_commit_), ya da projenizin konumunu her kaydediï¿½inizde, Git o anda dosyalarï¿½nï¿½zï¿½n nasï¿½l gï¿½rï¿½ndï¿½ï¿½ï¿½nï¿½n bir fotoï¿½rafï¿½nï¿½ ï¿½ekip o bellek kopyasï¿½na bir referansï¿½ depolar. Verimli olabilmek iï¿½in, deï¿½iï¿½meyen dosyalarï¿½ yeniden depolamaz, yalnï¿½zca halihazï¿½rda depolanmï¿½ï¿½ olan bir ï¿½nceki ï¿½zdeï¿½ kopyaya bir baï¿½lantï¿½ kurar. Git'in veriyi yorumlayï¿½ï¿½ï¿½ daha ï¿½ok Figï¿½r 1-5'teki gibidir.
 
 Insert 18333fig0105.png 
-Figür 1-5. Git veriyi projenin zaman içindeki bellek kopyalarý olarak depolar.
+Figï¿½r 1-5. Git veriyi projenin zaman iï¿½indeki bellek kopyalarï¿½ olarak depolar.
 
-Bu, Git'le neredeyse bütün diðer SKS'ler arasýnda ciddi bir ayrýmdýr. Bu ayrým nedeniyle Git, sürüm kontrolünün, diðer sürüm kontrol sistemlerinin çoðu tarafýndan önceki kuþaklardan devralýnan neredeyse bütün yönlerini yeniden gözden geçirmek zorunda býrakýr. Bu ayrým Git'i basit bir SKS olmanýn ötesinde, etkili araçlara sahip bir mini dosya sistemi gibi olmaya iter. Veriyi bu þekilde yorumlamanýn yararlarýndan bazýlarýný dallanmayý iþleyeceðimiz 3. Bölüm'de ele alacaðýz.
+Bu, Git'le neredeyse bï¿½tï¿½n diï¿½er SKS'ler arasï¿½nda ciddi bir ayrï¿½mdï¿½r. Bu ayrï¿½m nedeniyle Git, sï¿½rï¿½m kontrolï¿½nï¿½n, diï¿½er sï¿½rï¿½m kontrol sistemlerinin ï¿½oï¿½u tarafï¿½ndan ï¿½nceki kuï¿½aklardan devralï¿½nan neredeyse bï¿½tï¿½n yï¿½nlerini yeniden gï¿½zden geï¿½irmek zorunda bï¿½rakï¿½r. Bu ayrï¿½m Git'i basit bir SKS olmanï¿½n ï¿½tesinde, etkili araï¿½lara sahip bir mini dosya sistemi gibi olmaya iter. Veriyi bu ï¿½ekilde yorumlamanï¿½n yararlarï¿½ndan bazï¿½larï¿½nï¿½ dallanmayï¿½ iï¿½leyeceï¿½imiz 3. Bï¿½lï¿½m'de ele alacaï¿½ï¿½z.
 
-### Neredeyse Her Ýþlem Yerel ###
+### Neredeyse Her ï¿½ï¿½lem Yerel ###
 
-Git'teki iþlemlerin çoðu, yalnýzca yerel dosyalara ve kaynaklara ihtiyaç duyar —genellikle bilgisayar aðýndaki baþka bir bilgisayardaki bilgilere ihtiyaç yoktur. Eðer çoðu iþlemin að gecikmesi maliyetiyle gerçekleþtiði bir MSKS kullanmýþsanýz, Git'in bu yönünü görünce, onun hýz tanrýlarý tarafýndan kutsanmýþ olduðunu düþünebilirsiniz. Çünkü projenin bütün tarihçesi orada, yerel diskinde bulunmaktadýr, iþlemlerin çoðu anlýk gerçekleþiyor gibi görünür.
+Git'teki iï¿½lemlerin ï¿½oï¿½u, yalnï¿½zca yerel dosyalara ve kaynaklara ihtiyaï¿½ duyar ï¿½genellikle bilgisayar aï¿½ï¿½ndaki baï¿½ka bir bilgisayardaki bilgilere ihtiyaï¿½ yoktur. Eï¿½er ï¿½oï¿½u iï¿½lemin aï¿½ gecikmesi maliyetiyle gerï¿½ekleï¿½tiï¿½i bir MSKS kullanmï¿½ï¿½sanï¿½z, Git'in bu yï¿½nï¿½nï¿½ gï¿½rï¿½nce, onun hï¿½z tanrï¿½larï¿½ tarafï¿½ndan kutsanmï¿½ï¿½ olduï¿½unu dï¿½ï¿½ï¿½nebilirsiniz. ï¿½ï¿½nkï¿½ projenin bï¿½tï¿½n tarihï¿½esi orada, yerel diskinde bulunmaktadï¿½r, iï¿½lemlerin ï¿½oï¿½u anlï¿½k gerï¿½ekleï¿½iyor gibi gï¿½rï¿½nï¿½r.
 
-Örneðin, projenin tarihçesini taramak için Git bir sunucuya baðlanýp oradan tarihçeyi indirdikten sonra görüntülemekle uðraþmaz —yerel veritabanýný okumak yeterlidir. Bu da proje terihçesini neredeyse anýnda görünteleyebilmeniz anlamýna gelir. Bir dosyanýn þimdiki haliyle bir ay önceki hali arasýndaki farklarý görmek isterseniz, Git, bir sunucudan fark hesaplamasý yapmasýný talep etmek ya da karþýlaþtýrmayý yerelde yapabilmek için dosyanýn bir ay önceki halini indirmek zorunda kalmak yerine, dosyanýn bir ay önceki halini yerelde bulup fark hesaplamasýný yerelde yapar.
+ï¿½rneï¿½in, projenin tarihï¿½esini taramak iï¿½in Git bir sunucuya baï¿½lanï¿½p oradan tarihï¿½eyi indirdikten sonra gï¿½rï¿½ntï¿½lemekle uï¿½raï¿½maz ï¿½yerel veritabanï¿½nï¿½ okumak yeterlidir. Bu da proje terihï¿½esini neredeyse anï¿½nda gï¿½rï¿½nteleyebilmeniz anlamï¿½na gelir. Bir dosyanï¿½n ï¿½imdiki haliyle bir ay ï¿½nceki hali arasï¿½ndaki farklarï¿½ gï¿½rmek isterseniz, Git, bir sunucudan fark hesaplamasï¿½ yapmasï¿½nï¿½ talep etmek ya da karï¿½ï¿½laï¿½tï¿½rmayï¿½ yerelde yapabilmek iï¿½in dosyanï¿½n bir ay ï¿½nceki halini indirmek zorunda kalmak yerine, dosyanï¿½n bir ay ï¿½nceki halini yerelde bulup fark hesaplamasï¿½nï¿½ yerelde yapar.
 
-Bu ayný zamanda, eðer baðlantýnýz kopmuþsa, ya da VPN baðlantýný yoksa yapamayacaðýnýz þeylerin de sayýca oldukça sýnýrlý olduðu anlamýna geliyor. Uçaða ya da trene binmiþ olduðunuz halde biraz çalýþmak istiyorsanýz, yükleme yapabileceðiniz bir að baðlantýsýna kavuþana kadar güle oynaya kayýt yapabilirsiniz. Eve vardýðýnýzda VPN istemcinizin olmasý gerektiði gibi çalýþmýyorsa, yine de çalýþmaya devam edebilirsiniz. pek çok baþka sistemde bunlarý yapmak ya imk^ansýz ya da zahmetlidir. Söz gelimi Perforce'ta, bir sunucuya baðlý deðilseniz fazlaca bir þey yapamazsýnýz; Subversion ve CVS'te dosyalarý deðiþtirebilirsiniz, ama veritabanýna kayýt yapamazsýnýz (çünkü veritabanýna baðlantýnýz yoktur). Bu, çok önemli bir sorun gibi görünmeyebilir, ama ne kadar fark yaratabileceðini gördüðünüzde þaþýrabilirsiniz.
+Bu aynï¿½ zamanda, eï¿½er baï¿½lantï¿½nï¿½z kopmuï¿½sa, ya da VPN baï¿½lantï¿½nï¿½ yoksa yapamayacaï¿½ï¿½nï¿½z ï¿½eylerin de sayï¿½ca oldukï¿½a sï¿½nï¿½rlï¿½ olduï¿½u anlamï¿½na geliyor. Uï¿½aï¿½a ya da trene binmiï¿½ olduï¿½unuz halde biraz ï¿½alï¿½ï¿½mak istiyorsanï¿½z, yï¿½kleme yapabileceï¿½iniz bir aï¿½ baï¿½lantï¿½sï¿½na kavuï¿½ana kadar gï¿½le oynaya kayï¿½t yapabilirsiniz. Eve vardï¿½ï¿½ï¿½nï¿½zda VPN istemcinizin olmasï¿½ gerektiï¿½i gibi ï¿½alï¿½ï¿½mï¿½yorsa, yine de ï¿½alï¿½ï¿½maya devam edebilirsiniz. pek ï¿½ok baï¿½ka sistemde bunlarï¿½ yapmak ya imk^ansï¿½z ya da zahmetlidir. Sï¿½z gelimi Perforce'ta, bir sunucuya baï¿½lï¿½ deï¿½ilseniz fazlaca bir ï¿½ey yapamazsï¿½nï¿½z; Subversion ve CVS'te dosyalarï¿½ deï¿½iï¿½tirebilirsiniz, ama veritabanï¿½na kayï¿½t yapamazsï¿½nï¿½z (ï¿½ï¿½nkï¿½ veritabanï¿½na baï¿½lantï¿½nï¿½z yoktur). Bu, ï¿½ok ï¿½nemli bir sorun gibi gï¿½rï¿½nmeyebilir, ama ne kadar fark yaratabileceï¿½ini gï¿½rdï¿½ï¿½ï¿½nï¿½zde ï¿½aï¿½ï¿½rabilirsiniz.
 
-### Git Bütünlüklüdür ###
+### Git Bï¿½tï¿½nlï¿½klï¿½dï¿½r ###
 
-Git'te her þey depolanmadan önce sýnama toplamýndan geçirilir (_checksum_) ve daha sonra bu sýnama toplamý kullanýlarak ifade edilir. Bu da demek oluyor ki, Git fark etmeden bir dosyanýn ya da klasörün içeriðini deðiþtirmek mümkün deðildir. Bu iþlev Git'in merkezi iþlevlerinden biridir ve felsefesiyle bir bütünlük oluþturur. Transfer sýrasýnda veri kaybý ya da doysa arýzasý olmuþsa, Git bunu mutlaka fark edecektir.
+Git'te her ï¿½ey depolanmadan ï¿½nce sï¿½nama toplamï¿½ndan geï¿½irilir (_checksum_) ve daha sonra bu sï¿½nama toplamï¿½ kullanï¿½larak ifade edilir. Bu da demek oluyor ki, Git fark etmeden bir dosyanï¿½n ya da klasï¿½rï¿½n iï¿½eriï¿½ini deï¿½iï¿½tirmek mï¿½mkï¿½n deï¿½ildir. Bu iï¿½lev Git'in merkezi iï¿½levlerinden biridir ve felsefesiyle bir bï¿½tï¿½nlï¿½k oluï¿½turur. Transfer sï¿½rasï¿½nda veri kaybï¿½ ya da doysa arï¿½zasï¿½ olmuï¿½sa, Git bunu mutlaka fark edecektir.
 
-Git'in sýnama toplamý için kullandýðý mekanizmaya SHA-1 özeti denir. Bu, on altýlý sayý sisteminin (_hexadecimal_) sembolleriyle gösterilen (0-9 ve A-F) ve dosya ve klasör düzenini temel alan bir hesaplamayla elde denilen 40 karakterlik bir karakter dizisidir. Bir SHA-1 özeti þuna benzer:
+Git'in sï¿½nama toplamï¿½ iï¿½in kullandï¿½ï¿½ï¿½ mekanizmaya SHA-1 ï¿½zeti denir. Bu, on altï¿½lï¿½ sayï¿½ sisteminin (_hexadecimal_) sembolleriyle gï¿½sterilen (0-9 ve A-F) ve dosya ve klasï¿½r dï¿½zenini temel alan bir hesaplamayla elde denilen 40 karakterlik bir karakter dizisidir. Bir SHA-1 ï¿½zeti ï¿½una benzer:
 
 	24b9da6552252987aa493b52f8696cd6d3b00373
 
-Bu özetler sýklýkla karþýnýza çýkacak, çünkü Git onlarý yaygýn biçimde kullanyor. Hatta, Git her þeyi dosya adýyla deðil, içeriðinin özet deðeriyle adreslenen veritabanýnda tutar.
+Bu ï¿½zetler sï¿½klï¿½kla karï¿½ï¿½nï¿½za ï¿½ï¿½kacak, ï¿½ï¿½nkï¿½ Git onlarï¿½ yaygï¿½n biï¿½imde kullanyor. Hatta, Git her ï¿½eyi dosya adï¿½yla deï¿½il, iï¿½eriï¿½inin ï¿½zet deï¿½eriyle adreslenen veritabanï¿½nda tutar.
 
-### Git Genellikle Yalnýzca Veri Ekler ###
+### Git Genellikle Yalnï¿½zca Veri Ekler ###
 
-Git'te iþlem yaptýðýnýzda neredeyse bu iþlemlerin tamamý Git veritabanýna veri ekler. Sistemin geri döndürülemez bir þey yapmasýný ya da veri silmesini saðlamak çok zordur. Her SKS'de olduðu gibi henüz kaydetmediðiniz deðiþiklikleri kaybedebilir ya da bozabilirsiniz; ama Git'e bir bellek kopyasýný kaydettikten sonra veri kaybetmek çok zordur, özellikle de veritabanýnýzý düzenli olarak baþka bir yazýlým havuzuna itiyorsanýz (_push_).
+Git'te iï¿½lem yaptï¿½ï¿½ï¿½nï¿½zda neredeyse bu iï¿½lemlerin tamamï¿½ Git veritabanï¿½na veri ekler. Sistemin geri dï¿½ndï¿½rï¿½lemez bir ï¿½ey yapmasï¿½nï¿½ ya da veri silmesini saï¿½lamak ï¿½ok zordur. Her SKS'de olduï¿½u gibi henï¿½z kaydetmediï¿½iniz deï¿½iï¿½iklikleri kaybedebilir ya da bozabilirsiniz; ama Git'e bir bellek kopyasï¿½nï¿½ kaydettikten sonra veri kaybetmek ï¿½ok zordur, ï¿½zellikle de veritabanï¿½nï¿½zï¿½ dï¿½zenli olarak baï¿½ka bir yazï¿½lï¿½m havuzuna itiyorsanï¿½z (_push_).
 
-Bu Git kullanmayý keyifli hale getirir, çünkü iþleri ciddi biçimde sýkýntýya sokmadan denemeler yapabileceðimizi biliriz. Git'in veriyi nasýl depoladýðý ve kaybolmuþ görünen veriyi nasýl kurtarabileceðiniz hakkýnda daha derinlikli bir inceleme için bkz. 9. Bölüm.
+Bu Git kullanmayï¿½ keyifli hale getirir, ï¿½ï¿½nkï¿½ iï¿½leri ciddi biï¿½imde sï¿½kï¿½ntï¿½ya sokmadan denemeler yapabileceï¿½imizi biliriz. Git'in veriyi nasï¿½l depoladï¿½ï¿½ï¿½ ve kaybolmuï¿½ gï¿½rï¿½nen veriyi nasï¿½l kurtarabileceï¿½iniz hakkï¿½nda daha derinlikli bir inceleme iï¿½in bkz. 9. Bï¿½lï¿½m.
 
-### Üç Aþama ###
+### ï¿½ï¿½ Aï¿½ama ###
 
-Þimdi dikkat! Öðrenme sürecinizin pürüzsüz ilerlemesini istiyorsanýz, aklýnýzda bulundurmanýz gereken esas þey bu. Git'te, dosyalarýnýzýn içinde bulunabileceði üç aþama (_state_) vardýr: kaydedilmiþ, deðiþtirilmiþ ve hazýrlanmýþ. Kaydedilmiþ, verinin güvenli biçimde veritabanýnda depolanmýþ olduðu anlamýna gelir. Deðiþtirilmiþ, dosyayý deðiþtirmiþ olduðunuz fakat henüz veritabanýna kaydetmediðiniz anlamýna gelir. Hazýrlanmýþ ise, deðiþtirilmiþ bir dosyayý bir sonraki kayýt iþleminde bellek kopyasýna alýnmak üzere iþaretlediðiniz anlamýna gelir.
+ï¿½imdi dikkat! ï¿½ï¿½renme sï¿½recinizin pï¿½rï¿½zsï¿½z ilerlemesini istiyorsanï¿½z, aklï¿½nï¿½zda bulundurmanï¿½z gereken esas ï¿½ey bu. Git'te, dosyalarï¿½nï¿½zï¿½n iï¿½inde bulunabileceï¿½i ï¿½ï¿½ aï¿½ama (_state_) vardï¿½r: kaydedilmiï¿½, deï¿½iï¿½tirilmiï¿½ ve hazï¿½rlanmï¿½ï¿½. Kaydedilmiï¿½, verinin gï¿½venli biï¿½imde veritabanï¿½nda depolanmï¿½ï¿½ olduï¿½u anlamï¿½na gelir. Deï¿½iï¿½tirilmiï¿½, dosyayï¿½ deï¿½iï¿½tirmiï¿½ olduï¿½unuz fakat henï¿½z veritabanï¿½na kaydetmediï¿½iniz anlamï¿½na gelir. Hazï¿½rlanmï¿½ï¿½ ise, deï¿½iï¿½tirilmiï¿½ bir dosyayï¿½ bir sonraki kayï¿½t iï¿½leminde bellek kopyasï¿½na alï¿½nmak ï¿½zere iï¿½aretlediï¿½iniz anlamï¿½na gelir.
 
-Bu da bizi bir Git projesinin üç ana bölümüne getiriyor: Git klasörü, çalýþma klasörü ve hazýrlýk alaný.
+Bu da bizi bir Git projesinin ï¿½ï¿½ ana bï¿½lï¿½mï¿½ne getiriyor: Git klasï¿½rï¿½, ï¿½alï¿½ï¿½ma klasï¿½rï¿½ ve hazï¿½rlï¿½k alanï¿½.
 
 Insert 18333fig0106.png 
-Figür 1-6. Çalýþma klasörü, hazýrlýk alaný ve Git klasörü.
+Figï¿½r 1-6. ï¿½alï¿½ï¿½ma klasï¿½rï¿½, hazï¿½rlï¿½k alanï¿½ ve Git klasï¿½rï¿½.
 
-Git klasörü, Git'in üstverileri (_metadata_) ve nesne veritabanýný depoladýðý yerdir. Bu, Git'in en önemli parçasýdýr ve bir yazýlým havuzunu bir bilgisayardan bir baþkasýna klonladýðýnýzda kopyalanan þeydir.
+Git klasï¿½rï¿½, Git'in ï¿½stverileri (_metadata_) ve nesne veritabanï¿½nï¿½ depoladï¿½ï¿½ï¿½ yerdir. Bu, Git'in en ï¿½nemli parï¿½asï¿½dï¿½r ve bir yazï¿½lï¿½m havuzunu bir bilgisayardan bir baï¿½kasï¿½na klonladï¿½ï¿½ï¿½nï¿½zda kopyalanan ï¿½eydir.
 
-Çalýþma klasörü projenin bir sürümünden yapýlan tek bir seçmedir. Bu dosyalar Git klasöründeki sýkýþtýrýlmýþ veritabanýndan çýkartýlýp sizin kullanýmýnýz için sabit diske yerleþtirilir.
+ï¿½alï¿½ï¿½ma klasï¿½rï¿½ projenin bir sï¿½rï¿½mï¿½nden yapï¿½lan tek bir seï¿½medir. Bu dosyalar Git klasï¿½rï¿½ndeki sï¿½kï¿½ï¿½tï¿½rï¿½lmï¿½ï¿½ veritabanï¿½ndan ï¿½ï¿½kartï¿½lï¿½p sizin kullanï¿½mï¿½nï¿½z iï¿½in sabit diske yerleï¿½tirilir.
 
-Hazýrlýk alaný (_staging area_), genellikle Git klasörünüzde bulunan ve bir sonraki kayýt iþlemine hangi deðiþikliklerin dahil olacaðýný tutan sade bir dosyadýr. Buna bazen indeks dendiði de olur, ama hazýrlýk alaný ifadesi giderek daha standart hale geliyor.
+Hazï¿½rlï¿½k alanï¿½ (_staging area_), genellikle Git klasï¿½rï¿½nï¿½zde bulunan ve bir sonraki kayï¿½t iï¿½lemine hangi deï¿½iï¿½ikliklerin dahil olacaï¿½ï¿½nï¿½ tutan sade bir dosyadï¿½r. Buna bazen indeks dendiï¿½i de olur, ama hazï¿½rlï¿½k alanï¿½ ifadesi giderek daha standart hale geliyor.
 
-Git iþleyiþi temelde þöyledir:
+Git iï¿½leyiï¿½i temelde ï¿½ï¿½yledir:
 
-1. Çalýþma klasörünüzdeki dosyalar üzerinde deðiþiklik yaparsýnýz.
-2. Dosyalarý bellek kopyalarýný hazýrlýk alanýna ekleyerek hazýrlarsýnýz.
-3. Dosyalarýn hazýrlýk alanýndaki hallerini alýp oradaki bellek kopyasýný kalýcý olarak Git klasörüne depolayan bir kayýt iþlemi yaparsýnýz.
+1. ï¿½alï¿½ï¿½ma klasï¿½rï¿½nï¿½zdeki dosyalar ï¿½zerinde deï¿½iï¿½iklik yaparsï¿½nï¿½z.
+2. Dosyalarï¿½ bellek kopyalarï¿½nï¿½ hazï¿½rlï¿½k alanï¿½na ekleyerek hazï¿½rlarsï¿½nï¿½z.
+3. Dosyalarï¿½n hazï¿½rlï¿½k alanï¿½ndaki hallerini alï¿½p oradaki bellek kopyasï¿½nï¿½ kalï¿½cï¿½ olarak Git klasï¿½rï¿½ne depolayan bir kayï¿½t iï¿½lemi yaparsï¿½nï¿½z.
 
-Bir dosyanýn belirli bir sürümü Git klasöründeyse, onun kaydedilmiþ olduðu kabul edilir. Eðer üzerinde deðiþiklik yapýlmýþ fakat hazýrlýk alanýna eklenmiþse, hazýrlanmýþ olduðu söylenir. Ve seçme iþleminden sonra üzerinde deðiþiklik yapýlmýþ fakat kayýt için hazýrlanmamýþsa, deðiþtirilmiþ olarak nitelenir.
+Bir dosyanï¿½n belirli bir sï¿½rï¿½mï¿½ Git klasï¿½rï¿½ndeyse, onun kaydedilmiï¿½ olduï¿½u kabul edilir. Eï¿½er ï¿½zerinde deï¿½iï¿½iklik yapï¿½lmï¿½ï¿½ fakat hazï¿½rlï¿½k alanï¿½na eklenmiï¿½se, hazï¿½rlanmï¿½ï¿½ olduï¿½u sï¿½ylenir. Ve seï¿½me iï¿½leminden sonra ï¿½zerinde deï¿½iï¿½iklik yapï¿½lmï¿½ï¿½ fakat kayï¿½t iï¿½in hazï¿½rlanmamï¿½ï¿½sa, deï¿½iï¿½tirilmiï¿½ olarak nitelenir.
 
 ## Git'in Kurulumu ##
 
-Gelin Git'i kullanmaya baþlayalým. Her þeyden önce, Git'i kurmanýz gerekiyor. Bunu iki baþlýca biçimde gerçekleþtirebilirsiniz: kaynak kodundan ya da platformunuz için halihazýrda varolan paketi kullanarak kurabilirsiniz.
+Gelin Git'i kullanmaya baï¿½layalï¿½m. Her ï¿½eyden ï¿½nce, Git'i kurmanï¿½z gerekiyor. Bunu iki baï¿½lï¿½ca biï¿½imde gerï¿½ekleï¿½tirebilirsiniz: kaynak kodundan ya da platformunuz iï¿½in halihazï¿½rda varolan paketi kullanarak kurabilirsiniz.
 
 ### Kaynak Kodundan Kurulum ###
 
-Yapabiliyorsanýz, Git'i kaynak kodundan kurmak kullanýþlýdýr, çünkü böylece en yeni versiyonunu edinebilirsiniz. Git'in her yeni versiyonu yararlý kullanýcý arayüzü güncellemeleri içerir, dolayýsýyla en son versiyonu kurmak, eðer yazýlým derlemek konusunda sýkýntý yaþamayacaðýnýzý düþünüyorsanýz, en iyi yoldur. Ayrýca kimi zaman, Linux daðýtýmlarý yazýlýmlarýn çok eski paketlerini içerirler; dolayýsýyla, çok güncel bir daðýtýma sahip deðilseniz ya da terstaþýmalar (_backport_) kullanmýyorsanýz, kaynak koddan kurulum en mantýklý seçenek olabilir.
+Yapabiliyorsanï¿½z, Git'i kaynak kodundan kurmak kullanï¿½ï¿½lï¿½dï¿½r, ï¿½ï¿½nkï¿½ bï¿½ylece en yeni versiyonunu edinebilirsiniz. Git'in her yeni versiyonu yararlï¿½ kullanï¿½cï¿½ arayï¿½zï¿½ gï¿½ncellemeleri iï¿½erir, dolayï¿½sï¿½yla en son versiyonu kurmak, eï¿½er yazï¿½lï¿½m derlemek konusunda sï¿½kï¿½ntï¿½ yaï¿½amayacaï¿½ï¿½nï¿½zï¿½ dï¿½ï¿½ï¿½nï¿½yorsanï¿½z, en iyi yoldur. Ayrï¿½ca kimi zaman, Linux daï¿½ï¿½tï¿½mlarï¿½ yazï¿½lï¿½mlarï¿½n ï¿½ok eski paketlerini iï¿½erirler; dolayï¿½sï¿½yla, ï¿½ok gï¿½ncel bir daï¿½ï¿½tï¿½ma sahip deï¿½ilseniz ya da terstaï¿½ï¿½malar (_backport_) kullanmï¿½yorsanï¿½z, kaynak koddan kurulum en mantï¿½klï¿½ seï¿½enek olabilir.
 
-Git'i kurmak için, Git'in baðýmlý olduðu þu kütüphanelerin sisteminizde bulunmasý gerekiyor: curl, zlib, openssl, expat, ve libiconv. Örneðin, (Fedora gibi) yum aracýna ya da (Debian tabanlý sistemler gibi) apt-get aracýna sahip bir sistemdeyseniz, baðýmlýlýklarý kurmak için þu komutlardan birini kullanabilirsiniz:
+Git'i kurmak iï¿½in, Git'in baï¿½ï¿½mlï¿½ olduï¿½u ï¿½u kï¿½tï¿½phanelerin sisteminizde bulunmasï¿½ gerekiyor: curl, zlib, openssl, expat, ve libiconv. ï¿½rneï¿½in, (Fedora gibi) yum aracï¿½na ya da (Debian tabanlï¿½ sistemler gibi) apt-get aracï¿½na sahip bir sistemdeyseniz, baï¿½ï¿½mlï¿½lï¿½klarï¿½ kurmak iï¿½in ï¿½u komutlardan birini kullanabilirsiniz:
 
 	$ yum install curl-devel expat-devel gettext-devel \
 	  openssl-devel zlib-devel
@@ -136,7 +136,7 @@ Git'i kurmak için, Git'in baðýmlý olduðu þu kütüphanelerin sisteminizde bulunmas
 	$ apt-get install libcurl4-gnutls-dev libexpat1-dev gettext \
 	  libz-dev libssl-dev
 	
-Bütün gerekli baðýmlýlýklarý yükledikten sonra Git web sitesinden en son bellek kopyasýný edinebilirsiniz:
+Bï¿½tï¿½n gerekli baï¿½ï¿½mlï¿½lï¿½klarï¿½ yï¿½kledikten sonra Git web sitesinden en son bellek kopyasï¿½nï¿½ edinebilirsiniz:
 
 	http://git-scm.com/download
 
@@ -147,81 +147,85 @@ Sonra derleyip kurabilirsiniz:
 	$ make prefix=/usr/local all
 	$ sudo make prefix=/usr/local install
 
-Bu adýmdan sonra, Git'teki yeni güncellemeleri Git'in kendisini kullanarak edinebilirsiniz:
+Bu adï¿½mdan sonra, Git'teki yeni gï¿½ncellemeleri Git'in kendisini kullanarak edinebilirsiniz:
 
 	$ git clone git://git.kernel.org/pub/scm/git/git.git
 	
 ### Linux'ta Kurulum ###
 
-Git'i Linux sisteminize paket kurucu yardýmýyla kurmak istiyorsanýz, bunu genellikle daðýtýmýnýzla birlikte gelen temel paket yönetim aracýyla yapabilirsiniz. Fedora kullanýcýsýysanýz, yum'u kullanabilirsiniz:
+Git'i Linux sisteminize paket kurucu yardï¿½mï¿½yla kurmak istiyorsanï¿½z, bunu genellikle daï¿½ï¿½tï¿½mï¿½nï¿½zla birlikte gelen temel paket yï¿½netim aracï¿½yla yapabilirsiniz. Fedora kullanï¿½cï¿½sï¿½ysanï¿½z, yum'u kullanabilirsiniz:
 
 	$ yum install git-core
 
-Ubuntu gibi Debian-tabanlý bir sistemdeyseniz, apt-get'i kullanabilirsiniz:
+Ubuntu gibi Debian-tabanlï¿½ bir sistemdeyseniz, apt-get'i kullanabilirsiniz:
 
 	$ apt-get install git
+	
+Pisi Linux veya pisi tabanlÄ± bir sistemde iseniz:
+
+	$ pisi it git
 
 ### Mac'te Kurulum ###
 
-Git'i Mac'te kurmak için iki kolay yol vardýr. En kolayý, Google Code sayfasýndan indirebileceðiniz görsel Git yükleyicisini kullanmaktýr (bkz. Figür 1-7).
+Git'i Mac'te kurmak iï¿½in iki kolay yol vardï¿½r. En kolayï¿½, Google Code sayfasï¿½ndan indirebileceï¿½iniz gï¿½rsel Git yï¿½kleyicisini kullanmaktï¿½r (bkz. Figï¿½r 1-7).
 
 	http://code.google.com/p/git-osx-installer
 
 Insert 18333fig0107.png 
-Figür 1-7. Git OS X yükleyicisi.
+Figï¿½r 1-7. Git OS X yï¿½kleyicisi.
 
-Diðer baþlýca yol, Git'i MacPorts (`http://www.macports.org`) vasýtasýyla kurmaktýr. MacPorts halihazýrda kurulu bulunuyorsa Git'i þu komutla kurabilirsiniz:
+Diï¿½er baï¿½lï¿½ca yol, Git'i MacPorts (`http://www.macports.org`) vasï¿½tasï¿½yla kurmaktï¿½r. MacPorts halihazï¿½rda kurulu bulunuyorsa Git'i ï¿½u komutla kurabilirsiniz:
 
 	$ sudo port install git-core +svn +doc +bash_completion +gitweb
 
-Bütün ek paketleri kurmanýz þart deðil, ama Git'i Subversion yazýlým havuzlarýyla kullanmanýz gerekecekse en azýndan +svn'i edinmelisiniz.
+Bï¿½tï¿½n ek paketleri kurmanï¿½z ï¿½art deï¿½il, ama Git'i Subversion yazï¿½lï¿½m havuzlarï¿½yla kullanmanï¿½z gerekecekse en azï¿½ndan +svn'i edinmelisiniz.
 
 ### Windows'ta Kurulum ###
 
-Git'i Windows'da kurmak oldukça kolaydýr. mysysGit projesi en basit kurulum yöntemlerinden birine sahip. Çalýþtýrýlabilir kurulum dosyasýný GitHub sayfasýndan indirip çalýþtýrmanýz yeterli:
+Git'i Windows'da kurmak oldukï¿½a kolaydï¿½r. mysysGit projesi en basit kurulum yï¿½ntemlerinden birine sahip. ï¿½alï¿½ï¿½tï¿½rï¿½labilir kurulum dosyasï¿½nï¿½ GitHub sayfasï¿½ndan indirip ï¿½alï¿½ï¿½tï¿½rmanï¿½z yeterli:
 
 	http://msysgit.github.com/
 
-Kurulum tamamlandýðýnda hem (daha sonra iþe yarayacak olan SSH istemcisini de içeren) komut satýrý nüshasýna hem de standart kullanýcý arayüzüne sahip olacaksýnýz.
+Kurulum tamamlandï¿½ï¿½ï¿½nda hem (daha sonra iï¿½e yarayacak olan SSH istemcisini de iï¿½eren) komut satï¿½rï¿½ nï¿½shasï¿½na hem de standart kullanï¿½cï¿½ arayï¿½zï¿½ne sahip olacaksï¿½nï¿½z.
 
-## Ýlk Ayarlamalar ##
+## ï¿½lk Ayarlamalar ##
 
-Artýk Git sisteminizde kurulu olduðuna göre, onu ihtiyacýnýza göre uyarlamak için bazý düzenlemeler yapabilirsiniz. Bunlarý yalnýzca bir kere yapmanýz yeterli olacaktýr: güncellemelerden etkilenmeyeceklerdir. Ayrýca istediðiniz zaman komutlarý yeniden çalýþtýrarak ayarlarý deðiþtirebilirsiniz.
+Artï¿½k Git sisteminizde kurulu olduï¿½una gï¿½re, onu ihtiyacï¿½nï¿½za gï¿½re uyarlamak iï¿½in bazï¿½ dï¿½zenlemeler yapabilirsiniz. Bunlarï¿½ yalnï¿½zca bir kere yapmanï¿½z yeterli olacaktï¿½r: gï¿½ncellemelerden etkilenmeyeceklerdir. Ayrï¿½ca istediï¿½iniz zaman komutlarï¿½ yeniden ï¿½alï¿½ï¿½tï¿½rarak ayarlarï¿½ deï¿½iï¿½tirebilirsiniz.
 
-Git, Git'in nasýl görüneceðini ve çalýþacaðýný belirleyen bütün konfigürasyon deðiþkenlerini görmenizi ve deðiþtirmenizi saðlayan git config adýnda bir araçla birlikte gelir. Bu deðiþkenler üç farklý yerde depolanabilirler:
+Git, Git'in nasï¿½l gï¿½rï¿½neceï¿½ini ve ï¿½alï¿½ï¿½acaï¿½ï¿½nï¿½ belirleyen bï¿½tï¿½n konfigï¿½rasyon deï¿½iï¿½kenlerini gï¿½rmenizi ve deï¿½iï¿½tirmenizi saï¿½layan git config adï¿½nda bir araï¿½la birlikte gelir. Bu deï¿½iï¿½kenler ï¿½ï¿½ farklï¿½ yerde depolanabilirler:
 
-*	`/etc/gitconfig` dosyasý: Sistemdeki bütün kullanýcýlar ve onlarýn bütün yazýlým havuzlarý için geçerli olan deðerleri içerir. `git config` komutunu `--system` seçeneðiyle kullanýrsanýz, araç bu dosyadan okuyup deðiþiklikleri bu dosyaya kaydedecektir.
-*	`~/.gitconfig` dosyasý: Kullanýcýya özeldir. `--global` seçeneðiyle Git'in bu dosyadan okuyup deðiþiklikleri bu dosyaya kaydetmesini saðlayabilirsiniz.
-*	kullanmakta olduðunuz yazýlým havuzundaki git klasöründe bulunan config dosyasý (yani `.git/config`): Söz konusu yazýlým havuzuna özeldir. Her düzeydeki ayarlar kendisinden önce gelen düzeydeki ayarlarý gölgede býrakýr (_override_), dolayýsýyla `.git/config`'deki deðerler `/etc/gitconfig`'deki deðerlerden daha baskýndýr.
+*	`/etc/gitconfig` dosyasï¿½: Sistemdeki bï¿½tï¿½n kullanï¿½cï¿½lar ve onlarï¿½n bï¿½tï¿½n yazï¿½lï¿½m havuzlarï¿½ iï¿½in geï¿½erli olan deï¿½erleri iï¿½erir. `git config` komutunu `--system` seï¿½eneï¿½iyle kullanï¿½rsanï¿½z, araï¿½ bu dosyadan okuyup deï¿½iï¿½iklikleri bu dosyaya kaydedecektir.
+*	`~/.gitconfig` dosyasï¿½: Kullanï¿½cï¿½ya ï¿½zeldir. `--global` seï¿½eneï¿½iyle Git'in bu dosyadan okuyup deï¿½iï¿½iklikleri bu dosyaya kaydetmesini saï¿½layabilirsiniz.
+*	kullanmakta olduï¿½unuz yazï¿½lï¿½m havuzundaki git klasï¿½rï¿½nde bulunan config dosyasï¿½ (yani `.git/config`): Sï¿½z konusu yazï¿½lï¿½m havuzuna ï¿½zeldir. Her dï¿½zeydeki ayarlar kendisinden ï¿½nce gelen dï¿½zeydeki ayarlarï¿½ gï¿½lgede bï¿½rakï¿½r (_override_), dolayï¿½sï¿½yla `.git/config`'deki deï¿½erler `/etc/gitconfig`'deki deï¿½erlerden daha baskï¿½ndï¿½r.
 
-Git, Windows sistemlerde `$HOME` klasöründeki (çoðu kullanýcý için `C:\Documents and Settings\$USER` klasörüdür) `.gitconfig` dosyasýna bakar (Ç.N.: Windows kullanýcý klasörüne %HOMEPATH% çevresel deðiþkenini kullanarak ulaþabilirsiniz). Git, Windows sistemlerde de /etc/gitconfig dosyasýný arar fakat bu konum, Git kurulumu sýrasýnda seçtiðiniz MSys kök dizinine göredir.
+Git, Windows sistemlerde `$HOME` klasï¿½rï¿½ndeki (ï¿½oï¿½u kullanï¿½cï¿½ iï¿½in `C:\Documents and Settings\$USER` klasï¿½rï¿½dï¿½r) `.gitconfig` dosyasï¿½na bakar (ï¿½.N.: Windows kullanï¿½cï¿½ klasï¿½rï¿½ne %HOMEPATH% ï¿½evresel deï¿½iï¿½kenini kullanarak ulaï¿½abilirsiniz). Git, Windows sistemlerde de /etc/gitconfig dosyasï¿½nï¿½ arar fakat bu konum, Git kurulumu sï¿½rasï¿½nda seï¿½tiï¿½iniz MSys kï¿½k dizinine gï¿½redir.
 
-### Kimliðiniz ###
+### Kimliï¿½iniz ###
 
-Git'i kurduðunuzda yapmanýz gereken ilk þey adýnýzý ve e-posta adresinizi ayarlamaktýr. Bunun önemli olmasýnýn nedeni her bir Git kaydýnýn bu bilgiyi kullanýyor olmasý ve bu bilgilerin dolaþýma soktuðunuz kayýtlara deðiþmez biçimde iþlenmesidir.
+Git'i kurduï¿½unuzda yapmanï¿½z gereken ilk ï¿½ey adï¿½nï¿½zï¿½ ve e-posta adresinizi ayarlamaktï¿½r. Bunun ï¿½nemli olmasï¿½nï¿½n nedeni her bir Git kaydï¿½nï¿½n bu bilgiyi kullanï¿½yor olmasï¿½ ve bu bilgilerin dolaï¿½ï¿½ma soktuï¿½unuz kayï¿½tlara deï¿½iï¿½mez biï¿½imde iï¿½lenmesidir.
 
 	$ git config --global user.name "John Doe"
 	$ git config --global user.email johndoe@example.com
 
-Yinelemek gerekirse, `--global` seçeneðini kullandýðýnýzda bunu bir kez yapmanýz yeterli olacaktýr, çünkü Git, o sistemde yapacaðýnýz her iþlem için bu bilgileri kullanacaktýr. Ýsmi ya da e-posta adresini projeden projeye deðiþtirmek isterseniz, komutu deðiþiklik yapmak istediðiniz proje klasörünün içinde `--global` seçeneði olmadan çalýþtýrabilirsiniz.
+Yinelemek gerekirse, `--global` seï¿½eneï¿½ini kullandï¿½ï¿½ï¿½nï¿½zda bunu bir kez yapmanï¿½z yeterli olacaktï¿½r, ï¿½ï¿½nkï¿½ Git, o sistemde yapacaï¿½ï¿½nï¿½z her iï¿½lem iï¿½in bu bilgileri kullanacaktï¿½r. ï¿½smi ya da e-posta adresini projeden projeye deï¿½iï¿½tirmek isterseniz, komutu deï¿½iï¿½iklik yapmak istediï¿½iniz proje klasï¿½rï¿½nï¿½n iï¿½inde `--global` seï¿½eneï¿½i olmadan ï¿½alï¿½ï¿½tï¿½rabilirsiniz.
 
-### Editörünüz ###
+### Editï¿½rï¿½nï¿½z ###
 
-Kimlik ayarlarýnýzý yaptýðýnýza göre, Git sizden bir mesaj yazmanýzý istediðinde kullanacaðýnýz editörle ilgili düzenlemeyi yapabilirsiniz. Aksi belirtilmedikçe Git sisteminizdeki öntanýmlý (_default_) editörü kullanýr, bu da genellikle Vi ya da Vim'dir. Emacs gibi baþka bir metin editörü kullanmak isterseniz, þu komutu kullanabilirsiniz:
+Kimlik ayarlarï¿½nï¿½zï¿½ yaptï¿½ï¿½ï¿½nï¿½za gï¿½re, Git sizden bir mesaj yazmanï¿½zï¿½ istediï¿½inde kullanacaï¿½ï¿½nï¿½z editï¿½rle ilgili dï¿½zenlemeyi yapabilirsiniz. Aksi belirtilmedikï¿½e Git sisteminizdeki ï¿½ntanï¿½mlï¿½ (_default_) editï¿½rï¿½ kullanï¿½r, bu da genellikle Vi ya da Vim'dir. Emacs gibi baï¿½ka bir metin editï¿½rï¿½ kullanmak isterseniz, ï¿½u komutu kullanabilirsiniz:
 
 	$ git config --global core.editor emacs
 	
-### Dosya Karþýlaþtýrma Aracýnýz ###
+### Dosya Karï¿½ï¿½laï¿½tï¿½rma Aracï¿½nï¿½z ###
 
-Düzenlemek isteyeceðiniz bir diðer yararlý ayar da birleþtirme (_merge_) uyuþmazlýklarýný gidermek için kullanacaðýnýz araçla ilgilidir. vimdiff aracýný seçmek için þu komutu kullanabilirsiniz:
+Dï¿½zenlemek isteyeceï¿½iniz bir diï¿½er yararlï¿½ ayar da birleï¿½tirme (_merge_) uyuï¿½mazlï¿½klarï¿½nï¿½ gidermek iï¿½in kullanacaï¿½ï¿½nï¿½z araï¿½la ilgilidir. vimdiff aracï¿½nï¿½ seï¿½mek iï¿½in ï¿½u komutu kullanabilirsiniz:
 
 	$ git config --global merge.tool vimdiff
 
-Git kdiff3, tkdiff, meld, xxdiff, emerge, vimdiff, gvimdiff, ecmerge ve opendiff araçlarýný kabul eder. Dilerseniz özel bir araç için de ayarlamalar yapabilirsiniz (bununla ilgili daha fazla bilgi için bkz. 7. Bölüm).
+Git kdiff3, tkdiff, meld, xxdiff, emerge, vimdiff, gvimdiff, ecmerge ve opendiff araï¿½larï¿½nï¿½ kabul eder. Dilerseniz ï¿½zel bir araï¿½ iï¿½in de ayarlamalar yapabilirsiniz (bununla ilgili daha fazla bilgi iï¿½in bkz. 7. Bï¿½lï¿½m).
 
-### Ayarlarýnýzý Gözden Geçirmek ###
+### Ayarlarï¿½nï¿½zï¿½ Gï¿½zden Geï¿½irmek ###
 
-Ayarlarýnýzý gözden geçirmek isterseniz, Git'in bulabildiði bütün ayarlarý listelemek için `git config --list` komutunu kullanabilirsiniz.
+Ayarlarï¿½nï¿½zï¿½ gï¿½zden geï¿½irmek isterseniz, Git'in bulabildiï¿½i bï¿½tï¿½n ayarlarï¿½ listelemek iï¿½in `git config --list` komutunu kullanabilirsiniz.
 
 	$ git config --list
 	user.name=Scott Chacon
@@ -232,27 +236,27 @@ Ayarlarýnýzý gözden geçirmek isterseniz, Git'in bulabildiði bütün ayarlarý liste
 	color.diff=auto
 	...
 
-Bir ayarý birden çok kez görebilirsiniz; bunun nedeni Git'in ayný ayarý deðiþik dosyalardan (örneðin `etc/gitconfig` ve `~/.gitconfig`'den) okumuþ olmasýdýr. Bu durumda Git gördüðü her bir tekil ayar için en son bulduðu deðeri kullanýr.
+Bir ayarï¿½ birden ï¿½ok kez gï¿½rebilirsiniz; bunun nedeni Git'in aynï¿½ ayarï¿½ deï¿½iï¿½ik dosyalardan (ï¿½rneï¿½in `etc/gitconfig` ve `~/.gitconfig`'den) okumuï¿½ olmasï¿½dï¿½r. Bu durumda Git gï¿½rdï¿½ï¿½ï¿½ her bir tekil ayar iï¿½in en son bulduï¿½u deï¿½eri kullanï¿½r.
 
-`git config {ayar}` komutunu kullanarak Git'ten bir ayarýn deðerini görüntülemesini de isteyebilirsiniz:
+`git config {ayar}` komutunu kullanarak Git'ten bir ayarï¿½n deï¿½erini gï¿½rï¿½ntï¿½lemesini de isteyebilirsiniz:
 
 	$ git config user.name
 	Scott Chacon
 
-## Yardým Almak ##
+## Yardï¿½m Almak ##
 
-Git'i kullanýrken yardýma ihtiyacýnýz olursa, herhangi bir Git komutunun yardým kýlavuzu sayfasýný (_manpage_) üç deðiþik biçimde görüntüleyebilirsiniz:
+Git'i kullanï¿½rken yardï¿½ma ihtiyacï¿½nï¿½z olursa, herhangi bir Git komutunun yardï¿½m kï¿½lavuzu sayfasï¿½nï¿½ (_manpage_) ï¿½ï¿½ deï¿½iï¿½ik biï¿½imde gï¿½rï¿½ntï¿½leyebilirsiniz:
 
 	$ git help <eylem>
 	$ git <eylem> --help
 	$ man git-<eylem>
 
-Örneðin, config komutu için kýlavuzu sayfasýný görüntülemek için þu komutu çalýþtýrabilirsiniz:
+ï¿½rneï¿½in, config komutu iï¿½in kï¿½lavuzu sayfasï¿½nï¿½ gï¿½rï¿½ntï¿½lemek iï¿½in ï¿½u komutu ï¿½alï¿½ï¿½tï¿½rabilirsiniz:
 
 	$ git help config
 
-Bu komutlarýn güzel tarafý onlara her an, að baðlantýnýz olmasa bile ulaþabiliyor olmanýzdýr. Eðer kýlavuz sayfalarý ve bu kitap yeterli olmazsa ve kiþisel yardýma ihtiyaç duyacak olursanýz, Freenode IRC sunucusundaki (irc.freenode.net) `#git` ya da `#github` kanallarýna baðlanmayý deneyebilirsiniz. Bu kanallar Git hakkýnda derin bilgiye sahip yüzlerce kiþi tarafýndan düzenli olarak ziyaret edilmektedir.
+Bu komutlarï¿½n gï¿½zel tarafï¿½ onlara her an, aï¿½ baï¿½lantï¿½nï¿½z olmasa bile ulaï¿½abiliyor olmanï¿½zdï¿½r. Eï¿½er kï¿½lavuz sayfalarï¿½ ve bu kitap yeterli olmazsa ve kiï¿½isel yardï¿½ma ihtiyaï¿½ duyacak olursanï¿½z, Freenode IRC sunucusundaki (irc.freenode.net) `#git` ya da `#github` kanallarï¿½na baï¿½lanmayï¿½ deneyebilirsiniz. Bu kanallar Git hakkï¿½nda derin bilgiye sahip yï¿½zlerce kiï¿½i tarafï¿½ndan dï¿½zenli olarak ziyaret edilmektedir.
 
-## Özet ##
+## ï¿½zet ##
 
-Artýk Git'in ne olduðu ve kullanmýþ olabileceðiniz MSKS'den hangi açýlardan farklý olduðu konusunda temel bilgilere sahipsiniz. Ayrýca sisteminizde, sizin kimlik bilgilerinize göre ayarlanmýþ bir Git kurulumu bulunuyor. Þimdi Git'in temellerini öðrenme zamaný.
+Artï¿½k Git'in ne olduï¿½u ve kullanmï¿½ï¿½ olabileceï¿½iniz MSKS'den hangi aï¿½ï¿½lardan farklï¿½ olduï¿½u konusunda temel bilgilere sahipsiniz. Ayrï¿½ca sisteminizde, sizin kimlik bilgilerinize gï¿½re ayarlanmï¿½ï¿½ bir Git kurulumu bulunuyor. ï¿½imdi Git'in temellerini ï¿½ï¿½renme zamanï¿½.
