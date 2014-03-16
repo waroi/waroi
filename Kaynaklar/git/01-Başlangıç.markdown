@@ -161,6 +161,10 @@ Ubuntu gibi Debian-tabanlı bir sistemdeyseniz, apt-get'i kullanabilirsiniz:
 
 	$ apt-get install git
 	
+Pisi Linux gibi pisi tabanlı bir sistemde iseniz pisi'yi kullanabilirsiniz:
+	
+	$ pisi it git
+
 
 ### Mac'te Kurulum ###
 
