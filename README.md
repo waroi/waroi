@@ -1,4 +1,6 @@
+----
 waroi
 =====
 
-Bir klasik olacak ama; o şimdi asker :)
+Bir klasik olacak ama; o şimdi asker ;)
+----
