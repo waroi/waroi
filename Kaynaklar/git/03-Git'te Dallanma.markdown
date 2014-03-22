@@ -29,6 +29,7 @@ Fig�r 3-2. Birden �ok kay�t sonunda Git nesne verisi.
 
 Git'te bir dal, bu kay�tlardan birine i�aret eden, yer de�i�tirebilen k�vrak bir imle�ten ibarettir. Git'teki varsay�lan dal ad� `master`'d�r. �lk kayd� yapt���n�zda, son yapt���n�z kayd� g�steren bir `master` dal�na sahip olursunuz. Her kay�t yapt���n�zda dal otomatik olarak son kayd� g�stermek �zere hareket eder.
 
+
 Insert 18333fig0303.png 
 Fig�r 3-3. Dal kay�t verisinin tarih�esini g�steriyor.
 
