@@ -242,7 +242,7 @@
   </a>
   <a href="https://nextjs.org/" target="_blank">
     <img
-      src="https://cdn.worldvectorlogo.com/logos/nextjs-3.svg"
+      src="https://www.rlogical.com/wp-content/uploads/2021/08/Rlogical-Blog-Images-thumbnail.png"
       alt="nextjs"
       width="40"
       height="40"
