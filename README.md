@@ -305,7 +305,7 @@
   </a>
   <a href="https://reactnative.dev/" target="_blank">
     <img
-      src="https://toppng.com/uploads/preview/react-native-svg-transformer-allows-you-import-svg-aperture-science-innovators-logo-11562851994zqcpwozsvy.png"
+      src="https://erdincuzun.com/wp-content/uploads/2019/04/react-native-logo.png"
       alt="react-native"
       width="40"
       height="40"
@@ -343,7 +343,7 @@
   </a>
   <a href="https://www.jenkins.io/" target="_blank">
     <img
-      src="https://w7.pngwing.com/pngs/122/347/png-transparent-jenkins-continuous-integration-continuous-delivery-ci-cd-computer-software-others-hand-logo-cartoon.png"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Jenkins_logo.svg/1200px-Jenkins_logo.svg"
       alt="jenkins"
       width="40"
       height="40"
