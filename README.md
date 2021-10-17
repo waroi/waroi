@@ -81,7 +81,7 @@
   </a>
 </p>
 
-<p align="center">
+<p align="left">
   <a href="https://profile.codersrank.io/user/waroi/" target="_blank">
     <img
       src="https://cr-ss-service.azurewebsites.net/api/ScreenShot?widget=summary&username=waroi"
