@@ -285,7 +285,7 @@
   </a>
   <a href="https://isocpp.org/" target="_blank">
     <img
-      src="https://img2.pngindir.com/20180408/pew/kisspng-the-c-programming-language-computer-icons-comput-programming-5acadc2dec0be9.0824244915232440779669.jpg"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/306px-ISO_C%2B%2B_Logo.svg.png"
       alt="c++"
       width="40"
       height="40"
@@ -299,6 +299,14 @@
     <img
       src="https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg"
       alt="flutter"
+      width="40"
+      height="40"
+    />
+  </a>
+  <a href="https://reactnative.dev/" target="_blank">
+    <img
+      src="https://toppng.com/uploads/preview/react-native-svg-transformer-allows-you-import-svg-aperture-science-innovators-logo-11562851994zqcpwozsvy.png"
+      alt="react-native"
       width="40"
       height="40"
     />
@@ -329,6 +337,14 @@
     <img
       src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg"
       alt="linux"
+      width="40"
+      height="40"
+    />
+  </a>
+  <a href="https://www.jenkins.io/" target="_blank">
+    <img
+      src="https://w7.pngwing.com/pngs/122/347/png-transparent-jenkins-continuous-integration-continuous-delivery-ci-cd-computer-software-others-hand-logo-cartoon.png"
+      alt="jenkins"
       width="40"
       height="40"
     />
