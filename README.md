@@ -343,7 +343,7 @@
   </a>
   <a href="https://www.jenkins.io/" target="_blank">
     <img
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Jenkins_logo.svg/1200px-Jenkins_logo.svg"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Jenkins_logo.svg/1200px-Jenkins_logo.svg.png"
       alt="jenkins"
       width="40"
       height="40"
