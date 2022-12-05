@@ -18,63 +18,56 @@
   <a href="https://linkedin.com/in/waroi" target="blank">
     <img
       align="center"
-      src="https://cdns.iconmonstr.com/wp-content/assets/preview/2012/240/iconmonstr-linkedin-2.png"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/LinkedIn_icon_circle.svg/2048px-LinkedIn_icon_circle.svg.png"
       alt="waroi"
-      height="40"
       width="40"
     />
   </a>
   <a href="https://fb.com/waroi" target="blank">
     <img
       align="center"
-      src="https://cdns.iconmonstr.com/wp-content/assets/preview/2012/240/iconmonstr-facebook-2.png"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png"
       alt="waroi"
-      height="40"
       width="40"
     />
   </a>
   <a href="https://instagram.com/waroi" target="blank">
     <img
       align="center"
-      src="https://cdns.iconmonstr.com/wp-content/assets/preview/2016/240/iconmonstr-instagram-12.png"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png"
       alt="waroi"
-      height="40"
       width="40"
     />
   </a>
   <a href="https://dribbble.com/waroi" target="blank">
     <img
       align="center"
-      src="https://cdns.iconmonstr.com/wp-content/assets/preview/2012/240/iconmonstr-dribbble-2.png"
+      src="https://cdn3.iconfinder.com/data/icons/picons-social/57/02-dribbble-512.png"
       alt="waroi"
-      height="40"
       width="40"
     />
   </a>
   <a href="https://www.behance.net/waroi" target="blank">
     <img
       align="center"
-      src="https://cdns.iconmonstr.com/wp-content/assets/preview/2012/240/iconmonstr-behance-2.png"
+      src="https://www.iconpacks.net/icons/2/free-behance-icon-2161-thumb.png"
       alt="waroi"
-      height="40"
       width="40"
     />
   </a>
   <a href="https://medium.com/@waroi" target="blank">
     <img
       align="center"
-      src="https://cdns.iconmonstr.com/wp-content/assets/preview/2018/240/iconmonstr-medium-2.png"
+      src="https://cdn-icons-png.flaticon.com/512/5968/5968885.png"
       alt="@waroi"
-      height="40"
       width="40"
     />
   </a>
   <a href="https://www.youtube.com/c/varolmaksutoglu" target="blank">
     <img
       align="center"
-      src="https://cdns.iconmonstr.com/wp-content/assets/preview/2013/240/iconmonstr-youtube-7.png"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/2560px-YouTube_full-color_icon_%282017%29.svg.png"
       alt="waroi"
-      height="40"
       width="40"
     />
   </a>
