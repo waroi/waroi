@@ -10,7 +10,7 @@
   <a href="https://twitter.com/waroi" target="blank">
     <img
       align="center"
-      src="https://cdns.iconmonstr.com/wp-content/assets/preview/2012/240/iconmonstr-twitter-2.png"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Twitter-logo.svg/1024px-Twitter-logo.svg.png"
       alt="waroi"
       height="40"
       width="40"
