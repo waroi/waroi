@@ -73,9 +73,9 @@
   </a>
 </p>
 
-<p>&nbsp;<img align="left" src="https://github-readme-stats.vercel.app/api?username=waroi&show_icons=true&theme=radical&locale=en&count_private=true&hide=issues" alt="waroi" width="50%" /></p>
+<p><img align="left" src="https://github-readme-stats.vercel.app/api?username=waroi&show_icons=true&theme=radical&locale=en&count_private=true&hide=issues" alt="waroi" width="50%" /></p>
 
-<p><img align="right" src="https://github-readme-stats.vercel.app/api/top-langs?username=waroi&show_icons=true&theme=radical&locale=en&layout=compact" alt="waroi" /></p>
+<p><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=waroi&show_icons=true&theme=radical&locale=en&layout=compact" alt="waroi" width="50%" /></p>
 
 <p align="left">
   <a href="https://profile.codersrank.io/user/waroi/" target="_blank">
