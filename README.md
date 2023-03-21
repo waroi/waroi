@@ -1,7 +1,7 @@
 <h1 align="center">Hi 👋, I'm Varol Maksutoglu</h1>
 <h3 align="center">A front-end team leader and open source code lover from Istanbul.</h3>
 
-- 🔭 I’m currently working at [Felixo](https://felixo.com).
+- 🔭 I’m currently working at [Navlungo](https://navlungo.com).
 - 🌱 I’m currently learning **C#** 
 - 💬 Ask me about **JavaScript, Vue, Vuex, Nuxt, Python**
 
