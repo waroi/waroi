@@ -2,7 +2,7 @@
 <h3 align="center">A front-end team leader and open source code lover from Istanbul.</h3>
 
 - 🔭 I’m currently working at [Turkcell](https://www.turkcell.com.tr/) Group Company [Atmosware](http://atmosware.com.tr/).
-- 🌱 I’m currently learning **C#** 
+- 🌱 I’m currently learning **Rust** 
 - 💬 Ask me about **JavaScript, Vue, Vuex, Nuxt, Python**
 
 <h3 align="left">Connect with me:</h3>
