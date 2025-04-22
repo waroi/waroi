@@ -75,16 +75,6 @@
   </a>
 </p>
 
-<p align="left">
-  <a href="https://profile.codersrank.io/user/waroi/" target="_blank">
-    <img
-      src="https://cr-ss-service.azurewebsites.net/api/ScreenShot?widget=summary&username=waroi"
-      alt="Coders Rank"
-      width="300"
-    />
-  </a>
-</p>
-
 <h3 align="left">Languages and Tools:</h3>
 <h5>Design Tools</h5>
 <p align="left">
