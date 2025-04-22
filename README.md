@@ -5,6 +5,8 @@
 - 🌱 I’m currently learning **Rust** 
 - 💬 Ask me about **JavaScript, Vue, Vuex, Nuxt, Python**
 
+<a href="https://app.daily.dev/waroi"><img src="https://api.daily.dev/devcards/v2/ThQ4GEWFVw2nEnafX9IcW.png?type=default&r=jrg" width="356" alt="Varol Maksutoğlu's Dev Card"/></a>
+
 <h3 align="left">Connect with me:</h3>
 <p align="left">
   <a href="https://twitter.com/waroi" target="blank">
