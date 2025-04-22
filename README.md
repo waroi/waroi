@@ -12,7 +12,7 @@
   <a href="https://twitter.com/waroi" target="blank">
     <img
       align="center"
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Twitter-logo.svg/292px-Twitter-logo.svg.png"
+      src="[https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Twitter-logo.svg/292px-Twitter-logo.svg.png](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/X_logo.jpg/1200px-X_logo.jpg)"
       alt="waroi"
       width="40"
     />
