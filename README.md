@@ -2,7 +2,7 @@
 <h3 align="center">A front-end team leader and open source code lover from Istanbul.</h3>
 
 - 🔭 I’m currently working at [Turkcell](https://www.turkcell.com.tr/) Group Company [Atmosware](http://atmosware.com.tr/).
-- 🌱 I’m currently learning **Rust** 
+- 🌱 I’m currently learning **Java** 
 - 💬 Ask me about **JavaScript, Vue, Vuex, Nuxt, Python**
 
 <a href="https://app.daily.dev/waroi"><img src="https://api.daily.dev/devcards/v2/ThQ4GEWFVw2nEnafX9IcW.png?type=default&r=jrg" width="356" alt="Varol Maksutoğlu's Dev Card"/></a>
