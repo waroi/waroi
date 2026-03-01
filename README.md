@@ -335,14 +335,10 @@
   </a>
 </p>
 
-[![trophy](https://github-profile-trophy.vercel.app/?username=waroi&theme=onedark)](https://github-profile-trophy.vercel.app/?username=waroi&theme=aura)
 
 
 <div align="center">
-
-
-<p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=waroi&show_icons=true&locale=en" alt="waroi" /></p>
-<p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=waroi&" alt="waroi" /></p>
-<p><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=waroi&show_icons=true&locale=en&layout=compact" alt="waroi"/></p>
-
+  <p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=waroi&show_icons=true&locale=en" alt="waroi" /></p>
+  <p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=waroi&" alt="waroi" /></p>
+  <p><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=waroi&show_icons=true&locale=en&layout=compact" alt="waroi"/></p>
 </div>
