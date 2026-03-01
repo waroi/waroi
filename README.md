@@ -4,8 +4,13 @@
 - 🔭 I’m currently working at [Turkcell](https://www.turkcell.com.tr/) Group Company [Atmosware](http://atmosware.com.tr/).
 - 🌱 I’m currently learning **Java** 
 - 💬 Ask me about **JavaScript, Vue, Vuex, Nuxt, Python**
+<div align="left">
+  <a href="https://app.daily.dev/waroi"><img src="https://api.daily.dev/devcards/v2/ThQ4GEWFVw2nEnafX9IcW.png?type=default&r=jrg" width="356" alt="Varol Maksutoğlu's Dev Card"/></a>
+</div>
 
-<a href="https://app.daily.dev/waroi"><img src="https://api.daily.dev/devcards/v2/ThQ4GEWFVw2nEnafX9IcW.png?type=default&r=jrg" width="356" alt="Varol Maksutoğlu's Dev Card"/></a>
+<div align="right">
+  <p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=waroi&" /></p>
+</div>
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
@@ -334,9 +339,3 @@
     />
   </a>
 </p>
-
-
-
-<div align="center">
-  <p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=waroi&" /></p>
-</div>
