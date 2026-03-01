@@ -1,5 +1,5 @@
 <h1 align="center">Hi 👋, I'm Varol Maksutoglu</h1>
-<h3 align="center">A front-end team leader and open source code lover from Istanbul.</h3>
+<h3 align="center">A software development team leader and open source code lover from Istanbul.</h3>
 
 - 🔭 I’m currently working at [Turkcell](https://www.turkcell.com.tr/) Group Company [Atmosware](http://atmosware.com.tr/).
 - 🌱 I’m currently learning **Java** 
