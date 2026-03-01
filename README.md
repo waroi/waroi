@@ -335,7 +335,7 @@
   </a>
 </p>
 
-[[![trophy](https://github-profile-trophy.vercel.app/?username=waroi&theme=onedark)](https://github.com/waroi/github-profile-trophy)](https://github-profile-trophy.vercel.app/?username=waroi&theme=aura)
+[![trophy](https://github-profile-trophy.vercel.app/?username=waroi&theme=onedark)](https://github-profile-trophy.vercel.app/?username=waroi&theme=aura)
 
 
 <div align="center">
