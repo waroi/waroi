@@ -3,7 +3,7 @@
 
 - 🔭 I’m currently working at [Turkcell](https://www.turkcell.com.tr/) Group Company [Atmosware](http://atmosware.com.tr/).
 - 🌱 I’m currently learning **Java** 
-- 💬 Ask me about **JavaScript, Vue, Vuex, Nuxt, Python**
+- 💬 Ask me about **JavaScript, TypeScript, React, Next, Svelte, Vue, Vuex, Nuxt, Python, Claude Code, Codex, Copilot, Gemini, A2A**
 
 
 <div>
