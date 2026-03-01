@@ -6,11 +6,11 @@
 - 💬 Ask me about **JavaScript, Vue, Vuex, Nuxt, Python**
 
 
-<div align="left" style="float:left">
+<div style="float:left">
   <a href="https://app.daily.dev/waroi"><img src="https://api.daily.dev/devcards/v2/ThQ4GEWFVw2nEnafX9IcW.png?type=default&r=jrg" width="356" alt="Varol Maksutoğlu's Dev Card"/></a>
 </div>
 
-<div align="right" style="float:right">
+<div style="float:right">
   <p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=waroi&" /></p>
 </div>
 
