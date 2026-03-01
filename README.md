@@ -338,7 +338,5 @@
 
 
 <div align="center">
-  <p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=waroi&show_icons=true&locale=en" /></p>
   <p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=waroi&" /></p>
-  <p><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=waroi&show_icons=true&locale=en&layout=compact"/></p>
 </div>
