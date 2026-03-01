@@ -336,3 +336,13 @@
 </p>
 
 <p align="center"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=waroi&theme=dracula" alt="waroi" /></a> </p>
+
+
+<div align="center">
+
+
+<p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=waroi&show_icons=true&locale=en" alt="waroi" /></p>
+<p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=waroi&" alt="waroi" /></p>
+<p><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=waroi&show_icons=true&locale=en&layout=compact" alt="waroi"/></p>
+
+</div>
