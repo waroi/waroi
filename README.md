@@ -2,7 +2,7 @@
 <h3 align="center">A software development team leader and open source code lover from Istanbul.</h3>
 
 - 🔭 I’m currently working at [Turkcell](https://www.turkcell.com.tr/) Group Company [Atmosware](http://atmosware.com.tr/).
-- 🌱 I’m currently learning **Java** 
+- 🌱 I’m currently learning **Java, Rust, Go, Agentic AI** 
 - 💬 Ask me about **JavaScript, TypeScript, React, Next, Svelte, Vue, Vuex, Nuxt, Python, Claude Code, Codex, Copilot, Gemini**
 
 
